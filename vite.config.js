@@ -1,4 +1,4 @@
-  import { fileURLToPath, URL } from "node:url";
+import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -62,50 +62,54 @@ export default defineConfig(({ mode }) => {
       sourcemap: true,
       assetsInlineLimit: 0,
       rollupOptions: {
-                        output: {
-                  manualChunks(id) {
-                    // Bundle components by section
-                    if (id.includes("/components/auth/")) {
-                      return "section-auth";
-                    }
-                    if (id.includes("/components/dashboard/")) {
-                      return "section-dashboard";
-                    }
-                    if (id.includes("/components/profile/")) {
-                      return "section-profile";
-                    }
-                    if (id.includes("/components/discover/")) {
-                      return "section-discover";
-                    }
-                    if (id.includes("/components/shop/")) {
-                      return "section-shop";
-                    }
-                    if (id.includes("/components/NotFound.vue")) return "section-misc";
+        output: {
+          manualChunks(id) {
+            // Bundle components by section
+            if (id.includes("/components/auth/")) {
+              return "section-auth";
+            }
+            if (id.includes("/components/dashboard/")) {
+              return "section-dashboard";
+            }
+            if (id.includes("/components/profile/")) {
+              return "section-profile";
+            }
+            if (id.includes("/components/discover/")) {
+              return "section-discover";
+            }
+            if (id.includes("/components/shop/")) {
+              return "section-shop";
+            }
+            if (id.includes("/components/NotFound.vue")) return "section-misc";
 
-                    // Bundle i18n core (without locales) - much smaller now
-                    if (id.includes("/i18n/index.js") || id.includes("/i18n/lazyLoader.js")) {
-                      return "i18n-core";
-                    }
+            // Bundle i18n core (without locales) - much smaller now
+            if (
+              id.includes("/i18n/index.js") ||
+              id.includes("/i18n/lazyLoader.js")
+            ) {
+              return "i18n-core";
+            }
 
-                    // Force separate bundles for locale modules
-                    if (id.includes("/i18n/locales/en.js")) {
-                      return "locale-en";
-                    }
-                    if (id.includes("/i18n/locales/vi.js")) {
-                      return "locale-vi";
-                    }
-                    
-                    // Force separate bundles for locale JSON data
-                    if (id.includes("/i18n/locales/en.json")) {
-                      return "locale-en-data";
-                    }
-                    if (id.includes("/i18n/locales/vi.json")) {
-                      return "locale-vi-data";
-                    }
+            // Force separate bundles for locale modules
+            if (id.includes("/i18n/locales/en.js")) {
+              return "locale-en";
+            }
+            if (id.includes("/i18n/locales/vi.js")) {
+              return "locale-vi";
+            }
 
-                    // Bundle translation utils
-                    if (id.includes("/utils/translationUtils.js")) return "translation-utils";
-                  },
+            // Force separate bundles for locale JSON data
+            if (id.includes("/i18n/locales/en.json")) {
+              return "locale-en-data";
+            }
+            if (id.includes("/i18n/locales/vi.json")) {
+              return "locale-vi-data";
+            }
+
+            // Bundle translation utils
+            if (id.includes("/utils/translationUtils.js"))
+              return "translation-utils";
+          },
           chunkFileNames: "assets/[name]-[hash].js",
           entryFileNames: "assets/[name]-[hash].js",
           assetFileNames: "assets/[name]-[hash][extname]",

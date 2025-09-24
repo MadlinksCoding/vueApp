@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Vue Routing Project with Authentication, Dependency Checks, and Section-Aware Preloading
 
 ## Project Overview
@@ -79,3 +80,19 @@ Study `routeConfig.json` for details. For production, integrate Cognito, add sty
 ## Reference
 - Use attached Cognito ZIP only for reference (not in code).
 - Complexity: Routes have interdependencies; debug with console logs in guards/prefetcher. AssetHandler handles preloads—address known issues (e.g., duplicates) as needed.
+=======
+# Vue + Vite Structured Starter
+
+## Quick start
+```bash
+npm install
+npm run dev
+```
+
+Routes: /, /dashboard, /profile, /shop, /about, /contact, /discover
+
+- i18n with `en` and `vi` is prewired.
+- Minimal auth util at `src/auth/index.js`.
+- Utilities at `src/utils`.
+- All requested folders are scaffolded under `src/components/ui/...` with placeholders.
+>>>>>>> 72d59afbd615b9b2234ccff779ecdf2354ac56f2
