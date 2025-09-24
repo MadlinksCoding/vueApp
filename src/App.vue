@@ -1,4 +1,3 @@
-
 <script setup>
 import { useAuthStore } from "@/stores/useAuthStore";
 import LocaleSwitcher from "@/components/LocaleSwitcher.vue";
@@ -149,3 +148,4 @@ nav {
 button:hover {
   background-color: #0056b3;
 }
+</style>
