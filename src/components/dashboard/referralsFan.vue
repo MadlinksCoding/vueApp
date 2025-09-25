@@ -1,11 +1,11 @@
 <template>
   <DashboardWrapper>
     <template #content>
-      <DashboardReferralsContentAgent />
+      <DashboardReferralsContentCustomer />
     </template>
   </DashboardWrapper>
 </template>
 <script setup lang="ts">
 import DashboardWrapper from "@/templates/dashboard/DashboardWrapper.vue";
-import DashboardReferralsContentAgent from "@/templates/dashboard/page/agent/DashboardReferralsContentAgent.vue";
+import DashboardReferralsContentCustomer from "@/templates/dashboard/page/fan/DashboardReferralsContentCustomer.vue";
 </script>
