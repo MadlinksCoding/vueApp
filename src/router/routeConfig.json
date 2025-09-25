@@ -601,7 +601,6 @@
       }
     }
   },
-  },
   {
     "slug": "/auth/callback/social/google",
     "section": "auth",
@@ -621,7 +620,6 @@
         "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
       }
     }
-  },
   },
   {
     "slug": "/auth/callback/social/twitter",

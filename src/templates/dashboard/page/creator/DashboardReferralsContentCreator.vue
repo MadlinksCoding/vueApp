@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <DashboardWrapperTwoColContainer>
+=======
+  <DashboardTwoColContainerWrapper>
+>>>>>>> 8e32623e3c2ffd53ace328147453eae96a402b9c
     <DashboardTwoColInnerContainerWrapper>
       <section class="space-y-4">
         <div class="rounded-2xl border p-4">
@@ -62,7 +66,11 @@
         </div>
       </section>
     </DashboardTwoColInnerContainerWrapper>
+<<<<<<< HEAD
   </DashboardWrapperTwoColContainer>
+=======
+  </DashboardTwoColContainerWrapper>
+>>>>>>> 8e32623e3c2ffd53ace328147453eae96a402b9c
 </template>
 <script setup lang="ts">
 import DashboardWrapperTwoColContainer from "@/components/layout/dashboard/DashboardWrapperTwoColContainer.vue";
