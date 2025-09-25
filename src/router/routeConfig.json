@@ -257,7 +257,7 @@
     "slug": "/dashboard/overview",
     "section": "dashboard",
     "inheritConfigFromParent": true,
-    "supportedRoles": ["creator"],
+    "supportedRoles": ["creator", "fan", "customer"],
     "customComponentPath": {
       "creator": {
         "componentPath": "@/templates/dashboard/DashboardWrapper.vue"
@@ -791,7 +791,7 @@
       "vendor": {
         "componentPath": "@/components/dashboard/shop/customProductRequestVendor.vue"
       },
-      "customer": {
+      "fan": {
         "componentPath": "@/components/dashboard/shop/customProductRequestCustomer.vue"
       },
       "agent": {
@@ -811,7 +811,7 @@
       "vendor": {
         "componentPath": "@/components/dashboard/subscriptionsVendor.vue"
       },
-      "customer": {
+      "fan": {
         "componentPath": "@/components/dashboard/subscriptionsCustomer.vue"
       },
       "agent": {
@@ -830,7 +830,7 @@
       "vendor": {
         "componentPath": "@/components/dashboard/settings/accountVendor.vue"
       },
-      "customer": {
+      "fan": {
         "componentPath": "@/components/dashboard/settings/accountCustomer.vue"
       },
       "agent": {
@@ -849,7 +849,7 @@
       "vendor": {
         "componentPath": "@/components/dashboard/settings/addressesVendor.vue"
       },
-      "customer": {
+      "fan": {
         "componentPath": "@/components/dashboard/settings/addressesCustomer.vue"
       },
       "agent": {
@@ -870,7 +870,7 @@
       "vendor": {
         "componentPath": "@/components/dashboard/notificationPreferencesVendor.vue"
       },
-      "customer": {
+      "fan": {
         "componentPath": "@/components/dashboard/notificationPreferencesCustomer.vue"
       },
       "agent": {
@@ -890,7 +890,7 @@
       "vendor": {
         "componentPath": "@/components/dashboard/settings/subscriptionVendor.vue"
       },
-      "customer": {
+      "fan": {
         "componentPath": "@/components/dashboard/settings/subscriptionCustomer.vue"
       },
       "agent": {
