@@ -458,62 +458,23 @@
     "section": "auth",
     "inheritConfigFromParent": true,
     "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "fan": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "agent": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "vendor": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      }
-    }
+    "componentPath": "@/templates/auth/page/role/AuthFacebook.vue"
   },
   {
     "slug": "/auth/callback/social/google",
     "section": "auth",
     "inheritConfigFromParent": true,
     "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "fan": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "agent": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "vendor": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      }
-    }
+    "componentPath": "@/templates/auth/page/role/AuthGoogle.vue"
+
   },
   {
     "slug": "/auth/callback/social/twitter",
     "section": "auth",
     "inheritConfigFromParent": true,
     "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "fan": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "agent": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "vendor": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      }
-    }
+    "componentPath": "@/templates/auth/page/role/AuthTwitter.vue"
   },
-
 
   {
     "slug": "/sign-up/onboarding/kyc/callback",

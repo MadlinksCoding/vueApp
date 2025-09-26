@@ -54,7 +54,15 @@ export default function routeGuard(to, from, next) {
     return next("/404");
   }
 
-  // --- 1. Token expiration check ---
+
+  // --- 1. Route existence check ---
+  if (!route) {
+    console.error(`[GUARD] No matching route for "${to.path}" -> redirect to /404`);
+    return next("/404");
+  }
+
+
+  // --- 2. Token expiration check ---
   const now = Math.floor(Date.now() / 1000);
 
   if (user?.raw?.exp) {
@@ -65,12 +73,7 @@ export default function routeGuard(to, from, next) {
     }
   }
 
-  // --- 2. Route existence check ---
-  if (!route) {
-    console.error(`[GUARD] No matching route for "${to.path}" -> redirect to /404`);
-    return next("/404");
-  }
-
+  
   // --- 3. Auth checks ---
   if (route?.requiresAuth) {
     console.log(`[GUARD] Route ${to.path} requires auth`);
