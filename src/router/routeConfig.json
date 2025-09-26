@@ -379,39 +379,15 @@
     "slug": "/dashboard/store/your-orders",
     "section": "dashboard",
     "inheritConfigFromParent": true,
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "fan": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "agent": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "vendor": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      }
-    }
+    "supportedRoles": ["creator"],
+    "componentPath": "@/templates/dashboard/page/creator/DashboardYourOrdersCreator.vue"
   },
   {
     "slug": "/dashboard/store/your-posts",
     "section": "dashboard",
     "inheritConfigFromParent": true,
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "fan": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "agent": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      },
-      "vendor": {
-        "componentPath": "@/components/dashboard/shop/purchasesCreator.vue"
-      }
-    }
+    "supportedRoles": ["creator"],
+    "componentPath": "@/templates/dashboard/page/creator/DashboardYourPostsCreator.vue"
   },
 
   {

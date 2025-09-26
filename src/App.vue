@@ -145,7 +145,7 @@ const auth = useAuthStore();
         Simulate Creator (Incomplete)
       </button>
       <button
-        @click="auth.simulateRole('customer', { onboardingPassed: true })"
+        @click="auth.simulateRole('fan', { onboardingPassed: true })"
         style="
           padding: 0.5rem 1rem;
           background-color: #28a745;
@@ -155,7 +155,7 @@ const auth = useAuthStore();
           cursor: pointer;
         "
       >
-        Simulate Customer (Complete)
+        Simulate Fan (Complete)
       </button>
     </div>
 
