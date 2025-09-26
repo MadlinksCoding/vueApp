@@ -211,7 +211,11 @@
     "slug": "/dashboard/overview",
     "section": "dashboard",
     "inheritConfigFromParent": true,
-    "supportedRoles": ["creator"],
+    "supportedRoles": ["creator", "fan"],
+    "preLoadSections": {
+      "creator": ["profile", "shop"],
+      "fan": ["profile", "discover"]
+    },
     "componentPath": "@/templates/dashboard/page/creator/DashboardOverviewCreator.vue"
   },
   {

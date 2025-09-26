@@ -24,9 +24,6 @@ function getEntryForSection(section, role) {
   const sectionRoutes = routesJson.filter(
     (r) => r.section === section && !r.redirect
   );
-  // console.log(
-  //   `[SECTION] Found ${sectionRoutes.length} routes for section "${section}"`
-  // );
   let entryRoute =
     sectionRoutes.find((r) => !r.inheritConfigFromParent) || sectionRoutes[0];
   if (!entryRoute) {
@@ -50,17 +47,17 @@ export function installSectionActivationGuard(router) {
         .join(", ")}`
     );
     const allAssets = new Set();
-    
-    // Preload translations for this section
+
+    // Preload translations
     console.log(`[I18N] Preloading translations for section "${section}"`);
     try {
-      await enterpriseI18n.preloadLocale('vi', section);
-      await enterpriseI18n.preloadLocale('en', section);
+      await enterpriseI18n.preloadLocale("vi", section);
+      await enterpriseI18n.preloadLocale("en", section);
       console.log(`[I18N] Translations preloaded for section "${section}"`);
     } catch (error) {
-      console.warn(`[I18N] Failed to preload translations for section "${section}":`, error);
+      console.warn(`[I18N] Failed to preload translations:`, error);
     }
-    
+
     const componentPromises = sectionRoutes.map(async (route) => {
       const compPath = getCompPath(route, role);
       if (!compPath) {
@@ -162,6 +159,8 @@ export function installSectionActivationGuard(router) {
     console.log(
       `\n[ROUTING] Section activation for "${section}" (route "${to.path}")`
     );
+
+    // Step 1: wait page load
     const fullLoad = new Promise((resolve) => {
       if (document.readyState === "complete") {
         console.log(
@@ -188,19 +187,22 @@ export function installSectionActivationGuard(router) {
     console.log(
       `✅ Step 1: Full page load complete for "${toFriendlyName(slug)}"`
     );
+
+    // Step 2: apply current assets
     console.log(
-      `✅ Step 2: Waiting for current assets apply for "${toFriendlyName(
-        slug
-      )}"`
+      `✅ Step 2: Waiting for current assets apply for "${toFriendlyName(slug)}"`
     );
     await to.meta._assetPromise;
     console.log(
       `✅ Step 2: Applied all current assets for "${toFriendlyName(slug)}"`
     );
+
     const authStore = useAuthStore();
     const role =
       authStore.simulate?.role || authStore.currentUser?.role || "creator";
     const sectionsStore = useSectionsStore();
+
+    // Step 3: Preload current section
     console.log(
       `➡️ Step 3: Preloading current section "${toFriendlyName(
         section
@@ -209,10 +211,30 @@ export function installSectionActivationGuard(router) {
     await sectionsStore.activateSection(section, () =>
       preloadSection(section, role, false)
     );
-    let preLoadSections = to.meta.preLoadSections || [];
-    preLoadSections = [...new Set([...preLoadSections, "auth"])].filter(
-      (s) => s !== section
-    );
+
+    // --- 🔥 PATCH: Role-based preload ---
+  let preLoadSections = [];
+
+  if (to.meta?.preLoadSections) {
+    const preCfg = to.meta.preLoadSections;
+
+    if (Array.isArray(preCfg)) {
+      // global preload
+      preLoadSections = preCfg;
+      console.log(`[DEBUG] Global preload:`, preLoadSections);
+    } else if (preCfg && typeof preCfg === "object") {
+      // role-based preload
+      preLoadSections = preCfg[role] || [];
+      console.log(`[DEBUG] Role-based preload for role="${role}":`, preLoadSections);
+    }
+  }
+
+  preLoadSections = [...new Set([...preLoadSections, "auth"])].filter(
+    (s) => s !== section
+  );
+    // --- END PATCH ---
+
+    // Step 4: preload extra sections
     if (preLoadSections.length > 0) {
       console.log(
         `➡️ Step 4: Preloading config sections (including auth): ${preLoadSections
@@ -222,9 +244,7 @@ export function installSectionActivationGuard(router) {
       for (const preSection of preLoadSections) {
         if (preSection === "dashboard" && !authStore.currentUser) {
           console.log(
-            `♻️ Skipping preload for "${toFriendlyName(
-              preSection
-            )}" (no user)`
+            `♻️ Skipping preload for "${toFriendlyName(preSection)}" (no user)`
           );
           continue;
         }
@@ -235,11 +255,10 @@ export function installSectionActivationGuard(router) {
     } else {
       console.log(`♻️ No additional sections to preload`);
     }
+
     const totalDuration = (performance.now() - routingStartTime).toFixed(2);
     console.log(
-      `✨ Done: "${toFriendlyName(
-        slug
-      )}" fully ready (total ${totalDuration}ms)`
+      `✨ Done: "${toFriendlyName(slug)}" fully ready (total ${totalDuration}ms)`
     );
   });
 }
