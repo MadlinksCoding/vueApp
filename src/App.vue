@@ -49,7 +49,7 @@ const auth = useAuthStore();
           Log In
         </button>
       </router-link>
-      <router-link to="/dashboard/settings">
+      <router-link to="/dashboard">
         <button
           style="
             padding: 0.5rem 1rem;
