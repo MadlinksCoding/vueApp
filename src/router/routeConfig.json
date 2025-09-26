@@ -51,10 +51,10 @@
       }
     },
     "preLoadSections": {
-    "creator": ["profile", "shop"],
-    "fan": ["profile", "discover"],
-    "vendor": ["profile", "store"],
-    "agent": ["profile"]
+    "creator": ["profile", "about"],
+    "fan": ["profile", "discover", "about"],
+    "vendor": ["profile", "about"],
+    "agent": ["profile", "about"]
   },
     "redirect": "/dashboard/overview"
   },
@@ -257,27 +257,7 @@
     "section": "dashboard",
     "inheritConfigFromParent": true,
     "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "componentPath": "@/templates/dashboard/role/DashboardPrivacySecurity.vue"
-  },
-  {
-    "slug": "/dashboard/settings/privacy-security",
-    "section": "dashboard",
-    "inheritConfigFromParent": true,
-    "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/components/dashboard/payoutCreator.vue"
-      }, 
-      "fan": {
-        "componentPath": "@/components/dashboard/payoutVendor.vue"
-      },
-      "vendor": {
-        "componentPath": "@/components/dashboard/payoutVendor.vue"
-      },
-      "agent": {
-        "componentPath": "@/components/dashboard/payoutAgent.vue"
-      }
-    }
+    "componentPath": "@/templates/dashboard/page/role/DashboardPrivacySecurity.vue"
   },
   {
     "slug": "/dashboard/settings/private-chat-settings",
@@ -326,7 +306,7 @@
     "section": "dashboard",
     "inheritConfigFromParent": true,
     "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "componentPath": "@/templates/dashboard/page/creator/DashboardPurchasedMedia.vue"
+    "componentPath": "@/templates/dashboard/page/role/DashboardPurchasedMedia.vue"
   },
 
   {
