@@ -135,7 +135,7 @@
         "componentPath": "@/templates/dashboard/page/creator/DashboardCustomProductRequestsCreator.vue"
       },
       "fan": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardCustomProductRequestsFan.vue"
+        "componentPath": "@/templates/dashboard/page/fan/DashboardCustomProductRequestsFan.vue"
       }
     }
   },
@@ -211,7 +211,7 @@
     "slug": "/dashboard/overview",
     "section": "dashboard",
     "inheritConfigFromParent": true,
-    "supportedRoles": ["creator", "fan"],
+    "supportedRoles": ["creator"],
     "preLoadSections": {
       "creator": ["profile", "shop"],
       "fan": ["profile", "discover"]
@@ -280,13 +280,13 @@
         "componentPath": "@/templates/dashboard/page/creator/DashboardChatsCreator.vue"
       },
       "fan": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardChatsFan.vue"
+        "componentPath": "@/templates/dashboard/page/fan/DashboardChatsFan.vue"
       },
       "agent": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardChatsAgent.vue"
+        "componentPath": "@/templates/dashboard/page/agent/DashboardChatsAgent.vue"
       },
       "vendor": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardChatsVendor.vue"
+        "componentPath": "@/templates/dashboard/page/vendor/DashboardChatsVendor.vue"
       }
     }
   },
@@ -333,13 +333,13 @@
         "componentPath": "@/templates/dashboard/page/creator/DashboardSettingsCreator.vue"
       },
       "fan": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardSettingsFan.vue"
+        "componentPath": "@/templates/dashboard/page/fan/DashboardSettingsFan.vue"
       },
       "vendor": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardSettingsVendor.vue"
+        "componentPath": "@/templates/dashboard/page/vendor/DashboardSettingsVendor.vue"
       },
       "agent": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardSettingsAgent.vue"
+        "componentPath": "@/templates/dashboard/page/agent/DashboardSettingsAgent.vue"
       }
     }
   },
