@@ -50,7 +50,12 @@
         }
       }
     },
-    "preLoadSections": ["profile"],
+    "preLoadSections": {
+    "creator": ["profile", "shop"],
+    "fan": ["profile", "discover"],
+    "vendor": ["profile", "store"],
+    "agent": ["profile"]
+  },
     "redirect": "/dashboard/overview"
   },
   {

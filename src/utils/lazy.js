@@ -1,6 +1,4 @@
 const modules = import.meta.glob("/src/**/*.{vue,js,ts}");
-console.log("[lazy] available modules:", Object.keys(modules));
-
 
 export function lazy(path) {
   if (!path || typeof path !== "string") {
