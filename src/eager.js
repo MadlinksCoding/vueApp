@@ -17,26 +17,26 @@ if (eagerSection) {
       imports.push(import("@/components/auth/confirm-email.vue"));
       break;
     case "dashboard":
-      imports.push(import("@/components/dashboard/index.vue"));
-      imports.push(
-        import("@/components/dashboard/dashboardOverviewCreator.vue")
-      );
-      imports.push(
-        import("@/components/dashboard/dashboardOverviewVendor.vue")
-      );
-      imports.push(
-        import("@/components/dashboard/dashboardOverviewCustomer.vue")
-      );
-      imports.push(import("@/components/dashboard/dashboardOverviewAgent.vue"));
-      imports.push(
-        import("@/components/dashboard/dashboardEditProfileCreator.vue")
-      );
-      imports.push(
-        import("@/components/dashboard/dashboardEditSettingsCreator.vue")
-      );
-      imports.push(
-        import("@/components/dashboard/dashboardMyMediaCreator.vue")
-      );
+      // imports.push(import("@/components/dashboard/index.vue"));
+      // imports.push(
+      //   import("@/components/dashboard/dashboardOverviewCreator.vue")
+      // );
+      // imports.push(
+      //   import("@/components/dashboard/dashboardOverviewVendor.vue")
+      // );
+      // imports.push(
+      //   import("@/components/dashboard/dashboardOverviewCustomer.vue")
+      // );
+      // imports.push(import("@/components/dashboard/dashboardOverviewAgent.vue"));
+      // imports.push(
+      //   import("@/components/dashboard/dashboardEditProfileCreator.vue")
+      // );
+      // imports.push(
+      //   import("@/components/dashboard/dashboardEditSettingsCreator.vue")
+      // );
+      // imports.push(
+      //   import("@/components/dashboard/dashboardMyMediaCreator.vue")
+      // );
       break;
     case "profile":
       imports.push(import("@/components/profile/index.vue"));

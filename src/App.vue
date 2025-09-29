@@ -144,45 +144,6 @@ const auth = useAuthStore();
       >
         Simulate Creator (Incomplete)
       </button>
-      <button
-        @click="auth.simulateRole('fan', { onboardingPassed: true })"
-        style="
-          padding: 0.5rem 1rem;
-          background-color: #28a745;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        "
-      >
-        Simulate Fan (Complete)
-      </button>
-      <button
-        @click="auth.simulateRole('agent', { onboardingPassed: true })"
-        style="
-          padding: 0.5rem 1rem;
-          background-color: #28a745;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        "
-      >
-        Simulate Agent (Complete)
-      </button>
-      <button
-        @click="auth.simulateRole('vendor', { onboardingPassed: true })"
-        style="
-          padding: 0.5rem 1rem;
-          background-color: #28a745;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        "
-      >
-        Simulate Vendor (Complete)
-      </button>
     </div>
 
     <!-- Locale Switcher -->
