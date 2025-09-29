@@ -49,7 +49,7 @@ const auth = useAuthStore();
           Log In
         </button>
       </router-link>
-      <router-link to="/dashboard">
+      <router-link to="/dashboard/call-and-chat-settings">
         <button
           style="
             padding: 0.5rem 1rem;
@@ -143,6 +143,23 @@ const auth = useAuthStore();
         "
       >
         Simulate Creator (Incomplete)
+      </button>
+      <button
+        @click="
+          auth.simulateRole('fan', {
+            onboardingPassed: true,
+          })
+        "
+        style="
+          padding: 0.5rem 1rem;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        "
+      >
+        Simulate Fan
       </button>
     </div>
 

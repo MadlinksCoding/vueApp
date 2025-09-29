@@ -1,5 +1,5 @@
 <template>
-  <DashboardTwoColContainerWrapper>
+  <DashboardWrapperTwoColContainer>
     <DashboardTwoColInnerContainerWrapper>
       <section class="space-y-4">
         <div class="rounded-2xl border p-4">
