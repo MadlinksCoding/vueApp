@@ -81,7 +81,7 @@ export class DynamicModuleLoader implements ModuleLoader {
 
     try {
       // Always load the full locale file, then extract section if needed
-      const filePath = `/src/i18n/locales/${locale}.json`
+      const filePath = `/i18n/${locale}.json`
 
       const response = await fetch(filePath)
       
@@ -136,7 +136,7 @@ export class DynamicModuleLoader implements ModuleLoader {
   private async loadFallback(locale: Locale, section?: Section): Promise<TranslationData> {
     try {
       // Always load the full locale file for fallback
-      const filePath = `/src/i18n/locales/${locale}.json`
+      const filePath = `/i18n/${locale}.json`
 
       const response = await fetch(filePath)
       
