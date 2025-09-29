@@ -50,12 +50,6 @@
         }
       }
     },
-    "preLoadSections": {
-    "creator": ["profile", "about"],
-    "fan": ["profile", "discover", "about"],
-    "vendor": ["profile", "about"],
-    "agent": ["profile", "about"]
-  },
     "redirect": "/dashboard/overview"
   },
   {
@@ -211,10 +205,12 @@
     "slug": "/dashboard/overview",
     "section": "dashboard",
     "inheritConfigFromParent": true,
-    "supportedRoles": ["creator"],
+    "supportedRoles": ["creator", "fan", "agent", "vendor"],
     "preLoadSections": {
       "creator": ["profile", "shop"],
-      "fan": ["profile", "discover"]
+      "fan": ["profile", "discover"],
+      "agent": ["about"],
+      "vendor": ["contact"]
     },
     "componentPath": "@/templates/dashboard/page/creator/DashboardOverviewCreator.vue"
   },
@@ -486,7 +482,7 @@
     "requiresAuth": false,
     "enabled": false,
     "supportedRoles": [],
-    "componentPath": "@ /templates/about/AboutWrapper.vue",
+    "componentPath": "@/templates/about/AboutWrapper.vue",
     "preLoadSections": ["dashboard"]
   },
   {

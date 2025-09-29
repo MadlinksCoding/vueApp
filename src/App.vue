@@ -129,8 +129,8 @@ const auth = useAuthStore();
       <button
         @click="
           auth.simulateRole('creator', {
-            onboardingPassed: false,
-            kycPassed: false,
+            onboardingPassed: true,
+            kycPassed: true,
           })
         "
         style="
@@ -142,7 +142,7 @@ const auth = useAuthStore();
           cursor: pointer;
         "
       >
-        Simulate Creator (Incomplete)
+        Simulate Creator (Complete)
       </button>
       <button
         @click="auth.simulateRole('fan', { onboardingPassed: true })"
