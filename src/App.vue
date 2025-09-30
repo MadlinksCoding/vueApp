@@ -49,7 +49,7 @@ const auth = useAuthStore();
           Log In
         </button>
       </router-link>
-      <router-link to="/dashboard/call-and-chat-settings">
+      <router-link to="/dashboard/store/custom-product-requests">
         <button
           style="
             padding: 0.5rem 1rem;

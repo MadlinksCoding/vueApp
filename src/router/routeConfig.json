@@ -5,7 +5,7 @@
     "requiresAuth": false,
     "redirectIfLoggedIn": "/dashboard",
     "supportedRoles": [],
-    "componentPath": "@/components/auth/confirm-email.vue",
+    "componentPath": "@/templates/auth/page/role/AuthConfirmEmail.vue",
     "preLoadSections": ["dashboard"]
   },
   {
@@ -13,7 +13,7 @@
     "section": "misc",
     "requiresAuth": false,
     "supportedRoles": [],
-    "componentPath": "@/components/NotFound.vue",
+    "componentPath": "@/templates/misc/NotFound.vue",
     "preLoadSections": []
   },
   {
@@ -23,7 +23,7 @@
     "enabled": true,
     "supportedRoles": ["any"],
     "redirectIfNotAuth": "/log-in",
-    "componentPath": "@/components/dashboard/index.vue",
+    "componentPath": "@/templates/dashboard/page/role/Dashboard.vue",
     "dependencies": {
       "roles": {
         "creator": {
@@ -59,8 +59,8 @@
     "enabled": true,
     "redirectIfLoggedIn": "/dashboard",
     "supportedRoles": [],
-    "componentPath": "@/components/auth/log-in.vue",
-    "preLoadSections": ["dashboard"]
+    "componentPath": "@/templates/auth/page/role/AuthLogIn.vue",
+    "preLoadSections": ["dashboard", "shop"]
   },
   {
     "slug": "/lost-password",
@@ -68,7 +68,7 @@
     "redirectIfLoggedIn": "/dashboard",
     "requiresAuth": false,
     "supportedRoles": [],
-    "componentPath": "@/components/auth/lost-password.vue",
+    "componentPath": "@/templates/auth/page/role/AuthLostPassword.vue",
     "preLoadSections": ["dashboard"]
   },
   {
@@ -77,7 +77,7 @@
     "requiresAuth": false,
     "redirectIfLoggedIn": "/dashboard",
     "supportedRoles": [],
-    "componentPath": "@/components/auth/reset-password.vue",
+    "componentPath": "@/templates/auth/page/role/AuthResetPassword.vue",
     "preLoadSections": ["dashboard"]
   },
   {
@@ -87,7 +87,7 @@
     "enabled": true,
     "redirectIfLoggedIn": "/dashboard",
     "supportedRoles": [],
-    "componentPath": "@/components/auth/sign-up.vue",
+    "componentPath": "@/templates/auth/page/role/AuthSignUp.vue",
     "preLoadSections": ["dashboard"]
   },
 
@@ -375,7 +375,7 @@
     "requiresAuth": false,
     "redirectIfNotAuth": "/log-in",
     "supportedRoles": ["creator"],
-    "componentPath": "@/components/auth/sign-up-onboarding.vue",
+    "componentPath": "@/templates/auth/page/creator/AuthSignUpOnboardingCreator.vue",
     "preLoadSections": ["dashboard"],
     "dependencies": {
       "roles": {
@@ -395,7 +395,7 @@
     "requiresAuth": false,
     "redirectIfNotAuth": "/log-in",
     "supportedRoles": ["creator"],
-    "componentPath": "@/components/auth/sign-up-onboarding-kyc.vue",
+    "componentPath": "@/templates/auth/page/creator/AuthSignUpOnboardingKycCreator.vue",
     "preLoadSections": ["dashboard"],
     "dependencies": {
       "roles": {
@@ -437,7 +437,7 @@
     "requiresAuth": false,
     "redirectIfNotAuth": "/log-in",
     "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "componentPath": "@/components/auth/sign-up/onboarding-kyc-status.vue",
+    "componentPath": "@/templates/auth/page/role/AuthSignUpOnboardingKycCallback.vue",
     "preLoadSections": ["dashboard"],
     "dependencies": {
       "roles": {
@@ -456,7 +456,7 @@
     "requiresAuth": false,
     "redirectIfNotAuth": "/log-in",
     "supportedRoles": ["creator"],
-    "componentPath": "@/components/auth/sign-up/onboarding-kyc-status.vue",
+    "componentPath": "@/templates/auth/page/creator/AuthSignUpOnboardingKycStatusCreator.vue",
     "preLoadSections": ["dashboard"],
     "dependencies": {
       "roles": {
