@@ -65,22 +65,57 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks(id) {
             // Bundle components by section
-            if (id.includes("/components/auth/")) {
+            if (
+              id.includes("/components/auth/") ||
+              id.includes("/components/layout/auth/") ||
+              id.includes("/templates/auth/") 
+            ) {
               return "section-auth";
             }
-            if (id.includes("/components/dashboard/")) {
+            if (
+              id.includes("/components/about/") ||
+              id.includes("/components/layout/about/") ||
+              id.includes("/templates/about/") 
+            ) {
+              return "section-about";
+            }
+            if (
+              id.includes("/components/contact/") ||
+              id.includes("/components/layout/contact/") ||
+              id.includes("/templates/contact/") 
+            ) {
+              return "section-contact";
+            }
+            if (
+              id.includes("/components/dashboard/") ||
+              id.includes("/components/layout/dashboard/") ||
+              id.includes("/templates/dashboard/") 
+            ) {
               return "section-dashboard";
             }
-            if (id.includes("/components/profile/")) {
+            if (
+              id.includes("/components/profile/") ||
+              id.includes("/components/layout/profile/") ||
+              id.includes("/templates/profile/")
+            ) {
+                
               return "section-profile";
             }
-            if (id.includes("/components/discover/")) {
+            if (
+              id.includes("/components/discover/") ||
+              id.includes("/components/layout/discover/") ||
+              id.includes("/templates/discover/")
+            ) {
               return "section-discover";
             }
-            if (id.includes("/components/shop/")) {
+            if (
+              id.includes("/components/shop/") ||            // legacy / flat shop comps
+              id.includes("/components/layout/shop/") ||     // your current layout path
+              id.includes("/templates/shop/")                // your ShopWrapper.vue, etc.
+            ) {
               return "section-shop";
             }
-            if (id.includes("/components/NotFound.vue")) return "section-misc";
+            if (id.includes("/components/NotFound.vue") || id.includes("/templates/misc/")) return "section-misc";
 
             // Bundle i18n core (without locales) - much smaller now
             if (
