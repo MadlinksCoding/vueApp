@@ -1,7 +1,9 @@
 <template>
-    <p>This is dashboard chat page for Fan</p>
+    <DashboardWrapperTwoColContainer>
+        <p>This is dashboard chat page for Fan</p>
+    </DashboardWrapperTwoColContainer>
 </template>
 
-<script>
-
+<script setup>
+import DashboardWrapperTwoColContainer from "@/components/dashboard/DashboardWrapperTwoColContainer.vue";
 </script>

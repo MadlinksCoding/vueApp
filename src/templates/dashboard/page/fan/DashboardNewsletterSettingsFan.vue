@@ -1,7 +1,9 @@
 <template>
-    <p>This is newsletter settings in dashboard for fan</p>
+    <DashboardWrapperTwoColContainer>
+        <p>This is newsletter settings in dashboard for fan</p>
+    </DashboardWrapperTwoColContainer>
 </template>
 
-<script>
-
+<script setup>
+import DashboardWrapperTwoColContainer from "@/components/dashboard/DashboardWrapperTwoColContainer.vue";
 </script>

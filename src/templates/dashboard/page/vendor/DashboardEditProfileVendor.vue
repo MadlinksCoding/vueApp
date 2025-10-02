@@ -1,7 +1,9 @@
 <template>
-    <p>This is edit profile in dashboard for vendor</p>
+    <DashboardWrapperTwoColContainer>
+        <p>This is edit profile in dashboard for vendor</p>
+    </DashboardWrapperTwoColContainer>
 </template>
 
-<script>
-
+<script setup>
+import DashboardWrapperTwoColContainer from "@/components/dashboard/DashboardWrapperTwoColContainer.vue";
 </script>

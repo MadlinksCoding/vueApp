@@ -1,7 +1,9 @@
 <template>
-    <p>This is dashboard subscription settings for creator</p>
+    <DashboardWrapperTwoColContainer>
+        <p>This is dashboard subscription settings for creator</p>
+    </DashboardWrapperTwoColContainer>
 </template>
 
-<script>
-
+<script setup>
+import DashboardWrapperTwoColContainer from "@/components/dashboard/DashboardWrapperTwoColContainer.vue";
 </script>

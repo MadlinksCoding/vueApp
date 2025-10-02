@@ -2,6 +2,9 @@
 import { useAuthStore } from "@/stores/useAuthStore";
 import LocaleSwitcher from "@/components/LocaleSwitcher.vue";
 
+import routesConfig from "@/router/routeConfig.json";
+
+
 const auth = useAuthStore();
 
 // Simulate a Creator user for testing fallbacks
@@ -129,8 +132,8 @@ const auth = useAuthStore();
       <button
         @click="
           auth.simulateRole('creator', {
-            onboardingPassed: false,
-            kycPassed: false,
+            onboardingPassed: true,
+            kycPassed: true,
           })
         "
         style="
@@ -142,7 +145,7 @@ const auth = useAuthStore();
           cursor: pointer;
         "
       >
-        Simulate Creator (Incomplete)
+        Simulate Creator (Complete)
       </button>
       <button
         @click="
@@ -161,7 +164,43 @@ const auth = useAuthStore();
       >
         Simulate Fan
       </button>
+      <button
+        @click="
+          auth.simulateRole('agent', {
+            onboardingPassed: true,
+          })
+        "
+        style="
+          padding: 0.5rem 1rem;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        "
+      >
+        Simulate Agent
+      </button>
+      <button
+        @click="
+          auth.simulateRole('vendor', {
+            onboardingPassed: true,
+          })
+        "
+        style="
+          padding: 0.5rem 1rem;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        "
+      >
+        Simulate Vendor
+      </button>
+      
     </div>
+
 
     <!-- Locale Switcher -->
     <LocaleSwitcher />
@@ -169,6 +208,24 @@ const auth = useAuthStore();
 
   <!-- Main content -->
   <router-view />
+
+  <!-- Footer Test Routes -->
+    <footer
+      style="padding: 1rem; background: #eee; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;"
+    >
+      <h4 style="width: 100%; margin: 0 0 0.5rem 0;">All Routes</h4>
+
+      <router-link
+        v-for="route in routesConfig"
+        :key="route.slug"
+        :to="route.slug"
+        style="padding: 0.5rem 1rem; background: #007bff; color: #fff; border-radius: 4px; text-decoration: none;"
+      >
+        {{ route.slug }}
+      </router-link>
+    </footer>
+
+
 </template>
 
 <style scoped>
