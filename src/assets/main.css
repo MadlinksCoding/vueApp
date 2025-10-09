@@ -1,3 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
   background-color: #f1f1f1;
+}
+
+/* Custom checkbox for dashboard */
+input[type='checkbox'].dash-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #fff;
+  border: 1px solid #d0d5dd;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  min-width: 1rem;
+  min-height: 1rem;
+  margin: 0.12rem;
+}
+
+input[type='checkbox'].dash-checkbox:checked {
+  background-color: #07f468;
+  border-color: #07f468;
+  position: relative;
+}
+
+input[type='checkbox'].dash-checkbox:checked::after {
+  position: absolute;
+  content: '';
+  left: 0.3rem;
+  top: 0.15rem;
+  width: 0.25rem;
+  height: 0.5rem;
+  border: solid #000; /* black tick */
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  box-sizing: border-box;
+}
+
+
+/* Custom radio for dashboard */
+.dash-radio {
+  display: none;
+}
+.dash-radio-label {
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 1.75rem; /* space for custom circle */
+  gap: 0.5rem; /* space between circle and text */
+}
+
+.dash-radio-label:before {
+  content: '';
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+input[type='radio']:checked + label.dash-radio-label:before {
+  background: #000;
+}
+
+input[type='radio']:checked + label.dash-radio-label:after {
+  content: '';
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: #07f468;
+  position: absolute;
+  left: 0.4375rem;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
 }

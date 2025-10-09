@@ -620,7 +620,7 @@
     "section": "dev",
     "supportedRoles": ["all"],
     "enabled": true,
-  "componentPath": "@/components/dev/DevPage.vue",
+  "componentPath": "@/components/dev/DemoPage.vue",
     "dependencies": {
       "onboardingRequired": {
         "fallbackSlug": "/onboarding"
