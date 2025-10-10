@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import App from "./App.vue";
+import './assets/main.css'
 import router from "./router";
 import { enterpriseI18n } from "./i18n/enterprise/i18n";
 import { useEnterpriseI18nStore } from "./stores/enterpriseI18n";

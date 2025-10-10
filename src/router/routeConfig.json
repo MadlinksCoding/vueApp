@@ -615,6 +615,20 @@
     }
   },
   {
+    "slug": "/dev",
+    "requiresAuth": false,
+    "section": "dev",
+    "supportedRoles": ["all"],
+    "enabled": true,
+  "componentPath": "@/components/dev/DemoPage.vue",
+    "dependencies": {
+      "onboardingRequired": {
+        "fallbackSlug": "/onboarding"
+      }
+    }
+  },
+   
+  {
     "slug": "/",
     "redirect": "/log-in",
     "section": "auth",
