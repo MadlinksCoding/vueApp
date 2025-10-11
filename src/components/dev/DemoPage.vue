@@ -1,5 +1,5 @@
 <template>
-  <div class=" text-[#334155] p-2 max-w-7xl mx-auto">
+  <div class="text-[#334155] p-2 max-w-7xl mx-auto">
     <div class="flex flex-col gap-10">
       <section class="flex flex-col gap-6 pb-4">
         <section class="bg-gray-50 p-8 shadow-md mx-4 flex flex-col gap-2">
@@ -49,16 +49,28 @@
         <section class="bg-gray-50 p-8 shadow-md mx-4 flex flex-col gap-2">
           <h1 class="text-3xl font-bold mb-4">Heading demo component</h1>
           <div>
-            <Heading text="Dashboard h1 heading" tag="h1" theme="defaultPrimaryHeading" />
+            <Heading
+              text="Dashboard h1 heading"
+              tag="h1"
+              theme="defaultPrimaryHeading"
+            />
           </div>
           <div>
             <Heading text="This is a h3 heading" tag="h3" />
           </div>
           <div>
-            <Heading text="This is a h2 heading" tag="h2" theme="defaultSecondaryHeading" />
+            <Heading
+              text="This is a h2 heading"
+              tag="h2"
+              theme="defaultSecondaryHeading"
+            />
           </div>
           <div>
-            <Heading text="This is a Section h1 heading" tag="h1" theme="sectionHeading" />
+            <Heading
+              text="This is a Section h1 heading"
+              tag="h1"
+              theme="sectionHeading"
+            />
           </div>
           <div>
             <Heading
@@ -75,7 +87,12 @@
           <div><Button text="Save" variant="success" size="lg" /></div>
           <div><Button text="Delete" variant="danger" size="sm" /></div>
           <div>
-            <Button text="With Icon" :left-icon="PaperClipIcon" variant="secondary" size="md" />
+            <Button
+              text="With Icon"
+              :left-icon="PaperClipIcon"
+              variant="secondary"
+              size="md"
+            />
           </div>
           <div><Button text="More Info" variant="outline" size="md" /></div>
           <div>
@@ -160,7 +177,9 @@
         </section>
 
         <section class="bg-gray-50 p-8 shadow-md mx-4 flex flex-col gap-4">
-          <h1 class="text-3xl font-bold mb-4">Dashboard Buttons demo (CSS-first)</h1>
+          <h1 class="text-3xl font-bold mb-4">
+            Dashboard Buttons demo (CSS-first)
+          </h1>
 
           <!-- Reusable TwoPieceButton Variants Showcase -->
           <div class="flex flex-col gap-3 mt-4">
@@ -331,41 +350,30 @@
         </section>
 
         <section class="bg-gray-50 p-8 shadow-md mx-4 flex flex-col gap-2">
-          <h1 class="text-3xl font-bold mb-4">Default demo components in single Input</h1>
+          <h1 class="text-3xl font-bold mb-4">
+            Default demo components in single Input
+          </h1>
           <div>
             <h3 class="text-xl font-bold mb-4">Check Box</h3>
-            <InputDefaultComponent  
-              id="checkbox"
-              type="checkbox"
-              show-label
-              label-text="Agree to terms"
-              :radio-options="[
-                { label: 'Show fan\'s username on your post', value: true },
-                {
-                  label:
-                    'I have verified, preserved and currently hold all identification cards and documents required under Record Keeping Requirements, 18 U.S.C. 2257 and 28 C.F.R. 75, or applicable laws in any other jurisdictions, countries, and territories, for all individuals appearing in the Content.',
-                  value: true,
-                },
-                { label: 'Silver tier', value: true, badge: true, badgeText: 'Published Tier' },
-              ]"
+            <Checkbox
+              v-model="rememberMe"
+              label="Remember Me"
+              checkboxClass="m-0 border border-checkboxBorder [appearance:none] w-[0.75rem] h-[0.75rem] rounded-[2px] bg-transparent relative cursor-pointer checked:bg-checkbox checked:border-checkbox checked:[&::after]:content-[''] checked:[&::after]:absolute checked:[&::after]:left-[0.2rem] checked:[&::after]:w-[0.25rem] checked:[&::after]:h-[0.5rem] checked:[&::after]:border checked:[&::after]:border-solid checked:[&::after]:border-white checked:[&::after]:border-r-[2px] checked:[&::after]:border-b-[2px] checked:[&::after]:border-t-0 checked:[&::after]:border-l-0 checked:[&::after]:rotate-45 "
+              labelClass="text-[0.875rem] leading-6 text-text cursor-pointer"
+              wrapperClass="flex items-center gap-2"
             />
           </div>
           <div>
             <h3 class="text-xl font-bold mb-4">Radio Box</h3>
-             <InputDefaultComponent
-      id="radiobox"
-      type="radio"
-      show-label
-      label-text="Subscription Tier"
-      :radio-options="[
-        { label: 'Choice A', value: 'A' },
-        { label: 'Choice B', value: 'B' },
-        { label: 'Choice C', value: 'C' },
-      ]"
-      v-model="selectedRadio"
-    />
-        <p class="mt-2">Selected: {{ selectedRadio }}</p>
-
+            <Radio
+              v-model="selectedOption"
+              name="paymentMethod"
+              value="credit"
+              label="Credit Card"
+              radioClass="w-5 h-5 border border-gray-400 text-blue-600"
+              labelClass="text-sm text-gray-700 font-medium"
+              wrapperClass="flex items-center gap-3"
+            />
           </div>
 
           <div class="w-3/4 mb-4">
@@ -466,8 +474,15 @@
               theme="asterisk"
               rightSpan="<p>H1</p>"
               class="mb-2"
-              :inputAttrs="{ required: true, maxlength: 25, placeholder: 'Enter your text' }"
-              :labelAttrs="{ title: 'This is email label', class: 'text-blue-600' }"
+              :inputAttrs="{
+                required: true,
+                maxlength: 25,
+                placeholder: 'Enter your text',
+              }"
+              :labelAttrs="{
+                title: 'This is email label',
+                class: 'text-blue-600',
+              }"
             />
           </div>
 
@@ -497,7 +512,7 @@
           </div>
         </section>
 
-         <section class="bg-gray-50 p-8 shadow-md mx-4 flex flex-col gap-6">
+        <section class="bg-gray-50 p-8 shadow-md mx-4 flex flex-col gap-6">
           <h1 class="text-3xl font-bold mb-4">Subscription Card Demo</h1>
 
           <!-- Basic Cards Row -->
@@ -533,8 +548,16 @@
                 description="This is the silver tier. More perks than the free subscription. This is the silver tier. More perks than the free subscription."
                 :stats="{ videos: 1, photos: 2, other: 0 }"
                 :benefits="[
-                  { highlight: '3 free tokens', text: ' per month', highlightColor: '#4D20ff' },
-                  { highlight: '14% off', text: ' on all Merchandise', highlightColor: '#4D20ff' },
+                  {
+                    highlight: '3 free tokens',
+                    text: ' per month',
+                    highlightColor: '#4D20ff',
+                  },
+                  {
+                    highlight: '14% off',
+                    text: ' on all Merchandise',
+                    highlightColor: '#4D20ff',
+                  },
                   {
                     highlight: '10% off',
                     text: ' on all Pay to View videos',
@@ -601,7 +624,6 @@
                 @subscribe="handleSubscribe('Free')"
                 button-color="#6b7280"
                 background-color=""
-
               />
 
               <!-- VIP Card -->
@@ -653,7 +675,6 @@
                 :button-disabled="true"
                 button-color="#6b7280"
                 background-color=""
-
               />
 
               <!-- Coming Soon Card -->
@@ -684,7 +705,9 @@
         <!-- <SubscriptionCardExample /> -->
 
         <section class="bg-gray-50 px-6 mx-4 flex flex-col gap-6">
-          <h1 class="text-2xl font-semibold">Form components with Dashboard Style</h1>
+          <h1 class="text-2xl font-semibold">
+            Form components with Dashboard Style
+          </h1>
           <div class="w-3/4">
             <InputComponentDashbaord
               id="input_a"
@@ -712,7 +735,8 @@
                   icon: InformationCircleIcon,
                 },
                 {
-                  error: 'Can contain any letters from a-z, any numbers from 0-9.',
+                  error:
+                    'Can contain any letters from a-z, any numbers from 0-9.',
                   icon: InformationCircleIcon,
                 },
                 {
@@ -742,7 +766,8 @@
                   icon: CheckIcon,
                 },
                 {
-                  message: 'Can contain any letters from a-z, any numbers from 0-9.',
+                  message:
+                    'Can contain any letters from a-z, any numbers from 0-9.',
                   icon: CheckIcon,
                 },
                 {
@@ -936,15 +961,23 @@ import {
   MagnifyingGlassIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/vue/24/outline";
-import { CheckCircleIcon, ExclamationTriangleIcon } from "@heroicons/vue/24/solid";
+import {
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/vue/24/solid";
+import Checkbox from "@/components/ui/form/checkbox/CheckboxGroup.vue";
+import Radio from "@/components/ui/form/radio/dashboard/RadioGroup.vue";
+
 
 // Basic refs
+const selectedOption = ref(null);
+const rememberMe = ref(false);
 const name = ref("");
 const checkBoxGroup = ref("");
 const isChecked = ref(false);
 const username = ref("");
 const showCustom = ref(true);
-const selectedRadio = ref("")
+const selectedRadio = ref("");
 const selectedFeatures = ref([]);
 const selectedPlan = ref([]);
 

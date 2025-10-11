@@ -27,10 +27,7 @@
     "dependencies": {
       "roles": {
         "creator": {
-          "onboardingPassed": {
-            "required": true,
-            "fallbackSlug": "/sign-up/onboarding"
-          },
+         
           "kycPassed": {
             "required": true,
             "fallbackSlug": "/sign-up/onboarding/kyc"
@@ -465,7 +462,6 @@
     "section": "auth",
     "requiresAuth": false,
     "redirectIfNotAuth": "/log-in",
-    "supportedRoles": ["creator"],
     "componentPath": "@/templates/auth/page/creator/AuthSignUpOnboardingCreator.vue",
     "preLoadSections": ["dashboard"],
     "dependencies": {

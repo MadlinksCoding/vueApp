@@ -78,6 +78,9 @@ const themeClasses: Record<string, Record<string, string>> = {
     h5: "text-base font-normal text-blue-400 dark:text-blue-200",
     h6: "text-sm font-normal text-blue-400 dark:text-blue-200",
   },
+  AuthHeading: {
+    h2: "text-2xl font-semibold tracking-wider text-white",
+  },
 };
 
 const headingConfig = computed(() => ({

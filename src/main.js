@@ -32,6 +32,7 @@ async function initializeApp() {
     const publicRoutes = [
       "/log-in",
       "/sign-up",
+      "/sign-up/onboarding",
       "/lost-password",
       "/reset-password",
       "/confirm-email",
