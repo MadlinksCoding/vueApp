@@ -608,6 +608,8 @@
     "supportedRoles": ["all"],
     "enabled": true,
     "componentPath": "@/templates/shop/ShopWrapper.vue",
+    "redirectIfNotAuth": "",
+    "preLoadSections": ["auth"],
     "dependencies": {
       "onboardingRequired": {
         "fallbackSlug": "/onboarding"

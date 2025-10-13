@@ -2,44 +2,46 @@
 import { useAuthStore } from "@/stores/useAuthStore";
 import LocaleSwitcher from "@/components/LocaleSwitcher.vue";
 import routesConfig from "@/router/routeConfig.json";
-import { onMounted } from "vue"; // ✳️ tambahin
+import { onMounted } from "vue"; // ✳️ add
+import { assetsConfigReady, getAsset } from "@/utils/assetLibraryHandler";
 
 const auth = useAuthStore();
 
 // Simulate a Creator user for testing fallbacks
 // auth.simulateRole("creator", { onboardingPassed: true, kycPassed: true});
 
-onMounted(() => {
-  if (window.createDependencyGate) {
-    window.createDependencyGate({
-      el: document.getElementById("my-gate"),
-      config: {
-        waitFor: ["assets", "apiLoaded"],
-        assets: {
-          flag: "dashboard",
-          items: [
-            { name: "auth-style", url: "/css/auth.css", type: "css", priority: "critical" },
-            { name: "dashboard-style", url: "/css/dashboard.css", type: "css" },
-            { name: "onboard-style", url: "/css/onboard.css", type: "css" },
-            { name: "profile-style", url: "/css/profile.css", type: "css" },
-            { name: "hero-image", url: "/images/image.jpg", type: "image" },
-            { name: "shop-cart", url: "/js/shop-cart.js", type: "script", defer: true },
-            { name: "vendor-charts", url: "/js/vendor-charts.js", type: "script", defer: true },
-          ],
-        },
-        apiLoaded: { event: "api-ready", timeoutMs: 3000 },
-      },
-      renderWhenReady: () => window.Vue.h("div", "✅ All dependencies ready!"),
-    });
-  } else {
-    console.warn("❌ DependencyGate not found on window");
-  }
-});
+// onMounted(() => {
+//   console.log("[TEST] assetsConfigReady:", assetsConfigReady());
+//   console.log("[TEST] getAsset('logo','icon'):", getAsset("logo", "icon"));
+//   if (window.createDependencyGate) {
+//     window.createDependencyGate({
+//       el: document.getElementById("my-gate"),
+//       config: {
+//         waitFor: ["assets", "apiLoaded"],
+//         assets: {
+//           flag: "test",
+//           items: [
+//             { name: "test-style", url: "/css/test-style.css", type: "css", priority: "critical" },
+//             { name: "test-image", url: "/images/test-image.jpg", type: "image" },
+//           ],
+//         },
+//         apiLoaded: { event: "api-ready", timeoutMs: 3000 },
+//       },
+//       renderWhenReady: () => window.Vue.h("div", "✅ All dependencies ready!"),
+//     });
+//   } else {
+//     console.warn("❌ DependencyGate not found on window");
+//   }
+// });
 
 </script>
 
 <template>
+  <!-- Test assetsLibraryHandler -->
+  <!-- <img v-if="assetsConfigReady()" :src="getAsset('logo','icon')" alt="Logo" style="width:100px; margin-top:1rem;" /> -->
+  
   <!-- Navigation Bar with Buttons -->
+
   <nav
     style="
       padding: 1rem;
@@ -248,30 +250,48 @@ onMounted(() => {
   <!-- Footer -->
   <footer
     style="
-      padding: 1rem;
-      background: #eee;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 2rem;
+      padding: 2rem 1rem;
+      background: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+      margin-top: 3rem;
     "
   >
-    <h4 style="width: 100%; margin: 0 0 0.5rem 0">All Routes</h4>
+    <h4 style="margin: 0 0 1rem 0; color: #333; font-size: 1.1rem;">Quick Links</h4>
+    
+    <ul style="
+      columns: 3;
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    ">
+      <li v-for="route in routesConfig" :key="route.slug" style="margin-bottom: 0.5rem;">
+        <router-link
+          :to="route.slug"
+          style="
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.4;
+          "
+          @mouseover="e => e.target.style.textDecoration = 'underline'"
+          @mouseleave="e => e.target.style.textDecoration = 'none'"
+        >
+          {{ route.slug }}
+        </router-link>
+      </li>
+    </ul>
 
-    <router-link
-      v-for="route in routesConfig"
-      :key="route.slug"
-      :to="route.slug"
-      style="
-        padding: 0.5rem 1rem;
-        background: #007bff;
-        color: #fff;
-        border-radius: 4px;
-        text-decoration: none;
-      "
-    >
-      {{ route.slug }}
-    </router-link>
+    <!-- Copyright section -->
+    <!-- <div style="
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #dee2e6;
+      color: #6c757d;
+      font-size: 0.8rem;
+    ">
+      &copy; 2024 Your Company. All rights reserved.
+    </div> -->
   </footer>
 </template>
 
