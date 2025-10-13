@@ -30,10 +30,25 @@ export const useAuthStore = defineStore("auth", {
     refreshFromStorage() {
       const token = localStorage.getItem("idToken");
       if (token) this.setTokenAndDecode(token);
+
+      // Restore simulate fallback (so route guard sees simulated role on refresh)
+      try {
+        const sim = localStorage.getItem("simulate");
+        if (sim && !this.simulate) {
+          this.simulate = JSON.parse(sim);
+        }
+      } catch (e) {
+        console.warn("[AUTH] Failed to restore simulate:", e);
+      }
     },
 
     simulateRole(role, overrides = {}) {
       this.simulate = { role, ...overrides };
+      try {
+        localStorage.setItem("simulate", JSON.stringify(this.simulate));
+      } catch (e) {
+        console.warn("[AUTH] Failed to persist simulate:", e);
+      }
     },
 
     updateUserAttributesLocally(updates) {
@@ -44,8 +59,16 @@ export const useAuthStore = defineStore("auth", {
     },
 
     logout() {
-      authHandler.logout(); 
-      localStorage.clear();
+      authHandler.logout();
+
+      // Remove only auth keys, don't clear everything (pinia persisted state may live here)
+      localStorage.removeItem("idToken");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      // if you saved simulate intentionally, maybe keep it during logout for dev-testing.
+      // localStorage.removeItem("simulate"); // optional: uncomment if you want to remove simulate
+
+      // Reset store (Pinia)
       this.$reset();
     },
 

@@ -38,7 +38,13 @@ async function initializeApp() {
       "/confirm-email",
       "/",
     ];
-    if (!publicRoutes.includes(router.currentRoute.value.path)) {
+
+    const isPublic = publicRoutes.includes(router.currentRoute.value.path);
+
+    // Add:
+    const isSimulated = !!auth.simulate;
+
+    if (!isPublic && !isSimulated) {
       authHandler
         .restoreSession()
         .then(({ idToken, accessToken, refreshToken }) => {
@@ -52,22 +58,24 @@ async function initializeApp() {
         .catch((err) => {
           console.log("[MAIN] Session restoration failed:", err.message || err);
           auth.logout();
-          if (!publicRoutes.includes(router.currentRoute.value.path)) {
+          if (!isPublic) {
             router.push("/log-in");
           }
         });
     } else {
       console.log(
-        "[MAIN] Skipping session restoration on public route:",
+        "[MAIN] Skipping session restoration because",
+        isSimulated ? "simulate mode active" : "public route",
         router.currentRoute.value.path
       );
     }
   });
 
-  app.use(router);
-  app.use(enterpriseI18n.vueI18nInstance);
-  app.mount("#app");
-}
+
+    app.use(router);
+    app.use(enterpriseI18n.vueI18nInstance);
+    app.mount("#app");
+  }
 
 // Initialize the app
 initializeApp().catch(console.error);
