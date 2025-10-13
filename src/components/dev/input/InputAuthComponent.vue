@@ -1,227 +1,223 @@
 <template>
-  <div v-bind="resolvedAttrs.wrapperAttrs.wrapper1">
-  <div v-bind="resolvedAttrs.wrapperAttrs.wrapper2">
-    <!-- this table show when no checkbox/radio here -->
-    <label
-      v-if="showLabel && type !== 'checkbox' && type !== 'radio'"
-      v-bind="resolvedAttrs.labelAttrs"
-      class="text-[#ffffff]"
+  <div class="flex flex-col gap-2" v-bind="resolvedAttrs.wrapperAttrs.wrapper1">
+    <!-- Label -->
+    <div
+      class="flex justify-between items-center w-full"
+      v-bind="resolvedAttrs.wrapperAttrs.wrapper2"
     >
-      {{ labelText }}
-    </label>
-
-    <span v-if="requiredDisplay === '*'" class="text-red-500">*</span>
-    <span
-      v-else-if="requiredDisplay === 'italic-text'"
-      class="text-[0.625rem] leading-6 text-right italic text-[#ffffff]"
-    >
-      Required
-    </span>
-  </div>
-
-  <div
-    v-bind="resolvedAttrs.wrapperAttrs.wrapper3"
-    class="relative"
-    v-for="item in inputItems"
-    :key="item.id"
-  >
-    <!-- Checkbox case input and label -->
-    <template v-if="type === 'checkbox'">
-      <input
-        v-bind="resolvedAttrs.inputAttrs"
-        :id="item.id"
-        type="checkbox"
-        :checked="Boolean(modelValue)"
-        @input="$emit('update:modelValue', $event.target.checked)"
-        class="cursor-pointer"
-      />
       <label
         v-if="showLabel"
-        :for="item.id"
         v-bind="resolvedAttrs.labelAttrs"
-        class="ml-2 cursor-pointer"
+        class="text-[#ffffff]"
       >
         {{ labelText }}
       </label>
-    </template>
 
-    <!-- Radio case -->
-    <template v-else-if="type === 'radio'">
-      <input
-        v-bind="resolvedAttrs.inputAttrs"
-        :id="item.id"
-        type="radio"
-        :value="item.value"
-        :checked="modelValue === item.value"
-        @input="$emit('update:modelValue', item.value)"
-        class="cursor-pointer"
-      />
-      <label
-        :for="item.id"
-        v-bind="resolvedAttrs.labelAttrs"
-        class="ml-2 cursor-pointer"
+      <span v-if="requiredDisplayValues.includes('*')" class="text-red-500"
+        >*</span
       >
-        {{ item.label }}
-      </label>
-    </template>
+      <span
+        v-if="requiredDisplayValues.includes('italic-text')"
+        class="text-[0.625rem] leading-6 text-right italic text-[#ffffff]"
+      >
+        Required
+      </span>
+    </div>
 
-    <!-- Normal input types -->
-    <template v-else>
+    <!-- Input Wrapper -->
+    <div
+      v-bind="resolvedAttrs.wrapperAttrs.wrapper3"
+      class="relative rounded-[0.625rem] border border-border bg-input min-h-10 gap-2.5 pt-3 pb-3 px-2.5 flex justify-center items-center self-stretch"
+    >
       <component
         v-if="leftIcon"
         :is="leftIcon"
-        class="absolute left-2 top-[50px] transform -translate-y-1/2 pointer-events-none w-5 h-5 text-white"
+        class="absolute left-2 top-[50%] transform -translate-y-1/2 pointer-events-none w-5 h-5 text-white"
       />
+
       <input
         v-bind="resolvedAttrs.inputAttrs"
-        :id="item.id"
-        :type="type"
-        :value="item.value"
+        :id="resolvedAttrs.inputAttrs.id"
+        :value="modelValue"
+        :placeholder="placeholder"
         @input="$emit('update:modelValue', $event.target.value)"
+        class="w-full text-white bg-transparent outline-none placeholder:text-gray-400 pr-3"
       />
-      <component
+
+      <img
         v-if="rightIcon"
-        :is="rightIcon"
-        class="absolute right-2 mr-1 top-[25px] transform -translate-y-1/2 pointer-events-none w-5 h-5 text-white"
+        :src="rightIcon"
+        alt="icon"
+        class="absolute right-2 top-[50%] transform -translate-y-1/2 w-5 h-5"
       />
-    </template>
+    </div>
 
-    <p
+    <!-- Description -->
+    <Paragraph
       v-if="description"
-      v-bind="resolvedAttrs.descriptionAttrs"
-      class="mt-1 text-sm text-white/80"
-    >
-      {{ description }}
-    </p>
-  </div>
-</div>
+      :text="description"
+      fontSize="text-sm"
+      fontColor="text-white/80"
+      class="mt-1"
+    />
 
+    <!-- Required Error Text -->
+    <Paragraph
+      v-if="requiredDisplayValues.includes('required-text-error')"
+      :text="'This field is required.'"
+      fontSize="text-xs"
+      fontColor="text-[#FF4405]"
+    />
+
+    <!-- Errors List -->
+    <div
+      v-if="showErrors && errors.length"
+      class="flex flex-col items-start self-stretch gap-1 px-2 pt-1 pb-2"
+    >
+      <div class="flex flex-col gap-1">
+        <div
+          v-for="(errorObj, index) in errors"
+          :key="index"
+          class="flex w-full gap-[.4375rem] text-[#FF4405]"
+        >
+          <component
+            v-if="errorObj.icon"
+            :is="errorObj.icon"
+            class="block w-[1.125rem] h-[1.125rem]"
+          />
+
+          <Paragraph
+            :text="errorObj.error"
+            font-size="text-[12px] sm:text-[14px]"
+            font-color="text-[#FF4405]"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Success List -->
+    <div
+      v-if="onSuccess && success.length"
+      class="flex flex-col items-start self-stretch gap-1 px-2 pt-1 pb-2"
+    >
+      <div class="flex flex-col gap-1">
+        <div
+          v-for="(successObj, index) in success"
+          :key="index"
+          class="flex w-full gap-[.4375rem]"
+        >
+          <component
+            v-if="successObj.icon"
+            :is="successObj.icon"
+            :class="[
+              'block w-[1.125rem] h-[1.125rem] md:w-[1.25rem] md:h-[1.25rem] text-[#07f468]', // default styles
+              successObj.iconColor || 'text-white', // dynamic color
+            ]"
+          />
+          <p :class="successObj.textColor || 'text-[12px] sm:text-[14px] text-white'">
+            {{ successObj.message }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import { resolveAllConfigs } from '../../../utils/componentRenderingUtils'
+import { computed } from "vue";
+import { resolveAllConfigs } from "../../../utils/componentRenderingUtils";
+import Paragraph from "../default/Paragraph.vue";
 
 const props = defineProps({
   modelValue: [String, Number, Boolean],
-  version: { type: String, default: '' },
-
-
-  radioOptions: {
-    type: Array,
-    required: false,
-    default: () => []
-  },
-
+  version: { type: String, default: "" },
 
   addId: String,
-  removeId: Boolean,
   addClass: String,
-  removeClass: Boolean,
   addAttributes: Object,
- removeAttributes: { type: Array, default: () => [] },
 
   name: String,
-  type: { type: String, default: 'text' },
+  type: { type: String, default: "text" },
   placeholder: String,
   required: Boolean,
   autocomplete: String,
 
-
   showLabel: Boolean,
-  labelText: { type: String, default: 'Label' },
-  requiredDisplay: { type: String, default: '' }, // "*" or "italic-text"
-
+  labelText: { type: String, default: "Label" },
+  requiredDisplay: {
+    type: [String, Array],
+    default: "",
+  },
 
   description: String,
-
 
   leftIcon: [String, Object, Function],
   rightIcon: [String, Object, Function],
 
+  showErrors: Boolean,
+  errors: {
+    type: Array,
+    default: () => [],
+  },
 
-  radioValue: String,
+  onSuccess: Boolean,
+  success: {
+    type: Array,
+    default: () => [],
+  },
 
-
-  wrapperOverrides: { type: Array, default: () => [] }
-})
-
+  wrapperOverrides: { type: Array, default: () => [] },
+});
 
 const inputConfig = {
   wrappers: [
     {
-      targetAttribute: 'wrapper1',
-      addClass: props.type === 'checkbox' ? 'flex items-center' :
-        'flex flex-col gap-2',
-      addAttributes: { 'data-wrapper': 'wrapper1' }
+      targetAttribute: "wrapper1",
+      addClass: "flex flex-col gap-2",
+      addAttributes: { "data-wrapper": "wrapper1" },
     },
     {
-      targetAttribute: 'wrapper2',
-      addClass: props.type === 'checkbox' ? '' :
-        props.type === 'radio' ? 'flex items-center gap-2'
-          : 'flex justify-between items-center w-full',
-      addAttributes: { 'data-wrapper': 'wrapper2' }
+      targetAttribute: "wrapper2",
+      addClass: "flex justify-between items-center w-full",
+      addAttributes: { "data-wrapper": "wrapper2" },
     },
     {
-      targetAttribute: 'wrapper3',
-      addClass: props.type === 'checkbox' ? ''
-        : props.type === 'radio' ? 'flex items-center gap-2'
-          : 'rounded-[0.625rem] border border-border  bg-input dark:bg-input-dark min-h-10 gap-2.5 pt-3 pb-3 px-2.5 flex justify-center items-center self-stretch',
-      addAttributes: { 'data-wrapper': 'wrapper3' }
+      targetAttribute: "wrapper3",
+      addClass:
+        "rounded-[0.625rem] border border-border bg-input min-h-10 gap-2.5 pt-3 pb-3 px-2.5 flex justify-center items-center self-stretch",
+      addAttributes: { "data-wrapper": "wrapper3" },
     },
   ],
   elm: {
-    addClass: props.type === 'checkbox' ?
-    "m-0 border border-checkboxBorder [appearance:none] w-[0.9rem] h-[0.9rem] rounded-[2px] bg-transparent relative cursor-pointer checked:bg-checkbox checked:border-checkbox checked:[&::after]:content-[''] checked:[&::after]:absolute checked:[&::after]:top-[0.05rem] checked:[&::after]:left-[0.25rem] checked:[&::after]:w-[0.25rem] checked:[&::after]:h-[0.5rem] checked:[&::after]:border-white checked:[&::after]:border-r-[2px] checked:[&::after]:border-b-[2px] checked:[&::after]:border-solid checked:[&::after]:rotate-45 dark:checked:[&::after]:border-[#ffffff]"
-    :
-      props.type === 'radio' ?
-        'w-4 h-4 cursor-pointer accent-primary dark:accent-dark-primary' :
-        'w-full font-medium text-base text-text bg-transparent outline-none leading-6 tracking-[0.01rem] placeholder:text-placeholder placeholder:font-light placeholder:text-base placeholder:leading-6 placeholder:tracking-[0.01rem]' +
-        (props.leftIcon ? 'pl-10' : 'pl-3') + ' ' +
-        (props.rightIcon ? 'pr-10' : 'pr-3'),
+    addClass: `w-full text-white bg-transparent outline-none placeholder:text-white pr-3`,
     addAttributes: {
-      type: props.type
-    }
+      type: props.type,
+    },
   },
   additionalConfig: {
     label: {
-      addClass: props.type === 'checkbox' ?
-        'text-[0.875rem] leading-6 text-[#ffffff] cursor-pointer' :
-        props.type === 'radio' ?
-          'text-sm cursor-pointer text-text' :
-          'text-sm leading-6 tracking-[0.009rem] text-[#ffffff]',
+      addClass: "text-sm leading-6 tracking-[0.009rem] text-[#ffffff]",
       addAttributes: {
-        for: 'input-id'
-      }
+        for: "input-id",
+      },
     },
     description: {
-      addClass: 'text-sm text-white/80',
+      addClass: "text-sm text-white/80",
       addAttributes: {
-        'data-description': 'true'
-      }
-    }
-  }
-}
+        "data-description": "true",
+      },
+    },
+  },
+};
+
+const requiredDisplayValues = computed(() => {
+  if (!props.requiredDisplay) return [];
+  return Array.isArray(props.requiredDisplay)
+    ? props.requiredDisplay
+    : [props.requiredDisplay];
+});
 
 const resolvedAttrs = computed(() =>
   resolveAllConfigs(inputConfig, props.version, props)
-)
-
-const inputItems = computed(() => {
-  if (props.type === "radio" && props.radioOptions?.length) {
-    return props.radioOptions.map(option => ({
-      label: option.label,
-      value: option.value,
-      id: `${props.addId || resolvedAttrs.value.inputAttrs.id}-${option.value}`
-    }));
-  }
-
-  return [
-    {
-      label: props.labelText || "",
-      value: props.modelValue,
-      id: props.addId || resolvedAttrs.value.inputAttrs.id
-    }
-  ];
-});
+);
 </script>

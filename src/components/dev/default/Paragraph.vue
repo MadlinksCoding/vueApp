@@ -57,7 +57,7 @@ const paragraphConfig = {
   wrappers: [
     {
       targetAttribute: "wrapper1",
-      addClass: "flex flex-col w-full",
+      addClass: "flex flex-col",
       addAttributes: { "data-wrapper": "wrapper1" },
     },
     {

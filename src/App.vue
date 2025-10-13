@@ -244,8 +244,7 @@ const auth = useAuthStore();
   <!-- Main content -->
   <router-view />
 
-  <!-- ✳️ Tambahin gate container -->
-  <div id="my-gate" style="margin-top: 1rem;"></div>
+ 
 
   <!-- Footer -->
   <footer
