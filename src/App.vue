@@ -42,7 +42,7 @@ const auth = useAuthStore();
   
   <!-- Navigation Bar with Buttons -->
 
-  <nav
+  <!-- <nav
     style="
       padding: 1rem;
       background-color: #f0f0f0;
@@ -166,7 +166,7 @@ const auth = useAuthStore();
         </button>
       </router-link>
 
-      <!-- Simulate Roles -->
+     
       <button
         @click="
           auth.simulateRole('creator', {
@@ -239,7 +239,7 @@ const auth = useAuthStore();
     </div>
 
     <LocaleSwitcher />
-  </nav>
+  </nav> -->
 
   <!-- Main content -->
   <router-view />
@@ -247,7 +247,7 @@ const auth = useAuthStore();
  
 
   <!-- Footer -->
-  <footer
+  <!-- <footer
     style="
       padding: 2rem 1rem;
       background: #f8f9fa;
@@ -280,18 +280,7 @@ const auth = useAuthStore();
         </router-link>
       </li>
     </ul>
-
-    <!-- Copyright section -->
-    <!-- <div style="
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid #dee2e6;
-      color: #6c757d;
-      font-size: 0.8rem;
-    ">
-      &copy; 2024 Your Company. All rights reserved.
-    </div> -->
-  </footer>
+  </footer> -->
 </template>
 
 <style scoped>
