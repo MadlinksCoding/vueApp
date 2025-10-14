@@ -49,6 +49,14 @@ function getParentRouteDeps(path) {
 export default function routeGuard(to, from, next) {
   const auth = useAuthStore();
   const user = auth.simulate || auth.currentUser;
+  if (!user) {
+    try {
+      const sim = localStorage.getItem("simulate");
+      if (sim) user = JSON.parse(sim);
+    } catch (e) {
+      /* ignore */
+    }
+  }
   console.log(`[GUARD] Navigation request to "${to.path}" from "${from.path}"`);
 
   const route = getRouteBySlug(to.path);
