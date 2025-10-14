@@ -80,6 +80,7 @@ const themeClasses: Record<string, Record<string, string>> = {
   },
   AuthHeading: {
     h2: "text-2xl font-semibold tracking-wider text-white",
+    h4: "text-xl tracking-wider text-white",
   },
 };
 

@@ -33,10 +33,15 @@ async function initializeApp() {
       "/log-in",
       "/sign-up",
       "/sign-up/onboarding",
+      "/sign-up/onboarding/kyc",
       "/lost-password",
       "/reset-password",
       "/confirm-email",
       "/",
+      "/dashboard",
+      "/dashboard/overview",
+      "/dev",
+      "/dashboard/referralsContentFan"
     ];
     if (!publicRoutes.includes(router.currentRoute.value.path)) {
       authHandler

@@ -195,7 +195,7 @@ const inputConfig = {
   elm: {
     addClass:
       props.type === "checkbox"
-        ? "w-4 min-w-4 h-4 cursor-pointer accent-primary dark:accent-dark-primary"
+        ? "w-4 min-w-4 h-4 cursor-pointer accent-primary"
         : props.type === "radio"
         ? 'relative pl-8 cursor-pointer text-[0.938rem] font-medium leading-6 text-gray-900 dark:text-dark-text '
         : "flex-1 text-sm border-none focus:outline-none bg-transparent text-text dark:text-dark-text placeholder-text dark:placeholder-dark-text" +

@@ -1,10 +1,33 @@
 <template>
-  <div>
-    <h1 data-translate="auth.register.KYC.title">{{ $t('auth.register.KYC.title') }}</h1>
-    <p data-translate="auth.register.KYC.description">{{ $t('auth.register.KYC.description') }}</p>
-    <button @click="completeKyc" data-translate="auth.register.KYC.button">{{ isLoading ? $t('auth.common.loading') : $t('auth.register.KYC.button') }}</button>
-    <p v-if="error" data-translate="auth.register.KYC.error">{{ error }}</p>
-  </div>
+  <AuthWrapper>
+    <div class="flex flex-col w-full relative gap-6 z-[5]">
+      <div class="flex flex-col w-full gap-6">
+
+        <!-- heading -->
+        <Heading text="Hi @gfdhghgjhgjg, Welcome to our website, we're thrilled to have you on board." tag="h2" theme="AuthHeading" />
+        <Paragraph
+          text="Before you join, we ask that you complete our onboarding froms"
+          font-size="text-base"
+          font-weight="font-medium"
+          font-color="text-white"
+        />
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+            <!-- confirm button -->
+          <ButtonComponent text="Confirm & Proceed" variant="authPink" size="lg" />
+
+          <!-- logout -->
+
+          <ButtonComponent
+            text="Logout & Exit"
+            variant="authTransparent"
+            size="lg"
+          />
+        </div>
+
+      </div>
+    </div>
+  </AuthWrapper>
 </template>
 
 <script setup>
@@ -13,6 +36,10 @@ import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { authHandler } from "@/services/authHandler";
 import { triggerTranslationForElements } from "@/utils/translationUtils";
+import AuthWrapper from "@/components/auth/authWrapper/AuthWrapper.vue";
+import Heading from "@/components/dev/default/Heading.vue";
+import Paragraph from "@/components/dev/default/Paragraph.vue";
+import ButtonComponent from "@/components/dev/button/ButtonComponent.vue";
 
 const router = useRouter();
 const auth = useAuthStore();
@@ -37,13 +64,17 @@ async function completeKyc() {
     // --- Update Cognito ---
     await authHandler.updateProfileAttributes({ "custom:kyc": "true" });
     const mid = performance.now();
-    console.log(`[KYC] updateProfileAttributes took ${(mid - start).toFixed(2)} ms`);
+    console.log(
+      `[KYC] updateProfileAttributes took ${(mid - start).toFixed(2)} ms`
+    );
 
     // --- Restore Session ---
     const { idToken } = await authHandler.restoreSession();
     const end = performance.now();
     console.log(`[KYC] restoreSession took ${(end - mid).toFixed(2)} ms`);
-    console.log(`[KYC] Total KYC completion flow took ${(end - start).toFixed(2)} ms`);
+    console.log(
+      `[KYC] Total KYC completion flow took ${(end - start).toFixed(2)} ms`
+    );
 
     // --- Update local state ---
     auth.setTokenAndDecode(idToken);
@@ -58,7 +89,6 @@ async function completeKyc() {
     console.log("[UI] Button reset to 'Complete KYC'");
   }
 }
-
 </script>
 <script>
 export const assets = {

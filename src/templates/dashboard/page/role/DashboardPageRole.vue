@@ -1,8 +1,10 @@
 <template>
-  <div class="dashboard-page-role p-4">
+<DashboardWrapperTwoColContainer>
     <p>Dashboard role-based page content placeholder.</p>
-  </div>
+</DashboardWrapperTwoColContainer>
 </template>
 
 <script setup>
+import DashboardWrapperTwoColContainer from '@/components/dashboard/DashboardWrapperTwoColContainer.vue';
+
 </script>

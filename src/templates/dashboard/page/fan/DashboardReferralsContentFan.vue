@@ -1,6 +1,5 @@
 <template>
   <DashboardWrapperTwoColContainer>
-    <DashboardTwoColInnerContainerWrapper>
       <section class="space-y-4">
         <div class="rounded-2xl border p-4">
           <h2 class="text-lg font-semibold">Referrals Overview</h2>
@@ -61,10 +60,9 @@
           </div>
         </div>
       </section>
-    </DashboardTwoColInnerContainerWrapper>
   </DashboardWrapperTwoColContainer>
 </template>
-<script setup lang="ts">
-import DashboardTwoColInnerContainerWrapper from "@/components/layout/dashboard/DashboardTwoColInnerContainerWrapper.vue";
-import DashboardWrapperTwoColContainer from "@/components/layout/dashboard/DashboardWrapperTwoColContainer.vue";
+<script setup>
+import DashboardWrapperTwoColContainer from '@/components/dashboard/DashboardWrapperTwoColContainer.vue';
+
 </script>

@@ -1,6 +1,6 @@
 <template>
   <AuthWrapper>
-    <!-- login-container -->
+    <!-- signup-onboarding-container -->
     <div class="flex flex-col w-full relative gap-6 z-[5]">
       <div class="flex flex-col w-full gap-6">
         <!-- heading -->

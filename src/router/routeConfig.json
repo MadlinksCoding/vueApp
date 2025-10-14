@@ -21,33 +21,8 @@
     "section": "dashboard-global",
     "requiresAuth": false,
     "enabled": true,
-    "supportedRoles": ["any"],
-    "redirectIfNotAuth": "/log-in",
-    "componentPath": "@/templates/dashboard/page/role/Dashboard.vue",
-    "dependencies": {
-      "roles": {
-        "creator": {
-         
-          "kycPassed": {
-            "required": true,
-            "fallbackSlug": "/sign-up/onboarding/kyc"
-          }
-        },
-        "vendor": {
-          "onboardingPassed": {
-            "required": true,
-            "fallbackSlug": "/sign-up/onboarding"
-          }
-        },
-        "agent": {
-          "onboardingPassed": {
-            "required": true,
-            "fallbackSlug": "/sign-up/onboarding"
-          }
-        }
-      }
-    },
-    "redirect": "/dashboard/overview"
+    "supportedRoles": [],
+    "componentPath": "@/templates/dashboard/page/role/Dashboard.vue"
   },
   {
     "slug": "/log-in",
@@ -238,7 +213,7 @@
       "creator": "dashboard-creator"
     },
     "inheritConfigFromParent": true,
-    "supportedRoles": ["creator"],
+    
     "componentPath": "@/templates/dashboard/page/creator/DashboardOverviewCreator.vue"
   },
   {
@@ -481,7 +456,6 @@
     "section": "auth",
     "requiresAuth": false,
     "redirectIfNotAuth": "/log-in",
-    "supportedRoles": ["creator"],
     "componentPath": "@/templates/auth/page/creator/AuthSignUpOnboardingKycCreator.vue",
     "preLoadSections": ["dashboard"],
     "dependencies": {
@@ -614,16 +588,16 @@
     "slug": "/dev",
     "requiresAuth": false,
     "section": "dev",
-    "supportedRoles": ["all"],
     "enabled": true,
-  "componentPath": "@/components/dev/DemoPage.vue",
-    "dependencies": {
-      "onboardingRequired": {
-        "fallbackSlug": "/onboarding"
-      }
-    }
+  "componentPath": "@/components/dev/DemoPage.vue"
   },
-   
+   {
+    "slug": "/dashboard/referralsContentFan",
+    "requiresAuth": false,
+    "section": "dev",
+    "enabled": true,
+  "componentPath": "@/templates/dashboard/page/fan/DashboardReferralsContentFan.vue"
+  },
   {
     "slug": "/",
     "redirect": "/log-in",
