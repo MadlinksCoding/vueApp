@@ -559,6 +559,24 @@
     "preLoadSections": []
   },
   {
+    "slug": "/profile_imran",
+    "section": "profile",
+    "requiresAuth": false,
+    "enabled": true,
+    "supportedRoles": ["any"],
+    "componentPath": "@/templates/profileimran/ProfileWrapper.vue",
+    "preLoadSections": []
+  },
+  {
+    "slug": "/profile_shafay",
+    "section": "profile",
+    "requiresAuth": false,
+    "enabled": true,
+    "supportedRoles": ["any"],
+    "componentPath": "@/templates/profileshafay/ProfileWrapper.vue",
+    "preLoadSections": []
+  },
+  {
     "slug": "/discover",
     "section": "discover",
     "requiresAuth": false,
