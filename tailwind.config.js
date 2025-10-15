@@ -431,6 +431,47 @@ export default {
         custom: "4px 0 10px 0 rgba(0, 0, 0, 0.08)",
         green: "4px 4px 0 0 #07f468",
       },
+      keyframes: {
+        bouncedown: {
+          '0%': {
+            opacity: '1',
+            width: '100%',
+            height: 'auto'
+          },
+          '100%': {
+            opacity: '0',
+            width: '60px',
+            height: '80px'
+          }
+        },
+        bouncup: {
+          '0%': {
+            opacity: '0',
+            width: '60px',
+            height: 'auto',
+            bottom: '0',
+            left: '0'
+          },
+          '80%': {
+            opacity: '1',
+            width: '100%',
+            height: 'auto',
+            bottom: '2px',
+            left: '2px'
+          },
+          '100%': {
+            opacity: '1',
+            width: '100%',
+            height: 'auto',
+            bottom: '0',
+            left: '0'
+          }
+        }
+      },
+      animation: {
+        bouncedown: 'bouncedown 0.1s ease forwards',
+        bouncup: 'bouncup 0.1s ease forwards'
+      }
     },
   },
   safelist: [
