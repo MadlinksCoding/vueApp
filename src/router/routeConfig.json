@@ -550,7 +550,7 @@
     "preLoadSections": ["dashboard"]
   },
   {
-    "slug": "/profile",
+    "slug": "/profile-muhammad",
     "section": "profile",
     "requiresAuth": false,
     "enabled": true,
