@@ -4,88 +4,10 @@
     <!-- profile-id -->
     <div>
       <!-- main-slider -->
-      <div class="fixed top-0 left-0 w-[110%] z-0 h-screen">
-        <!-- profile-main-slider -->
-        <div id="splide01" class="splide visible h-full">
-          <div class="splide__track px-0 h-full">
-            <ul class="splide__list">
-              <!-- Slide 1 -->
-              <li
-                class="splide__slide w-full before:content-[''] before:block before:w-full before:absolute before:h-full before:top-0 before:left-0 before:z-[2] max-[580px]:before:[background:transparent] before:[background:linear-gradient(180deg,rgba(0,0,0,0.03)_-0.17%,rgba(0,0,0,0.15)_100%)]"
-              >
-                <img class="w-full h-full object-cover object-center ml-[-5%]
-                [will-change:filter] pointer-events-none
-                [filter:blur(var(--blur))] [-mt:var(--blur)]
-                [height:calc(100%_+_var(--blur))]"
-                src="https://i.ibb.co/F4cf3W53/profile-slidein-bg.webp"
-                alt="profile-slidein-bg" >
-              </li>
-
-              <!-- Slide 2 -->
-              <li
-                class="splide__slide w-full before:content-[''] before:block before:w-full before:absolute before:h-full before:top-0 before:left-0 before:z-[2] max-[580px]:before:[background:transparent] before:[background:linear-gradient(180deg,rgba(0,0,0,0.03)_-0.17%,rgba(0,0,0,0.15)_100%)]"
-              >
-                <img class="w-full h-full object-cover object-center ml-[-5%]
-                [will-change:filter] pointer-events-none
-                [filter:blur(var(--blur))] [-mt:var(--blur)]
-                [height:calc(100%_+_var(--blur))]"
-                src="https://i.ibb.co/bjGQxr5S/sample-bg-image.webp"
-                alt="sample-bg-image" >
-              </li>
-
-              <!-- Slide 3 -->
-              <li
-                class="splide__slide w-full before:content-[''] before:block before:w-full before:absolute before:h-full before:top-0 before:left-0 before:z-[2] max-[580px]:before:[background:transparent] before:[background:linear-gradient(180deg,rgba(0,0,0,0.03)_-0.17%,rgba(0,0,0,0.15)_100%)]"
-              >
-                <img class="w-full h-full object-cover object-center ml-[-5%]
-                [will-change:filter] pointer-events-none
-                [filter:blur(var(--blur))] [-mt:var(--blur)]
-                [height:calc(100%_+_var(--blur))]"
-                src="https://i.ibb.co/jPw7ChWb/auth-bg.webp" alt="auth-bg" >
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- blur-overlay -->
-        <article
-          class="fixed top-0 left-0 w-full h-screen z-[9999] transition-[opacity,background-color] duration-[800ms] bg-[linear-gradient(180deg,rgba(0,0,0,0.03)_-0.17%,rgba(0,0,0,0.15)_100%)] will-change-[opacity,filter] opacity-0"
-        ></article>
-      </div>
+      <HeroBackgroundSlider />
 
       <!-- header-component -->
-      <div
-        data-header-component
-        class="flex flex-col-reverse justify-between w-full bg-black/30 backdrop-blur-[10px] px-0 fixed top-0 -translate-y-full [transition:transform_0.3s_ease] z-[9999] max-[580px]:[background:linear-gradient(180deg,rgba(0,0,0,0.60)_0%,rgba(0,0,0,0.50)_25%,rgba(0,0,0,0.01)_100%)] max-[580px]:backdrop-blur-[50px] md:px-4 xl:flex-row xl:gap-4 xl:px-12 group [&.scroll-active]:translate-y-0"
-      >
-        <!-- navigation-section -->
-        <div class="xl:pt-[2.813rem]">
-          <ul
-            class="flex flex-row justify-around items-center overflow-x-auto whitespace-nowrap flex-nowrap sm:gap-4"
-          >
-            <!-- menu-item -->
-            <li
-              class="flex justify-center gap-1 relative flex-grow opacity-70 [border-bottom:1px_solid_transparent] group active [&.active]:[border-bottom:1px_solid_#07f468] max-[580px]:group-[.active]:[border-bottom:1px_solid_#e7e5e4] [&.active]:opacity-100 xl:flex-[unset] cursor-pointer"
-            >
-              <div
-                class="flex justify-center flex-grow max-[325px]:px-2 max-[325px]:py-0 px-4 py-[0.639rem] sm:px-4 sm:py-0"
-              >
-                <span class="block pt-2 pb-2">
-                  <span
-                    class="block text-sm font-medium capitalize text-[#e7e5e4] max-[580px]:group-hover:text-[#e7e5e4] max-[580px]:group-[.active]:text-[#e7e5e4] group-hover:text-[#07f468] group-[.active]:text-[#07f468]"
-                    >Media</span
-                  >
-                </span>
-
-                <div
-                  class="text-[0.625rem] leading-normal font-medium text-[#07f468]"
-                >
-                  18
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+      <HeaderBar />
 
         <!-- header user profile section -->
         <div
@@ -3507,6 +3429,8 @@
 </template>
 
 <script setup>
+import HeroBackgroundSlider from '@/components/profile/HeroBackgroundSlider.vue'
+import HeaderBar from '@/components/profile/HeaderBar.vue'
 // Play video on hover
 document.addEventListener('DOMContentLoaded', function() {
           const mediaCards = document.querySelectorAll('[data-media-card]');
