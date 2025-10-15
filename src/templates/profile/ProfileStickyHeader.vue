@@ -47,46 +47,52 @@
     <div
       class="hidden md:flex justify-end items-center gap-4 flex-wrap py-2 xl:justify-[unset]"
     >
-      <!-- header-option-button -->
-      <div class="hidden flex items-center gap-2 flex-wrap">
-        <!-- tip-button -->
-        <div
-          class="w-[3.75rem] h-[3.75rem] grayscale relative pointer-events-none"
-        >
-          <span
-            class="absolute top-0 left-0 block w-[3.75rem] h-[3.75rem] group/icon"
-          >
-            <img
-              src="https://i.ibb.co.com/DfbNLYFj/token.webp"
-              alt="token"
-              class="absolute top-0 left-0 transition-all duration-200 group-hover/icon:opacity-0"
-            />
-            <img
-              src="https://i.ibb.co.com/KxrkW4qX/token-hover.webp"
-              alt="token-hover"
-              class="absolute top-0 left-0 transition-all duration-200 opacity-0 duration-[0.4s] group-hover/icon:opacity-100 group-hover/icon:scale-110"
-            />
-          </span>
+      <!-- profile-info -->
+      <div
+        class="hidden items-center gap-4 pr-2.5 border-r border-white md:inline-flex"
+      >
+        <div class="flex flex-col items-start gap-2">
+          <!-- user-name-title -->
+          <div class="flex items-start gap-4 self-stretch h-6">
+            <div class="flex items-center gap-2 flex-grow">
+              <div class="text-base font-semibold text-white line-clamp-1">
+                @{{ profileData.username }}
+              </div>
+              <img
+                v-if="profileData.isVerified"
+                src="https://i.ibb.co.com/j9XKPcfK/verified-green.webp"
+                alt="verified-green"
+                class="w-4 h-4"
+              />
+            </div>
+          </div>
+
+          <!-- profile-info-list -->
+          <div class="flex items-start gap-4 opacity-70 relative z-[-1]">
+            <div class="flex flex-col items-center gap-0.5">
+              <span class="text-xs leading-normal text-white">Followers</span>
+              <span class="text-sm text-white">{{ profileData.followers }}</span>
+            </div>
+
+            <div class="flex flex-col items-center gap-0.5">
+              <span class="text-xs leading-normal text-white">Likes</span>
+              <span class="text-sm text-white">{{ profileData.likes }}</span>
+            </div>
+
+            <div class="flex flex-col items-center gap-0.5">
+              <span class="text-xs leading-normal text-white">Subscribers</span>
+              <span class="text-sm text-white">{{ profileData.subscribers }}</span>
+            </div>
+          </div>
         </div>
 
-        <!-- private-call-button -->
-        <div
-          class="w-[3.75rem] h-[3.75rem] grayscale relative pointer-events-none"
-        >
-          <span
-            class="absolute top-0 left-0 block w-[3.75rem] h-[3.75rem] group/icon"
-          >
-            <img
-              src="https://i.ibb.co.com/7Q5Qzrsq/phone.webp"
-              alt="phone"
-              class="absolute top-0 left-0 transition-all duration-200 group-hover/icon:opacity-0"
-            />
-            <img
-              src="https://i.ibb.co.com/ZxXyvVMP/phone-hover.webp"
-              alt="phone-hover"
-              class="absolute top-0 left-0 transition-all duration-200 opacity-0 duration-[0.4s] group-hover/icon:opacity-100 group-hover/icon:scale-110"
-            />
-          </span>
+        <!-- creator-avatar-container -->
+        <div class="flex flex-col justify-center items-center">
+          <img
+            :src="profileData.avatar"
+            alt="user-avatar"
+            class="w-16 h-16 rounded-full object-cover"
+          />
         </div>
       </div>
     </div>
@@ -104,6 +110,17 @@ const props = defineProps({
       { label: 'About', active: false },
       { label: 'Posts', count: 5, active: false }
     ]
+  },
+  profileData: {
+    type: Object,
+    default: () => ({
+      username: 'sukii19',
+      avatar: 'https://i.ibb.co.com/jk1F8MqJ/featured-media-bg.webp',
+      isVerified: true,
+      followers: 35,
+      likes: 14,
+      subscribers: 2
+    })
   }
 })
 
@@ -116,6 +133,21 @@ const handleScroll = () => {
   if (headerComponent.value) {
     if (scrollY > 480) {
       headerComponent.value.classList.add('scroll-active')
+
+      // Add progressive blur effect to sticky header
+      const blurStart = 480
+      const blurEnd = 1000
+      const minBlur = 10
+      const maxBlur = 50
+
+      let blur = scrollY <= blurStart
+        ? minBlur
+        : scrollY >= blurEnd
+          ? maxBlur
+          : minBlur + ((scrollY - blurStart) / (blurEnd - blurStart)) * (maxBlur - minBlur)
+
+      headerComponent.value.style.backdropFilter = `blur(${blur}px)`
+      headerComponent.value.style.webkitBackdropFilter = `blur(${blur}px)`
     } else {
       headerComponent.value.classList.remove('scroll-active')
     }

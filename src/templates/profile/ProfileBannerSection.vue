@@ -22,9 +22,7 @@
           <!-- user-name-title -->
           <div class="flex items-start gap-4 self-stretch h-6">
             <div class="flex items-center gap-2 flex-grow">
-              <div
-                class="text-base font-semibold text-white line-clamp-1"
-              >
+              <div class="text-base font-semibold text-white line-clamp-1">
                 @{{ profileData.username }}
               </div>
               <img
@@ -75,6 +73,7 @@
         class="flex flex-col gap-2 w-full max-[580px]:justify-end max-[580px]:h-screen max-[580px]:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_25%,rgba(0,0,0,0.15)_75%)] md:block lg:w-1/2"
       >
         <div class="flex flex-col gap-1 px-2.5 md:gap-4 md:px-0 xl:gap-0">
+          <!-- Desktop Title -->
           <h1
             class="hidden items-center gap-1 text-xl leading-normal font-semibold text-white md:flex md:text-5xl md:leading-[3.75rem] xl:text-6xl xl:leading-[4.5rem] xl:mb-5 xl:mt-[.67em]"
           >
@@ -111,6 +110,7 @@
             </div>
           </div>
 
+          <!-- Mobile Title and Stats -->
           <div class="flex flex-col gap-1 md:hidden">
             <h1
               class="hidden items-center gap-1 text-xl leading-normal font-semibold text-white md:flex md:text-5xl md:leading-[3.75rem] xl:text-6xl xl:leading-[4.5rem] xl:mb-5"
@@ -161,6 +161,7 @@
               </div>
             </div>
 
+            <!-- User info line -->
             <div class="flex gap-1">
               <span class="text-xs leading-normal text-[#FCFCFD] line-clamp-1">@{{ profileData.username }}</span>
               <span class="text-xs leading-normal text-[#FCFCFD] line-clamp-1">/</span>
@@ -207,7 +208,7 @@
             </span>
 
             <div class="relative cursor-pointer" @click="$emit('more-click')">
-              <span class="flex justify-center items-center w-8 h-8 rounded-full [transition:all_0.3s_ease-in-out] md:w-12 md:h-12">
+              <span class="flex justify-center items-center w-8 h-8 rounded-full [transition:all_0.3s_ease-in-out] md:w-12 h-12">
                 <img
                   src="https://i.ibb.co.com/cSNVr9ks/3-dot.webp"
                   alt="3-dot"
@@ -219,9 +220,6 @@
 
           <!-- Bio -->
           <p class="xl:mb-5">
-            <span class="text-base text-white line-clamp-2 sm:leading-7 md:text-lg">
-              {{ profileData.bio }}
-            </span>
             <span v-if="profileData.bio && profileData.bio.length > 100" class="hidden text-xs leading-normal font-semibold text-[#07F468] md:text-sm cursor-pointer" @click="$emit('read-more-click')">
               <span class="text-xs leading-normal font-medium text-white md:text-sm md:font-semibold">...</span>
               Read more
@@ -274,18 +272,170 @@
               </div>
             </div>
           </div>
+
+          <!-- Gallery Carousel for Tablet and Mobile -->
+          <div
+            class="flex w-full py-[.3125rem] [transition:opacity_0.8s] relative md:py-[0.313rem] xl:hidden"
+          >
+            <Splide
+              ref="gallerySlider"
+              :options="gallerySlideOptions"
+              class="w-full"
+            >
+              <SplideSlide
+                v-for="(image, index) in backgroundImages"
+                :key="index"
+                class="flex flex-col items-start gap-4 z-[-2] border-l-4 border-r-4 border-transparent bg-center bg-cover bg-no-repeat max-[580px]:rounded-sm opacity-50 max-[580px]:!border-none is-active [&.is-active]:opacity-100 w-full h-[2.5rem] sm:h-[5rem]"
+                :style="`background-image: url('${image}')`"
+              >
+                <img
+                  class="hidden"
+                  :src="image"
+                  :alt="`gallery-${index + 1}`"
+                />
+              </SplideSlide>
+            </Splide>
+          </div>
+        </div>
+
+        <!-- Subscribe Button Section -->
+        <div class="flex md:mt-8 xl:mt-16">
+          <!-- new-subscriber-button -->
+          <div
+            class="flex justify-center items-end min-w-[45rem] max-w-[45rem] w-full h-20 cursor-pointer sm:px-5 md:relative"
+          >
+            <!-- buy-now-button -->
+            <button
+              class="flex justify-center items-center gap-1 w-[53%] h-[3.75rem] absolute left-0 bg-black flex-grow px-6 py-[0.313rem] shadow-[0_0_24px_0_rgba(251,4,100,0.25)] md:rounded-[16px_0_0_16px] lg:w-[27.875rem] group/button"
+              @click="$emit('subscribe-click')"
+            >
+              <span
+                class="hidden absolute bottom-1 left-0 text-white w-[6.875rem] h-[6.25rem] overflow-hidden md:block"
+              >
+                <span class="w-[6.875rem] h-[6.25rem] block relative">
+                  <img
+                    src="https://i.ibb.co.com/99P9hHTv/subscriber-btn-img.webp"
+                    alt="subscriber-btn-img"
+                    class="absolute bottom-0 left-0 opacity-100 [transition:all_0.5s_ease-in-out] transition-all duration-500 ease-in-out group-hover/button:animate-bouncedown"
+                  />
+                  <img
+                    src="https://i.ibb.co.com/276TkNhV/subscriber-btn-hover-img.webp"
+                    alt="subscriber-btn-hover-img"
+                    class="absolute bottom-0 left-0 opacity-0 w-[3.75rem] [transition:all_0.5s_ease-in-out] transition-all duration-500 ease-in-out group-hover/button:animate-bouncup"
+                  />
+                </span>
+              </span>
+
+              <!-- subscribe-hot-tag -->
+              <div
+                class="absolute bottom-12 left-[0.6875rem] text-black md:relative md:bottom-[unset] md:left-[unset]"
+              >
+                <span class="absolute left-[-0.75rem] z-[1] text-black">
+                  <span
+                    class="absolute top-1 w-[0.8125rem] h-3 shadow-[3px_0_4px_0_rgba(0,0,0,0.25)] z-[-3] text-black"
+                  ></span>
+                  <img
+                    src="https://i.ibb.co.com/m5WBnbQ7/hot-offer.webp"
+                    alt="hot-offer"
+                    class="w-6 h-6 aspect-square"
+                  />
+                </span>
+
+                <span
+                  class="flex justify-center text-sm font-semibold text-black [background:linear-gradient(90deg,#F06_0%,#FF4A92_100%)] pl-3 pr-1.5 py-0.5 rounded backdrop-blur-[10px]"
+                >29% off</span>
+              </div>
+
+              <!-- tier-price -->
+              <span
+                class="text-xs leading-6 font-medium whitespace-nowrap text-white md:text-sm"
+              >Starting
+                <span
+                  class="text-lg leading-[2rem] font-medium text-white -mr-1 md:text-3xl md:leading-[2.375rem] md:-mr-2"
+                >
+                  $32
+                </span>
+                <span
+                  class="text-xs leading-6 font-medium whitespace-nowrap text-white line-through md:text-sm"
+                >45</span>
+                /mo
+              </span>
+            </button>
+
+            <!-- subscribe-button -->
+            <div
+              class="absolute right-0 flex flex-col justify-center items-center w-1/2 h-20 min-h-[4.5] pl-12 pr-6 py-4 md:right-4 md:min-w-[20rem] lg:right-0 lg:w-auto"
+            >
+              <div
+                class="absolute flex flex-col justify-center items-center gap-2.5 w-full h-20 min-h-[4.5] md:min-w-[20rem] md:w-[-webkit-fill-available] lg:w-auto"
+              >
+                <!-- shape-wrapper -->
+                <div
+                  class="absolute h-20 left-[-1.65625rem] sm:left-[-1.625rem]"
+                >
+                  <img
+                    src="https://i.ibb.co.com/DHJWhq4f/subscriber-button-shape.webp"
+                    alt="subscriber-button-shape"
+                    class="w-[1.75rem] h-full"
+                  />
+                </div>
+
+                <button
+                  class="flex justify-center items-center self-stretch px-3 py-[0.313rem] bg-[#FB0464] flex-grow md:rounded-[0_16px_16px_0] lg:max-w-[18.9375rem]"
+                  @click="$emit('subscribe-click')"
+                >
+                  <span
+                    class="text-lg font-medium text-white uppercase whitespace-nowrap md:text-2xl lg:text-xl lg:leading-normal xl:text-2xl"
+                  >SUBSCRIBE</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- navigation Section for mobile -->
+        <div
+          class="absolute bottom-0 flex w-full [background:linear-gradient(180deg,rgba(0,0,0,0.60)_0%,rgba(0,0,0,0.50)_25%,rgba(0,0,0,0.01)_100%)] backdrop-blur-[40px] sm:[background:unset] sm:backdrop-blur-0 md:hidden"
+        >
+          <ul
+            class="flex flex-row items-center w-full overflow-x-auto whitespace-nowrap flex-wrap"
+          >
+            <!-- menu-item -->
+            <li
+              class="relative flex justify-center gap-1 opacity-70 [border-bottom:1.5px_solid_transparent] group active [&.active]:[border-bottom:1.5px_solid_#07f468] [&.active]:opacity-100 max-[580px]:[&.active]:[border-bottom:1.5px_solid_#E7E5E4] flex-grow"
+            >
+              <div
+                class="flex justify-center flex-grow max-[325px]:px-2 max-[325px]:py-0 px-4 py-[0.639rem] sm:px-4 sm:py-0"
+              >
+                <span class="block pt-2 pb-2">
+                  <span
+                    class="block text-sm font-medium text-[#e7e5e4] max-[580px]:group-hover:text-[#e7e5e4] max-[580px]:group-[.active]:text-[#e7e5e4] group-hover:text-[#07f468] group-[.active]:text-[#07f468]"
+                  >Media</span>
+                </span>
+
+                <div
+                  class="text-[0.625rem] leading-normal font-medium text-[#07f468]"
+                >
+                  18
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <!-- Right Side Slider Indicators (if needed) -->
-      <div class="hidden lg:block lg:w-1/2">
-        <!-- Can add slider controls here -->
+      <!-- profile options (right side) - for desktop -->
+      <div class="hidden w-1/2 xl:block">
+        <!-- Add slider controls or other content here if needed -->
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
+import '@splidejs/vue-splide/css'
 import ProfileBannerHeader from './ProfileBannerHeader.vue'
 
 const props = defineProps({
@@ -304,6 +454,14 @@ const props = defineProps({
       location: 'Hong Kong',
       bio: ''
     })
+  },
+  backgroundImages: {
+    type: Array,
+    default: () => [
+      'https://i.ibb.co.com/F4cf3W53/profile-slidein-bg.webp',
+      'https://i.ibb.co.com/bjGQxr5S/sample-bg-image.webp',
+      'https://i.ibb.co.com/jPw7ChWb/auth-bg.webp'
+    ]
   }
 })
 
@@ -316,6 +474,26 @@ defineEmits([
   'like-click',
   'share-click',
   'more-click',
-  'read-more-click'
+  'read-more-click',
+  'subscribe-click'
 ])
+
+const gallerySlider = ref(null)
+
+const gallerySlideOptions = {
+  type: 'loop',
+  perPage: 3,
+  perMove: 1,
+  gap: '0.5rem',
+  pagination: false,
+  arrows: false,
+  focus: 'center',
+  trimSpace: false,
+  breakpoints: {
+    580: {
+      perPage: 1,
+      gap: '0'
+    }
+  }
+}
 </script>

@@ -1,6 +1,6 @@
 <template>
   <!-- profile-id -->
-  <div class="bg-black font-sans p-0 m-0 box-border overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-order-style:none] [scrollbar-width:none]">
+  <div class="bg-black/30  font-sans p-0 m-0 box-border overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-order-style:none] [scrollbar-width:none]">
     <!-- Background Slider -->
     <ProfileBackgroundSlider
       ref="backgroundSlider"
@@ -11,12 +11,14 @@
     <!-- Sticky Header (appears on scroll) -->
     <ProfileStickyHeader
       :menu-items="menuItems"
+      :profile-data="profileData"
       @menu-click="handleMenuClick"
     />
 
     <!-- Main Profile Banner -->
     <ProfileBannerSection
       :profile-data="profileData"
+      :background-images="backgroundImages"
       @cart-click="handleCartClick"
       @notification-click="handleNotificationClick"
       @language-click="handleLanguageClick"
@@ -26,6 +28,7 @@
       @share-click="handleShareClick"
       @more-click="handleMoreClick"
       @read-more-click="handleReadMoreClick"
+      @subscribe-click="handleSubscribeClick"
     />
 
     <!-- bottom-section -->
@@ -92,9 +95,7 @@ const backgroundImages = ref([
 
 // Menu items for sticky header
 const menuItems = ref([
-  { label: 'Media', count: 18, active: true },
-  { label: 'About', active: false },
-  { label: 'Posts', count: 5, active: false }
+  { label: 'Media', count: 18, active: true }
 ])
 
 // Profile data
@@ -109,7 +110,7 @@ const profileData = ref({
   subscribers: 2,
   age: 22,
   location: 'Hong Kong',
-  bio: 'Welcome to my profile! I create amazing content for my fans. Follow me for exclusive content and updates.'
+
 })
 
 // Sample media data - replace with actual data from API
@@ -201,6 +202,10 @@ const handleMediaClick = (media) => {
 const handleShowMore = (section) => {
   console.log('Show more clicked for:', section)
   // Load more media items for the section
+}
+
+const handleSubscribeClick = () => {
+  console.log('Subscribe clicked')
 }
 </script>
 
