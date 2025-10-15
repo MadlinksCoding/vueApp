@@ -9,6 +9,8 @@ import { useEnterpriseI18nStore } from "./stores/enterpriseI18n";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { authHandler } from "@/services/authHandler";
 import { useSectionsStore } from "./stores/sectionStore";
+import Splide from "@splidejs/splide";
+import "@splidejs/splide/dist/css/splide.min.css";
 
 async function initializeApp() {
   const app = createApp(App);
@@ -16,6 +18,11 @@ async function initializeApp() {
   const pinia = createPinia();
   pinia.use(piniaPluginPersistedstate);
   app.use(pinia);
+
+  // Expose Splide globally for legacy scripts checking `typeof Splide !== 'undefined'`
+  if (typeof window !== "undefined") {
+    window.Splide = Splide;
+  }
 
   // Initialize enterprise i18n system
   await enterpriseI18n.initialize();
