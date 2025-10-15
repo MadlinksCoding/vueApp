@@ -129,29 +129,11 @@
   },
   {
     "slug": "/dashboard/edit-profile",
-    "section": {
-      "creator": "dashboard-creator",
-      "fan": "dashboard-fan",
-      "agent": "dashboard-agent",
-      "vendor": "dashboard-vendor"
-    },
-    "inheritConfigFromParent": true,
-    "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardEditProfileCreator.vue"
-      },
-      "fan": {
-        "componentPath": "@/templates/dashboard/page/fan/DashboardEditProfileFan.vue"
-      },
-      "agent": {
-        "componentPath": "@/templates/dashboard/page/agent/DashboardEditProfileAgent.vue"
-      },
-      "vendor": {
-        "componentPath": "@/templates/dashboard/page/vendor/DashboardEditProfileVendor.vue"
-      }
-    }
+    "requiresAuth": false,
+    "enabled": true,
+    "componentPath": "@/templates/dashboard/page/agent/DashboardEditProfileAgent.vue"
   },
+
   {
     "slug": "/dashboard/following",
     "section": {
@@ -175,11 +157,8 @@
   },
   {
     "slug": "/dashboard/my-media",
-    "section": {
-      "creator": "dashboard-creator"
-    },
-    "inheritConfigFromParent": true,
-    "supportedRoles": ["creator"],
+    "requiresAuth": false,
+    "enabled": true,
     "componentPath": "@/templates/dashboard/page/creator/DashboardMyMediaCreator.vue"
   },
   {
@@ -206,14 +185,14 @@
         "componentPath": "@/templates/dashboard/page/vendor/DashboardNewsletterSettingsVendor.vue"
       }
     }
-  },  
+  },
   {
     "slug": "/dashboard/overview",
     "section": {
       "creator": "dashboard-creator"
     },
     "inheritConfigFromParent": true,
-    
+
     "componentPath": "@/templates/dashboard/page/creator/DashboardOverviewCreator.vue"
   },
   {
@@ -239,24 +218,9 @@
   },
   {
     "slug": "/dashboard/payout",
-    "section": {
-      "creator": "dashboard-creator",
-      "agent": "dashboard-agent",
-      "vendor": "dashboard-vendor"
-    },
-    "inheritConfigFromParent": true,
-    "supportedRoles": ["creator", "agent", "vendor"],
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardPayoutCreator.vue"
-      },
-      "agent": {
-        "componentPath": "@/templates/dashboard/page/agent/DashboardPayoutAgent.vue"
-      },
-      "vendor": {
-        "componentPath": "@/templates/dashboard/page/vendor/DashboardPayoutVendor.vue"
-      }
-    }
+    "requiresAuth": false,
+    "enabled": true,
+    "componentPath": "@/templates/dashboard/page/agent/DashboardPayoutAgent.vue"
   },
   {
     "slug": "/dashboard/settings/privacy-security",
@@ -348,40 +312,15 @@
   },
   {
     "slug": "/dashboard/referrals",
-    "section": {
-      "creator": "dashboard-global",
-      "fan": "dashboard-global",
-      "agent": "dashboard-global",
-      "vendor": "dashboard-global"
-    },
-    "inheritConfigFromParent": true,
-    "supportedRoles": ["creator", "fan", "agent", "vendor"],
+    "requiresAuth": false,
+    "enabled": true,
     "componentPath": "@/templates/dashboard/page/role/DashboardReferrals.vue"
   },
   {
     "slug": "/dashboard/settings",
-    "section": {
-      "creator": "dashboard-creator",
-      "fan": "dashboard-fan",
-      "agent": "dashboard-agent",
-      "vendor": "dashboard-vendor"
-    },
-    "inheritConfigFromParent": true,
-    "supportedRoles": ["creator", "fan", "agent", "vendor"],
-    "customComponentPath": {
-      "creator": {
-        "componentPath": "@/templates/dashboard/page/creator/DashboardSettingsCreator.vue"
-      },
-      "fan": {
-        "componentPath": "@/templates/dashboard/page/fan/DashboardSettingsFan.vue"
-      },
-      "agent": {
-        "componentPath": "@/templates/dashboard/page/agent/DashboardSettingsAgent.vue"
-      },
-      "vendor": {
-        "componentPath": "@/templates/dashboard/page/vendor/DashboardSettingsVendor.vue"
-      }
-    }
+    "requiresAuth": false,
+    "enabled": true,
+    "componentPath": "@/templates/dashboard/page/agent/DashboardSettingsAgent.vue"
   },
   {
     "slug": "/dashboard/account/shipping",
@@ -405,22 +344,22 @@
     "componentPath": "@/templates/dashboard/page/creator/DashboardSubscriptionSettingsCreator.vue"
   },
   {
-    "slug": "/dashboard/store/subscription",
-    "section": {
-      "creator": "dashboard-creator"
-    },
-    "inheritConfigFromParent": true,
-    "supportedRoles": ["creator"],
+    "slug": "/dashboard/subscriptions",
+    "requiresAuth": false,
+    "enabled": true,
     "componentPath": "@/templates/dashboard/page/creator/DashboardSubscriptionCreator.vue"
   },
   {
-    "slug": "/dashboard/store/your-orders",
-    "section": {
-      "creator": "dashboard-creator"
-    },
-    "inheritConfigFromParent": true,
-    "supportedRoles": ["creator"],
-    "componentPath": "@/templates/dashboard/page/creator/DashboardYourOrdersCreator.vue"
+    "slug": "/dashboard/orders/order-received",
+    "requiresAuth": false,
+    "enabled": true,
+    "componentPath": "@/templates/dashboard/page/agent/DashboardOrdersReceived.vue"
+  },
+  {
+    "slug": "/dashboard/orders/item-purchased",
+    "requiresAuth": false,
+    "enabled": true,
+    "componentPath": "@/templates/dashboard/page/agent/DashboardItemPurchased.vue"
   },
   {
     "slug": "/dashboard/store/your-posts",
@@ -482,7 +421,6 @@
     "inheritConfigFromParent": true,
     "supportedRoles": ["creator", "fan", "agent", "vendor"],
     "componentPath": "@/templates/auth/page/role/AuthGoogle.vue"
-
   },
   {
     "slug": "/auth/callback/social/twitter",
@@ -530,7 +468,7 @@
       }
     }
   },
-  
+
   {
     "slug": "/about",
     "section": "about",
@@ -591,14 +529,20 @@
     "requiresAuth": false,
     "section": "dev",
     "enabled": true,
-  "componentPath": "@/components/dev/DemoPage.vue"
+    "componentPath": "@/components/dev/DemoPage.vue"
   },
-   {
+  {
     "slug": "/dashboard/referralsContentFan",
     "requiresAuth": false,
     "section": "dev",
     "enabled": true,
-  "componentPath": "@/templates/dashboard/page/fan/DashboardReferralsContentFan.vue"
+    "componentPath": "@/templates/dashboard/page/fan/DashboardReferralsContentFan.vue"
+  },
+  {
+    "slug": "/dashboard/analytics",
+    "requiresAuth": false,
+    "enabled": true,
+    "componentPath": "@/templates/dashboard/page/agent/DashboardAnalytics.vue"
   },
   {
     "slug": "/",
@@ -606,7 +550,7 @@
     "section": "auth",
     "preLoadSections": []
   },
-  
+
   {
     "slug": "/:pathMatch(.*)*",
     "redirect": "/404"

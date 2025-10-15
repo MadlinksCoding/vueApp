@@ -52,7 +52,8 @@
     [--btn-hover-text:#07f468]      /* hover text */
   `"
     />
-        
+      
+  <OrderReceived/>
 
     
   </DashboardWrapperTwoColContainer>
@@ -63,4 +64,5 @@
 import DashboardWrapperTwoColContainer from "@/components/dashboard/DashboardWrapperTwoColContainer.vue";
 import ButtonComponent from "@/components/dev/button/ButtonComponent.vue";
 import Cookies from "@/components/ui/badge/dashboard/Cookies.vue";
+import OrderReceived from "@/components/ui/table/dashboard/OrderReceived.vue";
 </script>

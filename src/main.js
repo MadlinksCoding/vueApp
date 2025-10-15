@@ -41,7 +41,16 @@ async function initializeApp() {
       "/dashboard",
       "/dashboard/overview",
       "/dev",
-      "/dashboard/referralsContentFan"
+      "/dashboard/referralsContentFan",
+      "/dashboard/analytics",
+      "/dashboard/payout",
+      "/dashboard/orders/order-received",
+      "/dashboard/orders/item-purchased",
+      "/dashboard/my-media",
+      "/dashboard/subscriptions",
+      "/dashboard/edit-profile",
+      "/dashboard/referrals",
+      "/dashboard/settings"
     ];
 
     const isPublic = publicRoutes.includes(router.currentRoute.value.path);

@@ -5,7 +5,7 @@
     :config="config"
   >
     <div
-      class="w-screen h-screen flex flex-col items-start overflow-hidden shadow-[4px_0_10px_0_rgba(0,0,0,0.08)] bg-panel-light/70 backdrop-blur-[25px] md:w-[30rem] md:border-l md:border-panel-light-border"
+      class="h-screen flex flex-col items-start overflow-hidden shadow-[4px_0_10px_0_rgba(0,0,0,0.08)] bg-panel-light/70 backdrop-blur-[25px] md:w-[30rem] md:border-l md:border-panel-light-border"
     >
       <div
         class="h-screen w-full overflow-y-auto scroll-smooth flex flex-col items-start self-stretch [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -41,7 +41,7 @@
               <!-- Profile info row -->
               <div class="flex items-start self-stretch gap-4 pr-6">
                 <!-- Avatar with status dot -->
-                <a href="#" class="relative flex w-14 h-14 rounded-[1.875rem]">
+                <a href="#" class="relative flex w-14 h-14 rounded-[1.875rem] outline-none">
                   <img
                     src="https://i.ibb.co/jkjtwC9C/svgviewer-png-output-17.webp"
                     alt="avatar"
@@ -683,23 +683,9 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  config: Object,
 });
 const emit = defineEmits(["update:modelValue"]);
 
-const config = {
-  actionType: "slidein",
-  from: "left",
-  offset: "90px", 
-  speed: "400ms",
-  effect: "ease-in-out",
-  showOverlay: false, 
-  closeOnOutside: true,
-  lockScroll: false, 
-  escToClose: true,
-  width: { default: "550px", "<640": "100%" },
-  height: "100%",
-  scrollable: true,
-  closeSpeed: "400ms",
-  closeEffect: "cubic-bezier(0.4, 0, 0.2, 1)",
-};
+
 </script>

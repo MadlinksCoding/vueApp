@@ -57,6 +57,7 @@ export default {
           dark: "#a10000",
         },
         status: {
+          new: "#ffe500",
           dot: {
             light: "#fdb022",
             dark: "#b77702",
@@ -199,6 +200,7 @@ export default {
               dark: "#0720c1",
             },
           },
+          quaternary: "#667085",
         },
         placeholder: {
           DEFAULT: "#ffffff",
@@ -248,6 +250,7 @@ export default {
               dark: "#b12d00",
             },
           },
+          icon: "#98A2B3",
         },
 
         errorBorder: {
@@ -278,6 +281,7 @@ export default {
               dark: "rgba(24, 26, 27, 0.9)",
             },
             icon: {
+              green: "#07f468",
               default: {
                 light: "rgba(152, 162, 179, 0.1)",
                 dark: "rgba(67, 76, 91, 0.1)",
@@ -321,6 +325,22 @@ export default {
                 dark: "#c93300",
               },
             },
+          },
+        },
+        bg: {
+          status: {
+            light: "#ffe500",
+            dark: "#a99700",
+          },
+          row: {
+            odd: "rgba(242, 244, 247, 0.5)",
+            dark: {
+              odd: "rgba(30, 32, 34, 0.5)",
+            },
+          },
+          statusTag: "#000",
+          dark: {
+            statusTag: "#181a1b",
           },
         },
         cta: {
@@ -386,6 +406,16 @@ export default {
         dropdownBorder: {
           DEFAULT: "#e5e7eb",
           dark: "#363b3d",
+        },
+        content: {
+          primary: "#0c111d",
+          secondary: "#344054",
+          tertiary: "#667085",
+          dark: {
+            primary: "#e8e6e3",
+            secondary: "#bdb7af",
+            tertiary: "#b1aaa0",
+          },
         },
         fce40d: "#fce40d",
         d0d5dd: "#d0d5dd",

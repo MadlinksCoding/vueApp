@@ -5,7 +5,7 @@
     :config="config"
   >
     <div
-      class="w-screen h-screen flex flex-col items-start overflow-hidden shadow-[4px_0_10px_0_rgba(0,0,0,0.08)] bg-panel-light/70 backdrop-blur-[25px] md:w-[30rem] md:border-l md:border-panel-light-border"
+      class="h-screen flex flex-col items-start overflow-hidden shadow-[4px_0_10px_0_rgba(0,0,0,0.08)] bg-panel-light/70 backdrop-blur-[25px] md:w-[30rem] md:border-l md:border-panel-light-border"
     >
       <!-- header -->
       <div
@@ -69,10 +69,10 @@
             <ul
               class="flex flex-row justify-between items-center self-stretch overflow-x-auto whitespace-nowrap scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden shadow-[0_-1.5px_0_0_inset] shadow-border-tab-light"
             >
-              <li class="flex-1 flex">
+              <li class="flex-1 flex outline-none">
                 <a
                   href=""
-                  class="w-full flex flex-col items-center gap-2.5 whitespace-nowrap px-4 py-2 opacity-100 transition-all duration-200 ease-in-out shadow-[0_-1.5px_0_0_inset] shadow-border-tab-active-light"
+                  class="w-full outline-none flex flex-col items-center gap-2.5 whitespace-nowrap px-4 py-2 opacity-100 transition-all duration-200 ease-in-out shadow-[0_-1.5px_0_0_inset] shadow-border-tab-active-light"
                 >
                   <span
                     class="flex items-center gap-0.5 h-8 pointer-events-none"
@@ -957,23 +957,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  config: Object,
 });
 const emit = defineEmits(["update:modelValue"]);
-
-const config = {
-  actionType: "slidein",
-  from: "left",
-  offset: "90px",
-  speed: "400ms",
-  effect: "ease-in-out",
-  showOverlay: false,
-  closeOnOutside: true,
-  lockScroll: false,
-  escToClose: true,
-  width: { default: "550px", "<640": "100%" },
-  height: "100%",
-  scrollable: true,
-  closeSpeed: "400ms",
-  closeEffect: "cubic-bezier(0.4, 0, 0.2, 1)",
-};
 </script>

@@ -3,7 +3,7 @@ export const menuItems = [
     id: 1,
     title: "Analytics",
     image: "https://i.ibb.co/5hHTvKRb/svgviewer-png-output-42.webp",
-    route: "/analytics",
+    route: "/dashboard/analytics",
     parent: false,
     children: [],
     enabled: true
@@ -12,7 +12,7 @@ export const menuItems = [
     id: 2,
     title: "Payout",
     image: "https://i.ibb.co/20NyykW9/svgviewer-png-output-41.webp",
-    route: "/payout",
+    route: "/dashboard/payout",
     parent: false,
     children: [],
     enabled: true
@@ -21,13 +21,13 @@ export const menuItems = [
     id: 3,
     title: "Orders",
     image: "https://i.ibb.co/vChqh7TX/svgviewer-png-output-43.webp",
-    route: "/orders",
+    route: "/dashboard/orders",
     parent: false,
     children: [
         {
       id: 301,
       title: "Orders Received",
-      route: "/orders/orders-received",
+      route: "/dashboard/orders/order-received",
       image: "", 
       enabled: true
     },
@@ -41,7 +41,7 @@ export const menuItems = [
     {
       id: 303,
       title: "Item Purchased",
-      route: "/orders/item-purchased",
+      route: "/dashboard/orders/item-purchased",
       image: "",
       enabled: true
     }
@@ -52,7 +52,7 @@ export const menuItems = [
     id: 4,
     title: "Media",
     image: "https://i.ibb.co/HDtj7Y6g/svgviewer-png-output-44.webp",
-    route: "/media",
+    route: "/dashboard/my-media",
     parent: false,
     children: [],
     enabled: true
@@ -70,7 +70,7 @@ export const menuItems = [
     id: 6,
     title: "Subscriptions",
     image: "https://i.ibb.co/4nTx2sMh/svgviewer-png-output-46.webp",
-    route: "/subscriptions",
+    route: "/dashboard/subscriptions",
     parent: false,
     children: [],
     enabled: true
@@ -95,7 +95,7 @@ export const menuItems = [
          {
       id: 801,
       title: "Edit Profile",
-      route: "/profile/edit",
+      route: "/dashboard/edit-profile",
       image: "",
       enabled: true
     },
@@ -117,7 +117,7 @@ export const menuItems = [
     {
       id: 804,
       title: "Referrals",
-      route: "/profile/referrals",
+      route: "/dashboard/referrals",
       image: "",
       count:"19",
       enabled: true
@@ -129,7 +129,7 @@ export const menuItems = [
     id: 9,
     title: "Settings",
     image: "https://i.ibb.co/w5pz6GM/svgviewer-png-output-49.webp",
-    route: "/settings",
+    route: "/dashboard/settings",
     parent: false,
     children: [],
     enabled: true
