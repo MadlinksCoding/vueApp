@@ -1,6 +1,5 @@
 <template>
-
-  <div class="flex justify-between items-center px-2 py-1 md:hidden">
+  <div class="flex justify-between items-center px-2 py-1 block md:hidden">
     <div class="flex justify-center items-center w-10 h-10">
       <img
         src="https://i.ibb.co.com/kgddCh1j/chevron-left.webp"
