@@ -66,103 +66,18 @@
                   </div>
                 </h1>
 
-                <!-- Mobile Avatar message online row -->
-                <div class="flex gap-2 md:hidden">
-                  <!-- Avatar Wrapper -->
-                  <div class="relative">
-                    <!-- avatar -->
-                    <div
-                      class="bg-[#2970FF] w-16 h-16 aspect-square rounded-[25%_75%_50%_51%_/_45%_65%_36%_55%] relative overflow-hidden"
-                    >
-                      <img
-                        src="https://i.ibb.co.com/jk1F8MqJ/featured-media-bg.webp"
-                        alt="featured-media-bg"
-                        class="w-full h-full absolute top-0 left-0 object-cover"
-                      />
-                    </div>
+                <!-- Mobile Profile Info -->
+                <ProfileMobileInfo :profile-data="profileData" />
 
-                    <!-- Online-user-signal -->
-                    <span
-                      class="block absolute right-[0.313rem] bottom-[0.188rem] w-2 h-2 bg-[#07F468] rounded-full"
-                    ></span>
-                  </div>
-                </div>
+                <!-- Profile Actions -->
+                <ProfileActions 
+                  @tip-click="handleTipClick"
+                  @like-click="handleLikeClick"
+                  @share-click="handleShareClick"
+                  @more-click="handleMoreClick"
+                />
 
-                <div class="flex flex-col gap-1 md:hidden">
-                  <h1
-                    class="hidden items-center gap-1 text-xl leading-normal font-semibold text-white md:flex md:text-5xl md:leading-[3.75rem] xl:text-6xl xl:leading-[4.5rem] xl:mb-5"
-                  >
-                    Sukii19
-                    <div class="flex w-3.5 h-3.5 md:hidden">
-                      <img
-                        src="https://i.ibb.co.com/nMhY8CpS/svgviewer-png-output-22.webp"
-                        alt="verified-tick"
-                        class="w-3.5 h-3.5"
-                      />
-                    </div>
-                  </h1>
-
-                  <!-- profile-info-list -->
-                  <div class="flex items-start gap-3 opacity-70">
-                    <div class="flex items-center gap-1">
-                      <span class="flex items-center">
-                        <img
-                          src="https://i.ibb.co.com/gZfGQhSp/profile.webp"
-                          alt="profile"
-                          class="w-3.5 h-3.5 [filter:brightness(0)_saturate(100%)_invert(90%)_sepia(9%)_saturate(72%)_hue-rotate(183deg)_brightness(105%)_contrast(91%)]"
-                        />
-                      </span>
-                      <span class="text-sm font-light text-[#EAECF0]">35</span>
-                    </div>
-
-                    <div class="flex items-center gap-1">
-                      <span class="flex items-center">
-                        <img
-                          src="https://i.ibb.co.com/vCFQPp7N/heart.webp"
-                          alt="heart"
-                          class="w-3.5 h-3.5 [filter:brightness(0)_saturate(100%)_invert(90%)_sepia(9%)_saturate(72%)_hue-rotate(183deg)_brightness(105%)_contrast(91%)]"
-                        />
-                      </span>
-                      <span class="text-sm font-light text-[#EAECF0]">14</span>
-                    </div>
-
-                    <div class="flex items-center gap-1">
-                      <span class="flex items-center">
-                        <img
-                          src="https://i.ibb.co.com/8LGTj3jC/logo.webp"
-                          alt="logo"
-                          class="w-3.5 h-3.5 [filter:brightness(0)_saturate(100%)_invert(90%)_sepia(9%)_saturate(72%)_hue-rotate(183deg)_brightness(105%)_contrast(91%)]"
-                        />
-                      </span>
-                      <span class="text-sm font-light text-[#EAECF0]">2</span>
-                    </div>
-                  </div>
-
-                  <div class="flex gap-1">
-                    <span
-                      class="text-xs leading-normal text-[#FCFCFD] line-clamp-1"
-                      >@sukii19</span
-                    >
-                    <span
-                      class="text-xs leading-normal text-[#FCFCFD] line-clamp-1"
-                      >/</span
-                    >
-                    <span
-                      class="text-xs leading-normal text-[#FCFCFD] line-clamp-1"
-                      >22</span
-                    >
-                    <span
-                      class="text-xs leading-normal text-[#FCFCFD] line-clamp-1"
-                      >/</span
-                    >
-                    <span
-                      class="text-xs leading-normal text-[#FCFCFD] line-clamp-1"
-                      >Hong Kong</span
-                    >
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-1 py-2 md:hidden">
+                <div class="flex items-center gap-1 py-2 md:hidden" style="display: none;">
                   <!-- tip-button -->
                   <div class="flex gap-1">
                     <div
@@ -233,278 +148,30 @@
                   </span>
                 </p>
 
-                <div
-                  class="hidden items-center gap-[0.3125rem] py-2 md:flex md:py-0"
-                >
-                  <span
-                    class="flex justify-center items-center w-8 h-8 bg-black/10 border border-[#e9e5d380] rounded-full [transition:all_0.3s_ease-in-out] cursor-pointer md:w-12 md:h-12"
-                  >
-                    <img
-                      src="https://i.ibb.co.com/vCFQPp7N/heart.webp"
-                      alt="heart"
-                      class="w-4 h-4 md:w-6 md:h-6 [filter:brightness(0)_saturate(100%)_invert(84%)_sepia(12%)_saturate(222%)_hue-rotate(12deg)_brightness(105%)_contrast(97%)]"
-                    />
-                  </span>
-
-                  <span
-                    class="flex justify-center items-center w-8 h-8 bg-black/10 border border-[#e9e5d380] rounded-full [transition:all_0.3s_ease-in-out] cursor-pointer md:w-12 md:h-12"
-                  >
-                    <img
-                      src="https://i.ibb.co.com/21KzYNJ8/link.webp"
-                      alt="link"
-                      class="w-4 h-4 md:w-6 md:h-6 [filter:brightness(0)_saturate(100%)_invert(84%)_sepia(12%)_saturate(222%)_hue-rotate(12deg)_brightness(105%)_contrast(97%)]"
-                    />
-                  </span>
-
-                  <div class="relative cursor-pointer">
-                    <span
-                      class="flex justify-center items-center w-8 h-8 rounded-full [transition:all_0.3s_ease-in-out] md:w-12 h-12"
-                    >
-                      <img
-                        src="https://i.ibb.co.com/cSNVr9ks/3-dot.webp"
-                        alt="3-dot"
-                        class="w-4 h-4 md:w-6 md:h-6 [filter:brightness(0)_saturate(100%)_invert(84%)_sepia(12%)_saturate(222%)_hue-rotate(12deg)_brightness(105%)_contrast(97%)]"
-                      />
-                    </span>
-                  </div>
-                </div>
 
                 <!-- Gallery Carousel for Tablet and Mobile -->
-                <div
-                  id="splide02"
-                  class="splide flex w-full py-[.3125rem] [transition:opacity_0.8s] relative md:py-[0.313rem] xl:hidden"
-                  role="region"
-                  aria-roledescription="carousel"
-                >
-                  <!-- slider-track -->
-                  <div
-                    class="splide__track w-full px-0 mx-auto md:mr-[unset]"
-                    id="splide02-track"
-                  >
-                    <!-- slider list -->
-                    <ul
-                      id="splide02-list"
-                      class="splide__list w-full"
-                      role="presentation"
-                    >
-                      <!-- slider item 1 -->
-                      <li
-                        class="splide__slide flex flex-col items-start gap-4 z-[-2] border-l-4 border-r-4 border-transparent bg-center bg-cover bg-no-repeat max-[580px]:rounded-sm opacity-50 max-[580px]:!border-none is-active [&.is-active]:opacity-100"
-                        style="background-image: url('https://i.ibb.co.com/F4cf3W53/profile-slidein-bg.webp')"
-                      >
-                        <img
-                          class="hidden"
-                          src="https://i.ibb.co.com/F4cf3W53/profile-slidein-bg.webp"
-                          alt="profile-slidein-bg"
-                        />
-                      </li>
-
-                      <li
-                        class="splide__slide flex flex-col items-start gap-4 z-[-2] border-l-4 border-r-4 border-transparent bg-center bg-cover bg-no-repeat max-[580px]:rounded-sm opacity-50 max-[580px]:!border-none is-active [&.is-active]:opacity-100"
-                        style="background-image: url('https://i.ibb.co.com/bjGQxr5S/sample-bg-image.webp')"
-                      >
-                        <img
-                          class="hidden"
-                          src="https://i.ibb.co.com/bjGQxr5S/sample-bg-image.webp"
-                          alt="sample-bg-image"
-                        />
-                      </li>
-
-                      <li
-                        class="splide__slide flex flex-col items-start gap-4 z-[-2] border-l-4 border-r-4 border-transparent bg-center bg-cover bg-no-repeat max-[580px]:rounded-sm opacity-50 max-[580px]:!border-none is-active [&.is-active]:opacity-100"
-                        style="background-image: url('https://i.ibb.co.com/jPw7ChWb/auth-bg.webp')"
-                      >
-                        <img
-                          class="hidden"
-                          src="https://i.ibb.co.com/jPw7ChWb/auth-bg.webp"
-                          alt="auth-bg"
-                        />
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                <ProfileCarousel :carousel-items="carouselItems" />
               </div>
 
-              <div class="flex md:mt-8 xl:mt-16">
-                <!-- new-subscriber-button -->
-                <div
-                  class="flex justify-center items-end min-w-[45rem] max-w-[45rem] w-full h-20 cursor-pointer sm:px-5 md:relative"
-                >
-                  <!-- buy-now-button -->
-                  <button
-                    class="flex justify-center items-center gap-1 w-[53%] h-[3.75rem] absolute left-0 bg-black flex-grow px-6 py-[0.313rem] shadow-[0_0_24px_0_rgba(251,4,100,0.25)] md:rounded-[16px_0_0_16px] lg:w-[27.875rem] group/button"
-                  >
-                    <span
-                      class="hidden absolute bottom-1 left-0 text-white w-[6.875rem] h-[6.25rem] overflow-hidden md:block"
-                    >
-                      <span class="w-[6.875rem] h-[6.25rem] block relative">
-                        <img
-                          src="https://i.ibb.co.com/99P9hHTv/subscriber-btn-img.webp"
-                          alt="subscriber-btn-img"
-                          class="absolute bottom-0 left-0 opacity-100 [transition:all_0.5s_ease-in-out] transition-all duration-500 ease-in-out group-hover/button:animate-bouncedown"
-                        />
-                        <img
-                          src="https://i.ibb.co.com/276TkNhV/subscriber-btn-hover-img.webp"
-                          alt="subscriber-btn-hover-img"
-                          class="absolute bottom-0 left-0 opacity-0 w-[3.75rem] [transition:all_0.5s_ease-in-out] transition-all duration-500 ease-in-out group-hover/button:animate-bouncup"
-                        />
-                      </span>
-                    </span>
+              <!-- Subscription Section -->
+              <ProfileSubscription 
+                :subscription-data="subscriptionData"
+                @buy-click="handleBuyClick"
+                @subscribe-click="handleSubscribeClick"
+              />
 
-                    <!-- subscribe-hot-tag -->
-                    <div
-                      class="absolute bottom-12 left-[0.6875rem] text-black md:relative md:bottom-[unset] md:left-[unset]"
-                    >
-                      <span class="absolute left-[-0.75rem] z-[1] text-black">
-                        <span
-                          class="absolute top-1 w-[0.8125rem] h-3 shadow-[3px_0_4px_0_rgba(0,0,0,0.25)] z-[-3] text-black"
-                        ></span>
-                        <img
-                          src="https://i.ibb.co.com/m5WBnbQ7/hot-offer.webp"
-                          alt="hot-offer"
-                          class="w-6 h-6 aspect-square"
-                        />
-                      </span>
-
-                      <span
-                        class="flex justify-center text-sm font-semibold text-black [background:linear-gradient(90deg,#F06_0%,#FF4A92_100%)] pl-3 pr-1.5 py-0.5 rounded backdrop-blur-[10px]"
-                        >29% off</span
-                      >
-                    </div>
-
-                    <!-- tier-price -->
-                    <span
-                      class="text-xs leading-6 font-medium whitespace-nowrap text-white md:text-sm"
-                      >Starting
-                      <span
-                        class="text-lg leading-[2rem] font-medium text-white -mr-1 md:text-3xl md:leading-[2.375rem] md:-mr-2"
-                      >
-                        $32
-                      </span>
-                      <span
-                        class="text-xs leading-6 font-medium whitespace-nowrap text-white line-through md:text-sm"
-                        >45</span
-                      >
-                      /mo
-                    </span>
-                  </button>
-
-                  <!-- subscribe-button -->
-                  <div
-                    class="absolute right-0 flex flex-col justify-center items-center w-1/2 h-20 min-h-[4.5] pl-12 pr-6 py-4 md:right-4 md:min-w-[20rem] lg:right-0 lg:w-auto"
-                  >
-                    <div
-                      class="absolute flex flex-col justify-center items-center gap-2.5 w-full h-20 min-h-[4.5] md:min-w-[20rem] md:w-[-webkit-fill-available] lg:w-auto"
-                    >
-                      <!-- shape-wrapper -->
-                      <div
-                        class="absolute h-20 left-[-1.65625rem] sm:left-[-1.625rem]"
-                      >
-                        <img
-                          src="https://i.ibb.co.com/DHJWhq4f/subscriber-button-shape.webp"
-                          alt="subscriber-button-shape"
-                          class="w-[1.75rem] h-full"
-                        />
-                      </div>
-
-                      <button
-                        class="flex justify-center items-center self-stretch px-3 py-[0.313rem] bg-[#FB0464] flex-grow md:rounded-[0_16px_16px_0] lg:max-w-[18.9375rem]"
-                      >
-                        <span
-                          class="text-lg font-medium text-white uppercase whitespace-nowrap md:text-2xl lg:text-xl lg:leading-normal xl:text-2xl"
-                          >SUBSCRIBE</span
-                        >
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- navigation Section for mobile -->
-              <div
-                class="absolute bottom-0 flex w-full [background:linear-gradient(180deg,rgba(0,0,0,0.60)_0%,rgba(0,0,0,0.50)_25%,rgba(0,0,0,0.01)_100%)] backdrop-blur-[40px] sm:[background:unset] sm:backdrop-blur-0 md:hidden"
-              >
-                <ul
-                  class="flex flex-row items-center w-full overflow-x-auto whitespace-nowrap flex-wrap"
-                >
-                  <!-- menu-item -->
-                  <li
-                    class="relative flex justify-center gap-1 opacity-70 [border-bottom:1.5px_solid_transparent] group active [&.active]:[border-bottom:1.5px_solid_#07f468] [&.active]:opacity-100 max-[580px]:[&.active]:[border-bottom:1.5px_solid_#E7E5E4] flex-grow"
-                  >
-                    <div
-                      class="flex justify-center flex-grow max-[325px]:px-2 max-[325px]:py-0 px-4 py-[0.639rem] sm:px-4 sm:py-0"
-                    >
-                      <span class="block pt-2 pb-2">
-                        <span
-                          class="block text-sm font-medium text-[#e7e5e4] max-[580px]:group-hover:text-[#e7e5e4] max-[580px]:group-[.active]:text-[#e7e5e4] group-hover:text-[#07f468] group-[.active]:text-[#07f468]"
-                          >Media</span
-                        >
-                      </span>
-
-                      <div
-                        class="text-[0.625rem] leading-normal font-medium text-[#07f468]"
-                      >
-                        18
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <!-- Navigation Section for mobile -->
+              <ProfileNavigation 
+                :navigation-items="navigationItems"
+                @nav-click="handleNavClick"
+              />
             </div>
 
-            <!-- profile options -->
-            <div class="hidden w-1/2 xl:block">
-              <div
-                id="splide03"
-                class="splide w-full [transition:opacity_0.8s]"
-              >
-                <!-- slider-track -->
-                <div
-                  class="splide__track w-[80%] ml-auto px-0"
-                  id="splide03-track"
-                >
-                  <!-- slider list -->
-                  <ul
-                    id="splide03-list"
-                    class="splide__list w-full"
-                    role="presentation"
-                  >
-                    <li
-                      class="splide__slide flex flex-col items-start gap-4 relative opacity-50 p-4 bg-cover bg-center bg-no-repeat [transform:scaleY(70%)] [transition:transform_0.2s] z-[-2] [&.is-prev]:flex [&.is-prev]:[transform:scaleY(90%)] [&.is-prev]:z-[-1] [&.is-next]:flex [&.is-next]:[transform:scaleY(90%)] [&.is-next]:z-[-1] [&.is-active]:flex [&.is-active]:!w-[40%] [&.is-active]:[transform:scale(100%,100%)] [&.is-active]:rounded [&.is-active]:opacity-100 [&.is-active]:z-[1] cursor-pointer"
-                      style="background-image: url('https://i.ibb.co.com/F4cf3W53/profile-slidein-bg.webp')"
-                    >
-                      <img
-                        class="hidden"
-                        src="https://i.ibb.co.com/F4cf3W53/profile-slidein-bg.webp"
-                        alt="profile-slidein-bg"
-                      />
-                    </li>
-
-                    <li
-                      class="splide__slide flex flex-col items-start gap-4 relative opacity-50 p-4 bg-cover bg-center bg-no-repeat [transform:scaleY(70%)] [transition:transform_0.2s] z-[-2] [&.is-prev]:flex [&.is-prev]:[transform:scaleY(90%)] [&.is-prev]:z-[-1] [&.is-next]:flex [&.is-next]:[transform:scaleY(90%)] [&.is-next]:z-[-1] [&.is-active]:flex [&.is-active]:!w-[40%] [&.is-active]:[transform:scale(100%,100%)] [&.is-active]:rounded [&.is-active]:opacity-100 [&.is-active]:z-[1] cursor-pointer"
-                      style="background-image: url('https://i.ibb.co.com/bjGQxr5S/sample-bg-image.webp')"
-                    >
-                      <img
-                        class="hidden"
-                        src="https://i.ibb.co.com/bjGQxr5S/sample-bg-image.webp"
-                        alt="sample-bg-image"
-                      />
-                    </li>
-
-                    <li
-                      class="splide__slide flex flex-col items-start gap-4 relative opacity-50 p-4 bg-cover bg-center bg-no-repeat [transform:scaleY(70%)] [transition:transform_0.2s] z-[-2] [&.is-prev]:flex [&.is-prev]:[transform:scaleY(90%)] [&.is-prev]:z-[-1] [&.is-next]:flex [&.is-next]:[transform:scaleY(90%)] [&.is-next]:z-[-1] [&.is-active]:flex [&.is-active]:!w-[40%] [&.is-active]:[transform:scale(100%,100%)] [&.is-active]:rounded [&.is-active]:opacity-100 [&.is-active]:z-[1] cursor-pointer"
-                      style="background-image: url('https://i.ibb.co.com/jPw7ChWb/auth-bg.webp')"
-                    >
-                      <img
-                        class="hidden"
-                        src="https://i.ibb.co.com/jPw7ChWb/auth-bg.webp"
-                        alt="auth-bg"
-                      />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <!-- Desktop Carousel -->
+            <ProfileDesktopCarousel 
+              :carousel-items="carouselItems"
+              @carousel-click="handleCarouselClick"
+            />
           </div>
         </section>
 
@@ -563,9 +230,94 @@
 <script setup>
 import HeroBackgroundSlider from '@/components/profile/HeroBackgroundSlider.vue'
 import HeaderBar from '@/components/profile/HeaderBar.vue'
+import ProfileMobileInfo from '@/components/profile/ProfileMobileInfo.vue'
+import ProfileActions from '@/components/profile/ProfileActions.vue'
+import ProfileCarousel from '@/components/profile/ProfileCarousel.vue'
+import ProfileSubscription from '@/components/profile/ProfileSubscription.vue'
+import ProfileNavigation from '@/components/profile/ProfileNavigation.vue'
+import ProfileDesktopCarousel from '@/components/profile/ProfileDesktopCarousel.vue'
 import MediaGridSection from '@/components/profile/MediaGridSection.vue'
 import HeaderComponent from '@/components/profile/HeaderComponent.vue'
 import ProfileInfo from '@/components/profile/ProfileInfo.vue'
+// Configuration for profile data
+const profileData = {
+  username: 'sukii19',
+  displayName: 'Sukii19',
+  avatar: 'https://i.ibb.co.com/jk1F8MqJ/featured-media-bg.webp',
+  verified: true,
+  isOnline: true,
+  followers: 35,
+  likes: 14,
+  subscribers: 2,
+  age: 22,
+  location: 'Hong Kong'
+}
+
+// Configuration for subscription data
+const subscriptionData = {
+  price: 32,
+  originalPrice: 45,
+  discount: 29
+}
+
+// Configuration for carousel items
+const carouselItems = [
+  {
+    image: 'https://i.ibb.co.com/F4cf3W53/profile-slidein-bg.webp',
+    alt: 'profile-slidein-bg'
+  },
+  {
+    image: 'https://i.ibb.co.com/bjGQxr5S/sample-bg-image.webp',
+    alt: 'sample-bg-image'
+  },
+  {
+    image: 'https://i.ibb.co.com/jPw7ChWb/auth-bg.webp',
+    alt: 'auth-bg'
+  }
+]
+
+// Configuration for navigation items
+const navigationItems = [
+  {
+    label: 'Media',
+    count: 18,
+    active: true
+  }
+]
+
+// Event handlers
+const handleTipClick = () => {
+  console.log('Tip clicked')
+}
+
+const handleLikeClick = () => {
+  console.log('Like clicked')
+}
+
+const handleShareClick = () => {
+  console.log('Share clicked')
+}
+
+const handleMoreClick = () => {
+  console.log('More clicked')
+}
+
+const handleBuyClick = () => {
+  console.log('Buy clicked')
+}
+
+const handleSubscribeClick = () => {
+  console.log('Subscribe clicked')
+}
+
+const handleNavClick = (item) => {
+  console.log('Navigation clicked:', item)
+}
+
+const handleCarouselClick = (item) => {
+  console.log('Carousel clicked:', item)
+}
+
 const payToViewItems = [
   {
     thumb: 'https://i.ibb.co/F4cf3W53/profile-slidein-bg.webp',
