@@ -4,7 +4,7 @@
     <!-- profile-id -->
     <div>
       <!-- main-slider -->
-      <HeroBackgroundSlider />
+      <HeroBackgroundSlider ref="heroBackgroundSlider" />
 
       <!-- header-component -->
       <HeaderBar />
@@ -150,7 +150,11 @@
 
 
                 <!-- Gallery Carousel for Tablet and Mobile -->
-                <ProfileCarousel :carousel-items="carouselItems" />
+                <ProfileMobileTabletCarousel 
+                  :carousel-items="carouselItems"
+                  :current-background-index="currentBackgroundIndex"
+                  @carousel-click="handleCarouselClick"
+                />
               </div>
 
               <!-- Subscription Section -->
@@ -170,6 +174,7 @@
             <!-- Desktop Carousel -->
             <ProfileDesktopCarousel 
               :carousel-items="carouselItems"
+              :current-background-index="currentBackgroundIndex"
               @carousel-click="handleCarouselClick"
             />
           </div>
@@ -228,6 +233,7 @@
 </template>
 
 <script setup>
+import { ref, nextTick } from 'vue'
 import HeroBackgroundSlider from '@/components/profile/HeroBackgroundSlider.vue'
 import HeaderBar from '@/components/profile/HeaderBar.vue'
 import ProfileMobileInfo from '@/components/profile/ProfileMobileInfo.vue'
@@ -236,6 +242,7 @@ import ProfileCarousel from '@/components/profile/ProfileCarousel.vue'
 import ProfileSubscription from '@/components/profile/ProfileSubscription.vue'
 import ProfileNavigation from '@/components/profile/ProfileNavigation.vue'
 import ProfileDesktopCarousel from '@/components/profile/ProfileDesktopCarousel.vue'
+import ProfileMobileTabletCarousel from '@/components/profile/ProfileMobileTabletCarousel.vue'
 import MediaGridSection from '@/components/profile/MediaGridSection.vue'
 import HeaderComponent from '@/components/profile/HeaderComponent.vue'
 import ProfileInfo from '@/components/profile/ProfileInfo.vue'
@@ -285,6 +292,12 @@ const navigationItems = [
   }
 ]
 
+// Track current background index
+const currentBackgroundIndex = ref(0)
+
+// Reference to the hero background slider
+const heroBackgroundSlider = ref(null)
+
 // Event handlers
 const handleTipClick = () => {
   console.log('Tip clicked')
@@ -314,8 +327,49 @@ const handleNavClick = (item) => {
   console.log('Navigation clicked:', item)
 }
 
-const handleCarouselClick = (item) => {
-  console.log('Carousel clicked:', item)
+const handleCarouselClick = async (data) => {
+  console.log('Carousel clicked:', data)
+  
+  // Update the current background index
+  currentBackgroundIndex.value = data.index
+  
+  // Wait for next tick to ensure DOM is updated
+  await nextTick()
+  
+  // Use the HeroBackgroundSlider component's goToSlide method
+  if (heroBackgroundSlider.value && heroBackgroundSlider.value.goToSlide) {
+    console.log('Using HeroBackgroundSlider goToSlide method')
+    heroBackgroundSlider.value.goToSlide(data.index)
+  } else {
+    console.log('HeroBackgroundSlider not ready, trying direct DOM access...')
+    
+    // Fallback: try direct DOM access
+    const tryControlSplide = (retryCount = 0) => {
+      if (typeof window !== 'undefined' && window.Splide) {
+        const splideElement = document.getElementById('splide01')
+        console.log('Splide01 element found:', !!splideElement)
+        console.log('Splide01 has splide instance:', !!(splideElement && splideElement.splide))
+        
+        if (splideElement && splideElement.splide) {
+          console.log('Changing background to slide:', data.index)
+          splideElement.splide.go(data.index)
+          return true
+        } else if (retryCount < 5) {
+          // Retry after a short delay if element not ready
+          console.log(`Splide01 not ready, retrying... (${retryCount + 1}/5)`)
+          setTimeout(() => tryControlSplide(retryCount + 1), 200)
+          return false
+        } else {
+          console.log('Splide01 element not found or not initialized after retries')
+          return false
+        }
+      }
+      return false
+    }
+    
+    // Try to control the slider
+    tryControlSplide()
+  }
 }
 
 const payToViewItems = [

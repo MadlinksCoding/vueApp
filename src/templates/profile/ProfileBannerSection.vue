@@ -274,28 +274,15 @@
           </div>
 
           <!-- Gallery Carousel for Tablet and Mobile -->
-          <div
-            class="flex w-full py-[.3125rem] [transition:opacity_0.8s] relative md:py-[0.313rem] xl:hidden"
-          >
-            <Splide
-              ref="gallerySlider"
-              :options="gallerySlideOptions"
-              class="w-full"
-            >
-              <SplideSlide
-                v-for="(image, index) in backgroundImages"
-                :key="index"
-                class="flex flex-col items-start gap-4 z-[-2] border-l-4 border-r-4 border-transparent bg-center bg-cover bg-no-repeat max-[580px]:rounded-sm opacity-50 max-[580px]:!border-none is-active [&.is-active]:opacity-100 w-full h-[2.5rem] sm:h-[5rem]"
-                :style="`background-image: url('${image}')`"
-              >
-                <img
-                  class="hidden"
-                  :src="image"
-                  :alt="`gallery-${index + 1}`"
-                />
-              </SplideSlide>
-            </Splide>
-          </div>
+          <ProfileMobileTabletCarousel 
+            :carousel-items="backgroundImages.map((image, index) => ({
+              image: image,
+              alt: `carousel-${index + 1}`
+            }))"
+            :current-background-index="currentBackgroundIndex"
+            @carousel-click="handleCarouselClick"
+          />
+          
         </div>
 
         <!-- Subscribe Button Section -->
@@ -353,10 +340,10 @@
                 <span
                   class="text-lg leading-[2rem] font-medium text-white -mr-1 md:text-3xl md:leading-[2.375rem] md:-mr-2"
                 >
-                  $32
+                  $34
                 </span>
                 <span
-                  class="text-xs leading-6 font-medium whitespace-nowrap text-white line-through md:text-sm"
+                  class="text-xs ms-2 leading-6 font-medium whitespace-nowrap text-white line-through md:text-sm"
                 >45</span>
                 /mo
               </span>
@@ -425,9 +412,14 @@
       </div>
 
       <!-- profile options (right side) - for desktop -->
-      <div class="hidden w-1/2 xl:block">
-        <!-- Add slider controls or other content here if needed -->
-      </div>
+      <ProfileDesktopCarousel
+        :carousel-items="backgroundImages.map((image, index) => ({
+          image: image,
+          alt: `carousel-${index + 1}`
+        }))"
+        :current-background-index="currentBackgroundIndex"
+        @carousel-click="handleCarouselClick"
+      />
     </div>
   </section>
 </template>
@@ -437,6 +429,8 @@ import { ref } from 'vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import '@splidejs/vue-splide/css'
 import ProfileBannerHeader from './ProfileBannerHeader.vue'
+import ProfileDesktopCarousel from '../../components/profile/ProfileDesktopCarousel.vue'
+import ProfileMobileTabletCarousel from '../../components/profile/ProfileMobileTabletCarousel.vue'
 
 const props = defineProps({
   profileData: {
@@ -462,6 +456,10 @@ const props = defineProps({
       'https://i.ibb.co.com/bjGQxr5S/sample-bg-image.webp',
       'https://i.ibb.co.com/jPw7ChWb/auth-bg.webp'
     ]
+  },
+  backgroundSlider: {
+    type: Object,
+    default: null
   }
 })
 
@@ -475,10 +473,12 @@ defineEmits([
   'share-click',
   'more-click',
   'read-more-click',
-  'subscribe-click'
+  'subscribe-click',
+  'carousel-click'
 ])
 
 const gallerySlider = ref(null)
+const currentBackgroundIndex = ref(0)
 
 const gallerySlideOptions = {
   type: 'loop',
@@ -495,5 +495,16 @@ const gallerySlideOptions = {
       gap: '0'
     }
   }
+}
+
+const handleCarouselClick = (data) => {
+  console.log('ProfileBannerSection: Carousel item clicked:', data)
+  
+  // Update the current background index
+  currentBackgroundIndex.value = data.index
+  
+  // Emit the carousel click event to parent component
+  emit('carousel-click', data)
+  console.log('ProfileBannerSection: emitted carousel-click to parent')
 }
 </script>

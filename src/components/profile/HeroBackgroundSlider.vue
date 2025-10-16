@@ -41,10 +41,12 @@ const props = defineProps({
 })
 
 const images = ref(props.images)
+const splideInstance = ref(null)
 
 onMounted(() => {
   if (typeof window !== 'undefined' && window.Splide) {
-    new window.Splide('#splide01', {
+    console.log('HeroBackgroundSlider: Initializing Splide...')
+    splideInstance.value = new window.Splide('#splide01', {
       type: 'fade',
       fixedWidth: '100%',
       height: '100vh',
@@ -53,7 +55,27 @@ onMounted(() => {
       cover: false,
       autoplay: false,
       lazyLoad: 'nearby'
-    }).mount()
+    })
+    
+    splideInstance.value.mount()
+    console.log('HeroBackgroundSlider: Splide mounted successfully')
+    
+    // Store the instance on the DOM element for external access
+    const element = document.getElementById('splide01')
+    if (element) {
+      element.splide = splideInstance.value
+      console.log('HeroBackgroundSlider: Splide instance attached to DOM element')
+    }
+  }
+})
+
+// Expose methods for external control
+defineExpose({
+  goToSlide: (index) => {
+    if (splideInstance.value) {
+      console.log('HeroBackgroundSlider: goToSlide called with index:', index)
+      splideInstance.value.go(index)
+    }
   }
 })
 </script>

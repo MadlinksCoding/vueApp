@@ -1,13 +1,13 @@
 <template>
-  <!-- Desktop Thumbnail Carousel (XL screens and up only) -->
-  <div class="hidden xl:flex xl:flex-row xl:items-center xl:justify-end xl:w-1/2 xl:h-full xl:pr-8">
-    <div class="flex flex-row">
+  <!-- Mobile and Tablet Thumbnail Carousel -->
+  <div class="flex xl:hidden w-full py-4">
+    <div class="flex flex-row gap-3 overflow-x-auto scrollbar-hide">
       <div
         v-for="(item, index) in carouselItems"
         :key="index"
-        class="relative w-auto h-[9.375rem] overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105"
+        class="relative w-[2.5rem] h-[2.5rem] overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 flex-shrink-0"
         :class="{
-          'scale-105 rounded-lg shadow-lg': activeIndex === index,
+          'ring-2 ring-white ring-opacity-80 shadow-lg': activeIndex === index,
           'opacity-70 hover:opacity-100': activeIndex !== index
         }"
         @click="selectImage(item, index)"
@@ -22,7 +22,7 @@
           v-if="activeIndex === index"
           class="absolute inset-0 bg-white bg-opacity-20 flex items-center justify-center"
         >
-          <div class="w-3 h-3 bg-white rounded-full"></div>
+          <div class="w-2 h-2 bg-white rounded-full"></div>
         </div>
       </div>
     </div>
@@ -63,9 +63,19 @@ const activeIndex = ref(props.currentBackgroundIndex)
 
 // Method to select an image
 const selectImage = (item, index) => {
-  console.log('ProfileDesktopCarousel: selectImage called with:', { item, index })
+  console.log('ProfileMobileTabletCarousel: selectImage called with:', { item, index })
   activeIndex.value = index
   emit('carousel-click', { item, index })
-  console.log('ProfileDesktopCarousel: emitted carousel-click event')
+  console.log('ProfileMobileTabletCarousel: emitted carousel-click event')
 }
 </script>
+
+<style scoped>
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+</style>

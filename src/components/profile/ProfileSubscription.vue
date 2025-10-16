@@ -56,7 +56,7 @@
             ${{ subscriptionData.price }}
           </span>
           <span
-            class="text-xs leading-6 font-medium whitespace-nowrap text-white line-through md:text-sm"
+            class="text-xs ms-2 leading-6 font-medium whitespace-nowrap text-white line-through md:text-sm"
           >{{ subscriptionData.originalPrice }}</span>
           /mo
         </span>

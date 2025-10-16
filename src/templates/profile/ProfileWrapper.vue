@@ -19,6 +19,7 @@
     <ProfileBannerSection
       :profile-data="profileData"
       :background-images="backgroundImages"
+      :background-slider="backgroundSlider"
       @cart-click="handleCartClick"
       @notification-click="handleNotificationClick"
       @language-click="handleLanguageClick"
@@ -29,6 +30,7 @@
       @more-click="handleMoreClick"
       @read-more-click="handleReadMoreClick"
       @subscribe-click="handleSubscribeClick"
+      @carousel-click="handleCarouselClick"
     />
 
     <!-- bottom-section -->
@@ -206,6 +208,19 @@ const handleShowMore = (section) => {
 
 const handleSubscribeClick = () => {
   console.log('Subscribe clicked')
+}
+
+const handleCarouselClick = (data) => {
+  console.log('Carousel clicked:', data)
+  console.log('Background slider ref:', backgroundSlider.value)
+  
+  // Use the ProfileBackgroundSlider's goToSlide method
+  if (backgroundSlider.value && backgroundSlider.value.goToSlide) {
+    console.log('Calling goToSlide with index:', data.index)
+    backgroundSlider.value.goToSlide(data.index)
+  } else {
+    console.log('Background slider not available or goToSlide method not found')
+  }
 }
 </script>
 
