@@ -21,6 +21,24 @@ export default {
         ],
       },
       colors: {
+        // Light mode colors
+        light: {
+          text: {
+            quaternary: '#667085',
+          },
+          bg: {
+            section: 'hsla(0, 0%, 100%, 0.4)',
+          },
+        },
+        // Dark mode colors
+        dark: {
+          text: {
+            quaternary: '#9e9589',
+          },
+          bg: {
+            section: 'rgba(24, 26, 27, 0.4)',
+          },
+        },
         // Background colors
         primary: {
           DEFAULT: "#939393",
@@ -440,7 +458,7 @@ export default {
       },
       animation: {
         bouncedown: 'bouncedown 0.1s ease forwards',
-        bouncup: 'bouncup 0.1s ease forwards'
+        bouncup: 'bouncup 0.5s ease forwards'
       }
     },
   },

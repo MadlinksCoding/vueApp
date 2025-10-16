@@ -303,15 +303,19 @@
                   <img
                     src="https://i.ibb.co.com/99P9hHTv/subscriber-btn-img.webp"
                     alt="subscriber-btn-img"
-                    class="absolute bottom-0 left-0 opacity-100 [transition:all_0.5s_ease-in-out] transition-all duration-500 ease-in-out group-hover/button:animate-bouncedown"
+                    class="absolute bottom-0 left-0 opacity-100 [transition:all_0.1s_ease-in-out] transition-all duration-500 ease-in-out group-hover/button:animate-bouncedown"
                   />
                   <img
-                    src="https://i.ibb.co.com/276TkNhV/subscriber-btn-hover-img.webp"
+                    src="https://i.ibb.co/276TkNhV/subscriber-btn-hover-img.webp"
                     alt="subscriber-btn-hover-img"
-                    class="absolute bottom-0 left-0 opacity-0 w-[3.75rem] [transition:all_0.5s_ease-in-out] transition-all duration-500 ease-in-out group-hover/button:animate-bouncup"
-                  />
+                    class="absolute bottom-0 left-0 opacity-100 [transition:all_1s_ease-in-out] transition-all duration-2000 ease-in-out group-hover/button:animate-bouncup"/>
                 </span>
               </span>
+
+
+
+
+              
 
               <!-- subscribe-hot-tag -->
               <div
