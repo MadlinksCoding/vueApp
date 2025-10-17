@@ -16,9 +16,10 @@
       variant="polygonLeft"
       :leftIcon="'https://i.ibb.co/N2xH2QVV/svgviewer-png-output-13.webp'"
       :leftIconClass="`
-    w-6 h-6 transition duration-200 group-hover:filter-none
-    [filter:brightness(0)_saturate(100%)_invert(75%)_sepia(23%)_saturate(7280%)_hue-rotate(93deg)_brightness(109%)_contrast(95%)]
-  `"
+  w-6 h-6 transition duration-200
+  filter brightness-0
+  group-hover:[filter:brightness(0)_saturate(100%)_invert(75%)_sepia(23%)_saturate(7280%)_hue-rotate(93deg)_brightness(109%)_contrast(95%)]
+`"
     />
 
     <br />
@@ -45,24 +46,26 @@
   filter brightness-0 invert-0   /* Default: black */
   group-hover:[filter:brightness(0)_saturate(100%)_invert(75%)_sepia(23%)_saturate(7280%)_hue-rotate(93deg)_brightness(109%)_contrast(95%)]
 `"
-      :addClass="`
-    [--btn-bg:#07f468]           /* normal bg */
-    [--btn-hover-bg:black]     /* hover bg */
-    [--btn-text:#black]            /* text */
-    [--btn-hover-text:#07f468]      /* hover text */
-  `"
+      btnBg="#07f468"
+      btnHoverBg="black"
+      btnText="black"
+      btnHoverText="#07f468"
     />
-      
-  <OrderReceived/>
 
-    
+    <OrderReceived />
+
+    <LoadingTest />
+    <PageDataTest />
+
+
   </DashboardWrapperTwoColContainer>
 </template>
 
 <script setup>
-
 import DashboardWrapperTwoColContainer from "@/components/dashboard/DashboardWrapperTwoColContainer.vue";
 import ButtonComponent from "@/components/dev/button/ButtonComponent.vue";
+import LoadingTest from "@/components/LoadingTest.vue";
+import PageDataTest from "@/components/PageDataTest.vue";
 import Cookies from "@/components/ui/badge/dashboard/Cookies.vue";
 import OrderReceived from "@/components/ui/table/dashboard/OrderReceived.vue";
 </script>
