@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { default as DashboardHeader } from './DashboardHeader.vue'
+import { default as DashboardHeader } from './HeaderResponsive.vue'
 import { default as DashboardSidebar } from './DashboardSidebar.vue'
 import { default as DashboardFooter } from './DashboardFooter.vue'
 import { default as DashboardWrapperMain } from '@/components/layout/dashboard/DashboardWrapperMain.vue'
