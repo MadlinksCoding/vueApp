@@ -28,7 +28,8 @@ const config = {
 
 const submenuPopupConfig = {
   actionType: "slidein",
-  from: "right",
+  // this will slide-in from right to left
+  from: "right", 
   offset: "0px",
   speed: "250ms",
   effect: "ease-in-out",

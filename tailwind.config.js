@@ -417,6 +417,26 @@ export default {
             tertiary: "#b1aaa0",
           },
         },
+        dash: {
+          text: "#667085",
+          border: "#D0D5DD",
+          warning: "#ff4405",
+          warningLight: "#FF7C1E",
+          success: "#07f468",
+          successLight: "#39FF14",
+          published: "#D1E0FF",
+          draft: "#FFFFFF",
+          tab: {
+            active: "#000",
+            inactive: "#F06",
+            bg: "rgba(251,91,162,0.15)",
+          },
+          bg: {
+            light: "rgba(255,255,255,0.5)",
+            lighter: "rgba(255,255,255,0.3)",
+            warning: "rgba(255,68,5,0.1)",
+          },
+        },
         fce40d: "#fce40d",
         d0d5dd: "#d0d5dd",
         ff00a6: "#ff00a6",
@@ -433,44 +453,48 @@ export default {
       },
       keyframes: {
         bouncedown: {
-          '0%': {
-            opacity: '1',
-            width: '100%',
-            height: 'auto'
+          "0%": {
+            opacity: "1",
+            width: "100%",
+            height: "auto",
           },
-          '100%': {
-            opacity: '0',
-            width: '60px',
-            height: '80px'
-          }
+          "100%": {
+            opacity: "0",
+            width: "60px",
+            height: "80px",
+          },
         },
         bouncup: {
-          '0%': {
-            opacity: '0',
-            width: '60px',
-            height: 'auto',
-            bottom: '0',
-            left: '0'
+          "0%": {
+            opacity: "0",
+            width: "60px",
+            height: "auto",
+            bottom: "0",
+            left: "0",
           },
-          '80%': {
-            opacity: '1',
-            width: '100%',
-            height: 'auto',
-            bottom: '2px',
-            left: '2px'
+          "80%": {
+            opacity: "1",
+            width: "100%",
+            height: "auto",
+            bottom: "2px",
+            left: "2px",
           },
-          '100%': {
-            opacity: '1',
-            width: '100%',
-            height: 'auto',
-            bottom: '0',
-            left: '0'
-          }
-        }
+          "100%": {
+            opacity: "1",
+            width: "100%",
+            height: "auto",
+            bottom: "0",
+            left: "0",
+          },
+        },
       },
       animation: {
-        bouncedown: 'bouncedown 0.1s ease forwards',
-        bouncup: 'bouncup 0.1s ease forwards'
+        bouncedown: "bouncedown 0.1s ease forwards",
+        bouncup: "bouncup 0.1s ease forwards",
+      },
+       gridTemplateColumns: {
+        '5': 'repeat(5, minmax(0, 1fr))',
+        '6': 'repeat(6, minmax(0, 1fr))',
       }
     },
   },

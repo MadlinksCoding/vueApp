@@ -18,7 +18,7 @@
         :placeholder="placeholder"
         :disabled="disabled"
         v-bind="inputAttrs"
-        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+        class="w-full px-3 py-2 shadow-sm focus:outline-none bg-[rgba(255,255,255,0.3)] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
         :class="{ 'border-red-500': error }"
       />
 

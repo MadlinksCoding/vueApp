@@ -1,6 +1,9 @@
 <template>
   <DashboardWrapperTwoColContainer>
-    <p class="mb-4">This is Dashboard for global</p>
+
+    <BookingForm />
+
+<!-- 
     <Cookies />
 
     <ButtonComponent text="Cancel" variant="hoverBgWhite" size="lg" />
@@ -55,7 +58,7 @@
     <OrderReceived />
 
     <LoadingTest />
-    <PageDataTest />
+    <PageDataTest /> -->
 
 
   </DashboardWrapperTwoColContainer>
@@ -67,5 +70,6 @@ import ButtonComponent from "@/components/dev/button/ButtonComponent.vue";
 import LoadingTest from "@/components/LoadingTest.vue";
 import PageDataTest from "@/components/PageDataTest.vue";
 import Cookies from "@/components/ui/badge/dashboard/Cookies.vue";
+import BookingForm from "@/components/ui/form/BookingForm.vue";
 import OrderReceived from "@/components/ui/table/dashboard/OrderReceived.vue";
 </script>

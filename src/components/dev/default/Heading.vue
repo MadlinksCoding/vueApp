@@ -82,6 +82,9 @@ const themeClasses: Record<string, Record<string, string>> = {
     h2: "text-2xl font-semibold tracking-wider text-white",
     h4: "text-xl tracking-wider text-white",
   },
+  formHeading: {
+    h4: "text-base font-[600] font-semibold leading-[24px] text-[#344054]",
+  },
 };
 
 const headingConfig = computed(() => ({

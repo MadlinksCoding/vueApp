@@ -498,7 +498,7 @@
             />
           </div>
 
-          <div class="w-3/4 mb-4">
+          <div class="w-full">
             <InputDefaultComponent
               id="input_8"
               type="textarea"
@@ -893,6 +893,8 @@
             fontWeight="font-semibold"
             fontColor="text-[#101828] "
           />
+           <DefaultDahboardDrowpdown/>
+
 
           <div>
             <InputComponentCheckbox
@@ -927,7 +929,12 @@
               />
             </InputComponentCheckbox>
           </div>
+
+
+          <CustomeThemeSelect/>
         </section>
+
+       
       </section>
     </div>
   </div>
@@ -967,6 +974,8 @@ import {
 } from "@heroicons/vue/24/solid";
 import Checkbox from "@/components/ui/form/checkbox/CheckboxGroup.vue";
 import Radio from "@/components/ui/form/radio/dashboard/RadioGroup.vue";
+import DefaultDahboardDrowpdown from "../ui/popup/dropdown/dashboard/DefaultDahboardDrowpdown.vue";
+import CustomeThemeSelect from "../ui/popup/dropdown/dashboard/customThemeSelect/CustomeThemeSelect.vue";
 
 
 // Basic refs
