@@ -1,4 +1,6 @@
 [
   { "name": "logo", "type": "icon", "path": "/images/test-image.jpg" },
+  { "name": "test-image", "type": "icon", "path": "/images/test-image.jpg" },
+  { "name": "test-larger-image", "type": "icon", "path": "/images/larger-size-image.jpg" },
   { "name": "test-style", "type": "link", "path": "/css/test-style.css" }
 ]
