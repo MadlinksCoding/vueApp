@@ -9,6 +9,7 @@ import { useEnterpriseI18nStore } from "./stores/enterpriseI18n";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { authHandler } from "@/services/authHandler";
 import { useSectionsStore } from "./stores/sectionStore";
+import { createCacheJanitor } from "./plugins/cacheJanitor";
 
 async function initializeApp() {
   const app = createApp(App);
@@ -86,10 +87,13 @@ async function initializeApp() {
   });
 
 
-    app.use(router);
-    app.use(enterpriseI18n.vueI18nInstance);
-    app.mount("#app");
-  }
+  app.use(router);
+  app.use(enterpriseI18n.vueI18nInstance);
+
+  // Setup Cache Janitor (cleanup every 30 seconds)
+  app.use(createCacheJanitor(30_000))
+  app.mount("#app");
+}
 
 // Initialize the app
 initializeApp().catch(console.error);
