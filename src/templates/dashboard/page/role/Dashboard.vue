@@ -68,7 +68,6 @@
 import DashboardWrapperTwoColContainer from "@/components/dashboard/DashboardWrapperTwoColContainer.vue";
 import ButtonComponent from "@/components/dev/button/ButtonComponent.vue";
 import LoadingTest from "@/components/LoadingTest.vue";
-import PageDataTest from "@/components/PageDataTest.vue";
 import Cookies from "@/components/ui/badge/dashboard/Cookies.vue";
 import BookingForm from "@/components/ui/form/BookingForm.vue";
 import OrderReceived from "@/components/ui/table/dashboard/OrderReceived.vue";

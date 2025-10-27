@@ -1,11 +1,19 @@
+// src/main.js - UPDATED VERSION
+
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import App from "./App.vue";
 import './assets/main.css'
 import router from "./router";
-import { enterpriseI18n } from "./i18n/enterprise/i18n";
-import { useEnterpriseI18nStore } from "./stores/enterpriseI18n";
+
+// ============================================================================
+// NEW: Import your new translation system
+// ============================================================================
+import { useLocaleStore } from "./stores/localeStore";
+import { vTranslate } from './composables/useTranslation'
+
+// Keep existing imports
 import { useAuthStore } from "@/stores/useAuthStore";
 import { authHandler } from "@/services/authHandler";
 import { useSectionsStore } from "./stores/sectionStore";
@@ -18,12 +26,25 @@ async function initializeApp() {
   pinia.use(piniaPluginPersistedstate);
   app.use(pinia);
 
-  // Initialize enterprise i18n system
-  await enterpriseI18n.initialize();
+  // ============================================================================
+  // NEW: Initialize locale system (replaces enterprise i18n)
+  // ============================================================================
+  console.log('[App] 🌍 Initializing locale system...');
+  const localeStore = useLocaleStore();
+  
+  // Initialize locale from URL/localStorage/browser
+  localeStore.initializeLocale();
+  
+  console.log('[App] ✓ Locale initialized:', localeStore.getLocale);
 
+  // ============================================================================
+  // NEW: Register translation directive
+  // ============================================================================
+  app.directive('translate', vTranslate);
+
+  // Existing auth initialization
   const auth = useAuthStore();
   const sectionsStore = useSectionsStore();
-  const i18nStore = useEnterpriseI18nStore();
 
   auth.refreshFromStorage();
   sectionsStore.hydrate();
@@ -55,8 +76,6 @@ async function initializeApp() {
     ];
 
     const isPublic = publicRoutes.includes(router.currentRoute.value.path);
-
-    // Add:
     const isSimulated = !!auth.simulate;
 
     if (!isPublic && !isSimulated) {
@@ -86,13 +105,37 @@ async function initializeApp() {
     }
   });
 
-
   app.use(router);
-  app.use(enterpriseI18n.vueI18nInstance);
+  
+  // ============================================================================
+  // REMOVED: Old enterprise i18n (comment out if you want to keep as backup)
+  // ============================================================================
+  // app.use(enterpriseI18n.vueI18nInstance);
 
   // Setup Cache Janitor (cleanup every 30 seconds)
   app.use(createCacheJanitor(30_000))
+  
   app.mount("#app");
+  
+  // ============================================================================
+  // NEW: Dev Tools
+  // ============================================================================
+  if (import.meta.env.DEV) {
+    window.__localeStore__ = () => {
+      const store = useLocaleStore();
+      return {
+        locale: store.getLocale,
+        stats: store.getStats(),
+        setLocale: (locale) => store.setLocale(locale),
+        clearCache: () => store.clearCache()
+      }
+    }
+    
+    console.log('\n💡 Dev Tools Available:')
+    console.log('   window.__localeStore__() - Access locale store')
+    console.log('   window.__localeStore__().stats - View statistics')
+    console.log('   window.__localeStore__().setLocale("pk") - Change locale\n')
+  }
 }
 
 // Initialize the app
