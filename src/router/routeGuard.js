@@ -48,7 +48,7 @@ function getParentRouteDeps(path) {
 // --- Main Route Guard ---
 export default function routeGuard(to, from, next) {
   const auth = useAuthStore();
-  const user = auth.simulate || auth.currentUser;
+  let user = auth.simulate || auth.currentUser;
   if (!user) {
     try {
       const sim = localStorage.getItem("simulate");

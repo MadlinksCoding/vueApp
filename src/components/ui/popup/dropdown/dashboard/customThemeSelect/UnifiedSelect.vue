@@ -11,7 +11,7 @@
       <!-- Color Picker Layout -->
       <div v-if="variant === 'color-picker'" class="flex items-center justify-between w-full">
         <!-- Left side text -->
-        <span class="text-gray-700 text-sm font-medium">{{ inputText }}</span>
+        <span v-if="inputText" class="text-gray-700 text-sm font-medium">{{ inputText }}</span>
 
         <!-- Right side container (selected color + arrow in parallel) -->
         <div class="flex items-center justify-end w-18 gap-2 border-l border-gray-300 pl-2">
@@ -42,8 +42,23 @@
       <template v-else>
         <!-- Multi-select with text and cross icon -->
         <template v-if="multiple && Array.isArray(modelValue) && modelValue.length > 0">
-          <span class="block truncate text-left pr-16">
-            {{ displayText }}
+          <span class="flex items-center truncate text-left pr-16">
+            <!-- Show first item's icon/image -->
+            <img
+              v-if="modelValue[0]?.image"
+              :src="modelValue[0].image"
+              :alt="getOptionLabel(modelValue[0])"
+              class="w-5 h-5 rounded object-cover mr-2 flex-shrink-0"
+              @error="$event.target.style.display='none'"
+            />
+            <span
+              v-else-if="modelValue[0]?.icon"
+              class="w-5 h-5 rounded flex items-center justify-center mr-2 flex-shrink-0 text-xs"
+              :style="{ backgroundColor: modelValue[0].iconBgColor || '#6366f1', color: modelValue[0].iconColor || '#fff' }"
+            >
+              {{ modelValue[0].icon }}
+            </span>
+            <span class="truncate">{{ displayText }}</span>
           </span>
 
           <!-- Cross icon positioned absolutely -->
@@ -78,8 +93,23 @@
 
         <!-- Single select or empty multi-select -->
         <template v-else>
-          <span class="block truncate text-left">
-            {{ displayText }}
+          <span class="flex items-center truncate text-left">
+            <!-- Show selected option's icon/image -->
+            <img
+              v-if="selectedOption?.image"
+              :src="selectedOption.image"
+              :alt="displayText"
+              class="w-5 h-5 rounded object-cover mr-2 flex-shrink-0"
+              @error="$event.target.style.display='none'"
+            />
+            <span
+              v-else-if="selectedOption?.icon"
+              class="w-5 h-5 rounded flex items-center justify-center mr-2 flex-shrink-0 text-xs"
+              :style="{ backgroundColor: selectedOption.iconBgColor || '#6366f1', color: selectedOption.iconColor || '#fff' }"
+            >
+              {{ selectedOption.icon }}
+            </span>
+            <span class="truncate">{{ displayText }}</span>
           </span>
           <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
             <svg
@@ -420,9 +450,42 @@
                 @change="selectOption(option)"
                 class="mr-3 h-4 w-4 custom-checkbox"
               />
+              <!-- Icon/Image -->
+              <img
+                v-if="option.image"
+                :src="option.image"
+                :alt="getOptionLabel(option)"
+                class="w-6 h-6 rounded object-cover mr-2 flex-shrink-0"
+                @error="$event.target.style.display='none'"
+              />
+              <span
+                v-else-if="option.icon"
+                class="w-6 h-6 rounded flex items-center justify-center mr-2 flex-shrink-0 text-sm"
+                :style="{ backgroundColor: option.iconBgColor || '#6366f1', color: option.iconColor || '#fff' }"
+              >
+                {{ option.icon }}
+              </span>
               <span class="flex-1">{{ getOptionLabel(option) }}</span>
             </div>
-            <!-- Regular text for single selection -->
+            <!-- Single selection with icon/image -->
+            <template v-else-if="option.image || option.icon">
+              <img
+                v-if="option.image"
+                :src="option.image"
+                :alt="getOptionLabel(option)"
+                class="w-6 h-6 rounded object-cover mr-2 flex-shrink-0 inline-block align-middle"
+                @error="$event.target.style.display='none'"
+              />
+              <span
+                v-else-if="option.icon"
+                class="w-6 h-6 rounded inline-flex items-center justify-center mr-2 flex-shrink-0 text-sm align-middle"
+                :style="{ backgroundColor: option.iconBgColor || '#6366f1', color: option.iconColor || '#fff' }"
+              >
+                {{ option.icon }}
+              </span>
+              <span class="align-middle">{{ getOptionLabel(option) }}</span>
+            </template>
+            <!-- Regular text for single selection (original) -->
             <span v-else>{{ getOptionLabel(option) }}</span>
           </div>
         </div>
@@ -565,7 +628,7 @@ const buttonClasses = computed(() => {
   }
 
   // Custom styling for themed variant
-  if (props.variant === 'themed' && props.customTheme.button) {
+  if (props.customTheme.button) {
     baseClasses.push(props.customTheme.button.classes || '')
   } else {
     // Default styling for other variants

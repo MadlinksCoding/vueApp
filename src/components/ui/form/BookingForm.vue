@@ -7,6 +7,85 @@ import CheckboxSwitch from "@/components/dev/checkbox/CheckboxSwitch.vue";
 import ButtonComponent from "@/components/dev/button/ButtonComponent.vue";
 import BookingSectionsWrapper from "./BookingSectionsWrapper.vue";
 import BaseInput from "@/components/dev/input/BaseInput.vue";
+import UnifiedSelect from "../popup/dropdown/dashboard/customThemeSelect/UnifiedSelect.vue";
+import { ref } from "vue";
+const selectedColor = ref(null)
+const selectedValue = ref('')
+const selectedRingtoneValue = ref('')
+const selectedOfferDiscountValue = ref('')
+const selectedBookCallValue = ref('')
+const selectedSpendingRequirementValue = ref('')
+const selectedTimeFromValue = ref('')
+const selectedTimeToValue = ref('')
+const selectedHourValue = ref('')
+const selectedAppointmentMinuteValue = ref('')
+
+// Color options for color picker
+const colorOptions = [
+  { label: 'Red', value: '#ef4444', color: '#ef4444' },
+  { label: 'Blue', value: '#3b82f6', color: '#3b82f6' },
+  { label: 'Green', value: '#10b981', color: '#10b981' },
+  { label: 'Yellow', value: '#f59e0b', color: '#f59e0b' },
+  { label: 'Purple', value: '#8b5cf6', color: '#8b5cf6' },
+  { label: 'Pink', value: '#ec4899', color: '#ec4899' },
+  { label: 'Orange', value: '#f97316', color: '#f97316' },
+  { label: 'Teal', value: '#14b8a6', color: '#14b8a6' }
+]
+
+const selectOptions = [
+  { label: 'Video Call', value: 'video 1', image: "../../../../public/images/video-icon.svg" },
+  { label: 'Video Call Two', value: 'video 2', image: "../../../../public/images/video-icon.svg" },
+  { label: 'Video Call Three', value: 'video 3', image: "../../../../public/images/video-icon.svg" },
+]
+
+const selectRingingOptions = [
+  { label: 'Ringtone 1', value: 'Ringtone 1', image: "../../../../public/images/ringtone-icon.svg" },
+  { label: 'Ringtone 2', value: 'Ringtone 2', image: "../../../../public/images/ringtone-icon.svg" },
+  { label: 'Ringtone 3', value: 'Ringtone 3', image: "../../../../public/images/ringtone-icon.svg" },
+]
+
+const selectOfferDiscountOptions = [
+  { label: 'Refund Fans 1', value: 'Refund 1'},
+  { label: 'Refund Fans 2', value: 'Refund 2'},
+  { label: 'Refund Fans 3', value: 'Refund 3'},
+]
+
+const selectBookCallOptions = [
+  { label: 'Book Call 1', value: 'Book Call 1'},
+  { label: 'Book Call 2', value: 'Book Call 2'},
+  { label: 'Book Call 3', value: 'Book Call 3'},
+]
+
+const selectSpendingRequirementOptions = [
+  { label: 'Spending Requirement 1', value: 'Spending Requirement 1'},
+  { label: 'Spending Requirement 2', value: 'Spending Requirement 2'},
+  { label: 'Spending Requirement 3', value: 'Spending Requirement 3'},
+]
+
+const selectTimeFromOptions = [
+  { label: '12:00 AM', value: '12:00 AM'},
+  { label: '1:00 AM', value: '1:00 AM'},
+  { label: '2:00 AM', value: '2:00 AM'},
+]
+const selectTimeToOptions = [
+  { label: '12:00 AM', value: '12:00 AM'},
+  { label: '1:00 AM', value: '1:00 AM'},
+  { label: '2:00 AM', value: '2:00 AM'},
+]
+
+const selectHourOptions = [
+  { label: 'Hour', value: '1 hour'},
+  { label: 'Hour', value: '2 hours'},
+  { label: 'Hour', value: '3 hours'},
+]
+
+const selectAppointmentMinuteOptions = [
+  { label: 'Minutes', value: '15 minutes'},
+  { label: 'Minutes', value: '30 minutes'},
+  { label: 'Minutes', value: '45 minutes'},
+]
+
+
 </script>
 
 <template>
@@ -47,8 +126,8 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
         </svg>
       </div>
       <div class="flex-1 inline-flex flex-col justify-start items-start gap-4">
-        <div class="self-stretch inline-flex justify-start items-start">
-          <div
+        <div class="self-stretch inline-flex justify-start items-center">
+           <div
             class="flex-1 inline-flex flex-col justify-start items-start gap-1.5"
           >
             <div
@@ -63,14 +142,21 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
             </div>
           </div>
           <div
-            class="h-[49px] border-l border-gray-300 inline-flex flex-col justify-start items-start gap-1.5"
+            class="h-[49px] border-gray-300 inline-flex flex-col justify-end border-b items-center gap-1.5"
           >
-            <div
-              class="self-stretch flex-1 bg-white/50 p-2 rounded-tl-sm rounded-tr-sm shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] border-b border-gray-300 inline-flex justify-start items-start"
-            >
-              Todo
-            </div>
+            <UnifiedSelect
+              v-model="selectedColor"
+              :options="colorOptions"
+              class="bg-white/50 rounded-tl-sm rounded-tr-sm outline-none border-none border-gray-300"
+              :custom-theme="{ button: { classes: 'border-none' } }"
+              placeholder="Select a color..."
+              variant="color-picker"
+              input-text=""
+              size="md"
+              @change="handleColorChange"
+            />
           </div>
+          
         </div>
 
         <div class="w-full">
@@ -97,9 +183,19 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
               Call Type
             </div>
             <div
-              class="self-stretch bg-white/50 px-4 py-2 rounded-tl-sm rounded-tr-sm shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] border-b border-gray-300 inline-flex justify-start items-start"
+              class="self-stretch bg-white/50 px-4 pt-2 rounded-tl-sm rounded-tr-sm shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] border-b border-gray-300 inline-flex justify-start items-center"
             >
-              Todo
+              <UnifiedSelect
+                v-model="selectedValue"
+                :options="selectOptions"
+                placeholder="Select a Video Call..."
+                variant="list"
+                size="md"
+                option-label-key="label"
+                option-value-key="value"
+                :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                @change="handleSelectChange"
+            />
             </div>
           </div>
         </div>
@@ -113,7 +209,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
               <div
                 class="self-stretch bg-white/75 px-4 py-2 rounded-tl-sm rounded-tr-sm shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] border-b border-gray-300 inline-flex justify-start items-start"
               >
-                Todo
+                <UnifiedSelect
+                  v-model="selectedRingtoneValue"
+                  :options="selectRingingOptions"
+                  placeholder="Select a Ringtone..."
+                  variant="list"
+                  size="md"
+                  option-label-key="label"
+                  option-value-key="value"
+                  :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                  @change="handleSelectChange"
+                />
               </div>
             </div>
           </div>
@@ -541,9 +647,19 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                 />
 
                 <div
-                  class="bg-white/50 px-3 py-2 rounded-tl-sm outline-none rounded-tr-sm shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] border-b border-gray-300 inline-flex justify-start items-start"
+                  class="bg-white/50 w-28 px-3 py-2 rounded-tl-sm outline-none rounded-tr-sm shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] border-b border-gray-300 inline-flex justify-start items-start"
                 >
-                  Todo
+                  <UnifiedSelect
+                    v-model="selectedHourValue"
+                    :options="selectHourOptions"
+                    placeholder="Hours"
+                    variant="list"
+                    size="md"
+                    option-label-key="label"
+                    option-value-key="value"
+                    :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                    @change="handleSelectChange"
+                  />
                 </div>
               </div>
               <div
@@ -709,7 +825,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                   <div
                     class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                   >
-                    Todo
+                    <UnifiedSelect
+                      v-model="selectedTimeFromValue"
+                      :options="selectTimeFromOptions"
+                      placeholder="Select a Time..."
+                      variant="list"
+                      size="md"
+                      option-label-key="label"
+                      option-value-key="value"
+                      :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                      @change="handleSelectChange"
+                    />
                   </div>
                 </div>
               </div>
@@ -728,7 +854,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                 <div
                   class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                 >
-                  Todo
+                  <UnifiedSelect
+                    v-model="selectedTimeToValue"
+                    :options="selectTimeToOptions"
+                    placeholder="Select a Time..."
+                    variant="list"
+                    size="md"
+                    option-label-key="label"
+                    option-value-key="value"
+                    :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                    @change="handleSelectChange"
+                  />
                 </div>
               </div>
             </div>
@@ -762,7 +898,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                       <div
                         class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                       >
-                        Todo
+                        <UnifiedSelect
+                          v-model="selectedTimeFromValue"
+                          :options="selectTimeFromOptions"
+                          placeholder="Select a Time..."
+                          variant="list"
+                          size="md"
+                          option-label-key="label"
+                          option-value-key="value"
+                          :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                          @change="handleSelectChange"
+                        />
                       </div>
                     </div>
                   </div>
@@ -781,7 +927,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                     <div
                       class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                     >
-                      Todo
+                      <UnifiedSelect
+                        v-model="selectedTimeToValue"
+                        :options="selectTimeToOptions"
+                        placeholder="Select a Time..."
+                        variant="list"
+                        size="md"
+                        option-label-key="label"
+                        option-value-key="value"
+                        :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                        @change="handleSelectChange"
+                      />
                     </div>
                   </div>
                 </div>
@@ -806,7 +962,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                       <div
                         class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                       >
-                        Todo
+                        <UnifiedSelect
+                          v-model="selectedTimeFromValue"
+                          :options="selectTimeFromOptions"
+                          placeholder="Select a Time..."
+                          variant="list"
+                          size="md"
+                          option-label-key="label"
+                          option-value-key="value"
+                          :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                          @change="handleSelectChange"
+                        />
                       </div>
                     </div>
                   </div>
@@ -825,7 +991,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                     <div
                       class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                     >
-                      Todo
+                      <UnifiedSelect
+                        v-model="selectedTimeToValue"
+                        :options="selectTimeToOptions"
+                        placeholder="Select a Time..."
+                        variant="list"
+                        size="md"
+                        option-label-key="label"
+                        option-value-key="value"
+                        :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                        @change="handleSelectChange"
+                      />
                     </div>
                   </div>
                 </div>
@@ -859,7 +1035,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                   <div
                     class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                   >
-                    Todo
+                    <UnifiedSelect
+                      v-model="selectedTimeFromValue"
+                      :options="selectTimeFromOptions"
+                      placeholder="Select a Time..."
+                      variant="list"
+                      size="md"
+                      option-label-key="label"
+                      option-value-key="value"
+                      :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                      @change="handleSelectChange"
+                    />
                   </div>
                 </div>
               </div>
@@ -878,7 +1064,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                 <div
                   class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                 >
-                  Todo
+                  <UnifiedSelect
+                    v-model="selectedTimeToValue"
+                    :options="selectTimeToOptions"
+                    placeholder="Select a Time..."
+                    variant="list"
+                    size="md"
+                    option-label-key="label"
+                    option-value-key="value"
+                    :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                    @change="handleSelectChange"
+                  />
                 </div>
               </div>
             </div>
@@ -908,7 +1104,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                   <div
                     class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                   >
-                    Todo
+                    <UnifiedSelect
+                      v-model="selectedTimeFromValue"
+                      :options="selectTimeFromOptions"
+                      placeholder="Select a Time..."
+                      variant="list"
+                      size="md"
+                      option-label-key="label"
+                      option-value-key="value"
+                      :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                      @change="handleSelectChange"
+                    />
                   </div>
                 </div>
               </div>
@@ -927,7 +1133,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                 <div
                   class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                 >
-                  Todo
+                  <UnifiedSelect
+                    v-model="selectedTimeToValue"
+                    :options="selectTimeToOptions"
+                    placeholder="Select a Time..."
+                    variant="list"
+                    size="md"
+                    option-label-key="label"
+                    option-value-key="value"
+                    :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                    @change="handleSelectChange"
+                  />
                 </div>
               </div>
             </div>
@@ -957,7 +1173,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                   <div
                     class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                   >
-                    Todo
+                    <UnifiedSelect
+                      v-model="selectedTimeFromValue"
+                      :options="selectTimeFromOptions"
+                      placeholder="Select a Time..."
+                      variant="list"
+                      size="md"
+                      option-label-key="label"
+                      option-value-key="value"
+                      :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                      @change="handleSelectChange"
+                    />
                   </div>
                 </div>
               </div>
@@ -976,7 +1202,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                 <div
                   class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                 >
-                  Todo
+                  <UnifiedSelect
+                    v-model="selectedTimeToValue"
+                    :options="selectTimeToOptions"
+                    placeholder="Select a Time..."
+                    variant="list"
+                    size="md"
+                    option-label-key="label"
+                    option-value-key="value"
+                    :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                    @change="handleSelectChange"
+                  />
                 </div>
               </div>
             </div>
@@ -1006,7 +1242,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                   <div
                     class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                   >
-                    Todo
+                    <UnifiedSelect
+                      v-model="selectedTimeFromValue"
+                      :options="selectTimeFromOptions"
+                      placeholder="Select a Time..."
+                      variant="list"
+                      size="md"
+                      option-label-key="label"
+                      option-value-key="value"
+                      :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                      @change="handleSelectChange"
+                    />
                   </div>
                 </div>
               </div>
@@ -1025,7 +1271,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                 <div
                   class="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                 >
-                  Todo
+                  <UnifiedSelect
+                    v-model="selectedTimeToValue"
+                    :options="selectTimeToOptions"
+                    placeholder="Select a Time..."
+                    variant="list"
+                    size="md"
+                    option-label-key="label"
+                    option-value-key="value"
+                    :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                    @change="handleSelectChange"
+                  />
                 </div>
               </div>
             </div>
@@ -1078,7 +1334,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                 <div
                   className="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                 >
-                  Todo
+                  <UnifiedSelect
+                    v-model="selectedOfferDiscountValue"
+                    :options="selectOfferDiscountOptions"
+                    placeholder="Select a Discount..."
+                    variant="list"
+                    size="md"
+                    option-label-key="label"
+                    option-value-key="value"
+                    :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                    @change="handleSelectChange"
+                  />
                 </div>
               </div>
             </div>
@@ -1249,7 +1515,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
                     <div
                       className="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
                     >
-                      Todo
+                      <UnifiedSelect
+                        v-model="selectedAppointmentMinuteValue"
+                        :options="selectAppointmentMinuteOptions"
+                        placeholder="Minutes"
+                        variant="list"
+                        size="md"
+                        option-label-key="label"
+                        option-value-key="value"
+                        :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                        @change="handleSelectChange"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1497,7 +1773,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
               <div
                 className="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
               >
-                Todo
+                <UnifiedSelect
+                  v-model="selectedBookCallValue"
+                  :options="selectBookCallOptions"
+                  placeholder="Book a Call..."
+                  variant="list"
+                  size="md"
+                  option-label-key="label"
+                  option-value-key="value"
+                  :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                  @change="handleSelectChange"
+                />
               </div>
             </div>
           </div>
@@ -1524,7 +1810,17 @@ import BaseInput from "@/components/dev/input/BaseInput.vue";
               <div
                 className="flex-1 justify-start text-gray-900 text-base font-normal font-['Poppins'] leading-normal"
               >
-                Todo
+                <UnifiedSelect
+                  v-model="selectedSpendingRequirementValue"
+                  :options="selectSpendingRequirementOptions"
+                  placeholder="Select a Spending Requirement..."
+                  variant="list"
+                  size="md"
+                  option-label-key="label"
+                  option-value-key="value"
+                  :custom-theme="{ button: { classes: 'border-none !p-0'} }"
+                  @change="handleSelectChange"
+                />
               </div>
             </div>
           </div>
