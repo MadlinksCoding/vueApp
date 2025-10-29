@@ -659,7 +659,6 @@
     "dependencies": {
       "onboardingRequired": {
         "fallbackSlug": "/onboarding"
-        
       }
     }
   },
