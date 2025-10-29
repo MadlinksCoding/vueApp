@@ -19,10 +19,39 @@
   {
     "slug": "/dashboard",
     "section": "dashboard-global",
+    "redirectIfLoggedIn": "/dashboard",
     "requiresAuth": false,
     "enabled": true,
-    "supportedRoles": [],
-    "componentPath": "@/templates/dashboard/page/role/Dashboard.vue"
+    "supportedRoles": ["all"],
+    "redirectIfNotAuth": "/log-in",
+    "componentPath": "@/templates/dashboard/page/role/Dashboard.vue",
+    "dependencies": {
+      "roles": {
+        "creator": {
+          "onboardingPassed": {
+            "required": true,
+            "fallbackSlug": "/sign-up/onboarding"
+          },
+          "kycPassed": {
+            "required": true,
+            "fallbackSlug": "/sign-up/onboarding/kyc"
+          }
+        },
+        "vendor": {
+          "onboardingPassed": {
+            "required": true,
+            "fallbackSlug": "/sign-up/onboarding"
+          }
+        },
+        "agent": {
+          "onboardingPassed": {
+            "required": true,
+            "fallbackSlug": "/sign-up/onboarding"
+          }
+        }
+      }
+    },
+    "redirect": "/dashboard/overview"
   },
   {
     "slug": "/log-in",
@@ -129,11 +158,29 @@
   },
   {
     "slug": "/dashboard/edit-profile",
-    "requiresAuth": false,
-    "enabled": true,
-    "componentPath": "@/templates/dashboard/page/agent/DashboardEditProfileAgent.vue"
+    "section": {
+      "creator": "dashboard-creator",
+      "fan": "dashboard-fan",
+      "agent": "dashboard-agent",
+      "vendor": "dashboard-vendor"
+    },
+    "inheritConfigFromParent": true,
+    "supportedRoles": ["creator", "fan", "agent", "vendor"],
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/templates/dashboard/page/creator/DashboardEditProfileCreator.vue"
+      },
+      "fan": {
+        "componentPath": "@/templates/dashboard/page/fan/DashboardEditProfileFan.vue"
+      },
+      "agent": {
+        "componentPath": "@/templates/dashboard/page/agent/DashboardEditProfileAgent.vue"
+      },
+      "vendor": {
+        "componentPath": "@/templates/dashboard/page/vendor/DashboardEditProfileVendor.vue"
+      }
+    }
   },
-
   {
     "slug": "/dashboard/following",
     "section": {
@@ -157,8 +204,11 @@
   },
   {
     "slug": "/dashboard/my-media",
-    "requiresAuth": false,
-    "enabled": true,
+    "section": {
+      "creator": "dashboard-creator"
+    },
+    "inheritConfigFromParent": true,
+    "supportedRoles": ["creator"],
     "componentPath": "@/templates/dashboard/page/creator/DashboardMyMediaCreator.vue"
   },
   {
@@ -185,14 +235,14 @@
         "componentPath": "@/templates/dashboard/page/vendor/DashboardNewsletterSettingsVendor.vue"
       }
     }
-  },
+  },  
   {
     "slug": "/dashboard/overview",
     "section": {
       "creator": "dashboard-creator"
     },
     "inheritConfigFromParent": true,
-
+    "supportedRoles": ["creator"],
     "componentPath": "@/templates/dashboard/page/creator/DashboardOverviewCreator.vue"
   },
   {
@@ -218,9 +268,24 @@
   },
   {
     "slug": "/dashboard/payout",
-    "requiresAuth": false,
-    "enabled": true,
-    "componentPath": "@/templates/dashboard/page/agent/DashboardPayoutAgent.vue"
+    "section": {
+      "creator": "dashboard-creator",
+      "agent": "dashboard-agent",
+      "vendor": "dashboard-vendor"
+    },
+    "inheritConfigFromParent": true,
+    "supportedRoles": ["creator", "agent", "vendor"],
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/templates/dashboard/page/creator/DashboardPayoutCreator.vue"
+      },
+      "agent": {
+        "componentPath": "@/templates/dashboard/page/agent/DashboardPayoutAgent.vue"
+      },
+      "vendor": {
+        "componentPath": "@/templates/dashboard/page/vendor/DashboardPayoutVendor.vue"
+      }
+    }
   },
   {
     "slug": "/dashboard/settings/privacy-security",
@@ -312,15 +377,40 @@
   },
   {
     "slug": "/dashboard/referrals",
-    "requiresAuth": false,
-    "enabled": true,
+    "section": {
+      "creator": "dashboard-global",
+      "fan": "dashboard-global",
+      "agent": "dashboard-global",
+      "vendor": "dashboard-global"
+    },
+    "inheritConfigFromParent": true,
+    "supportedRoles": ["creator", "fan", "agent", "vendor"],
     "componentPath": "@/templates/dashboard/page/role/DashboardReferrals.vue"
   },
   {
     "slug": "/dashboard/settings",
-    "requiresAuth": false,
-    "enabled": true,
-    "componentPath": "@/templates/dashboard/page/agent/DashboardSettingsAgent.vue"
+    "section": {
+      "creator": "dashboard-creator",
+      "fan": "dashboard-fan",
+      "agent": "dashboard-agent",
+      "vendor": "dashboard-vendor"
+    },
+    "inheritConfigFromParent": true,
+    "supportedRoles": ["creator", "fan", "agent", "vendor"],
+    "customComponentPath": {
+      "creator": {
+        "componentPath": "@/templates/dashboard/page/creator/DashboardSettingsCreator.vue"
+      },
+      "fan": {
+        "componentPath": "@/templates/dashboard/page/fan/DashboardSettingsFan.vue"
+      },
+      "agent": {
+        "componentPath": "@/templates/dashboard/page/agent/DashboardSettingsAgent.vue"
+      },
+      "vendor": {
+        "componentPath": "@/templates/dashboard/page/vendor/DashboardSettingsVendor.vue"
+      }
+    }
   },
   {
     "slug": "/dashboard/account/shipping",
@@ -344,22 +434,22 @@
     "componentPath": "@/templates/dashboard/page/creator/DashboardSubscriptionSettingsCreator.vue"
   },
   {
-    "slug": "/dashboard/subscriptions",
-    "requiresAuth": false,
-    "enabled": true,
+    "slug": "/dashboard/store/subscription",
+    "section": {
+      "creator": "dashboard-creator"
+    },
+    "inheritConfigFromParent": true,
+    "supportedRoles": ["creator"],
     "componentPath": "@/templates/dashboard/page/creator/DashboardSubscriptionCreator.vue"
   },
   {
-    "slug": "/dashboard/orders/order-received",
-    "requiresAuth": false,
-    "enabled": true,
-    "componentPath": "@/templates/dashboard/page/agent/DashboardOrdersReceived.vue"
-  },
-  {
-    "slug": "/dashboard/orders/item-purchased",
-    "requiresAuth": false,
-    "enabled": true,
-    "componentPath": "@/templates/dashboard/page/agent/DashboardItemPurchased.vue"
+    "slug": "/dashboard/store/your-orders",
+    "section": {
+      "creator": "dashboard-creator"
+    },
+    "inheritConfigFromParent": true,
+    "supportedRoles": ["creator"],
+    "componentPath": "@/templates/dashboard/page/creator/DashboardYourOrdersCreator.vue"
   },
   {
     "slug": "/dashboard/store/your-posts",
@@ -376,6 +466,7 @@
     "section": "auth",
     "requiresAuth": false,
     "redirectIfNotAuth": "/log-in",
+    "supportedRoles": ["creator"],
     "componentPath": "@/templates/auth/page/creator/AuthSignUpOnboardingCreator.vue",
     "preLoadSections": ["dashboard"],
     "dependencies": {
@@ -395,6 +486,7 @@
     "section": "auth",
     "requiresAuth": false,
     "redirectIfNotAuth": "/log-in",
+    "supportedRoles": ["creator"],
     "componentPath": "@/templates/auth/page/creator/AuthSignUpOnboardingKycCreator.vue",
     "preLoadSections": ["dashboard"],
     "dependencies": {
@@ -421,6 +513,7 @@
     "inheritConfigFromParent": true,
     "supportedRoles": ["creator", "fan", "agent", "vendor"],
     "componentPath": "@/templates/auth/page/role/AuthGoogle.vue"
+
   },
   {
     "slug": "/auth/callback/social/twitter",
@@ -546,22 +639,16 @@
     "slug": "/dev",
     "requiresAuth": false,
     "section": "dev",
+    "supportedRoles": ["all"],
     "enabled": true,
-    "componentPath": "@/components/dev/DemoPage.vue"
+  "componentPath": "@/components/dev/DemoPage.vue",
+    "dependencies": {
+      "onboardingRequired": {
+        "fallbackSlug": "/onboarding"
+      }
+    }
   },
-  {
-    "slug": "/dashboard/referralsContentFan",
-    "requiresAuth": false,
-    "section": "dev",
-    "enabled": true,
-    "componentPath": "@/templates/dashboard/page/fan/DashboardReferralsContentFan.vue"
-  },
-  {
-    "slug": "/dashboard/analytics",
-    "requiresAuth": false,
-    "enabled": true,
-    "componentPath": "@/templates/dashboard/page/agent/DashboardAnalytics.vue"
-  },
+   
   {
     "slug": "/",
     "redirect": "/log-in",

@@ -6,13 +6,7 @@ export const useAuthStore = defineStore("auth", {
   state: () => ({
     idToken: null,
     currentUser: null,
-     simulate: {
-    role: "admin",
-    email: "dev@test.com",
-    kycPassed: true,
-    onboardingPassed: true,
-    raw: { exp: Math.floor(Date.now() / 1000) + 86400 }
-  },
+     simulate: null,
     onboardingPassed: false, // Local persisted state for onboarding
     _refreshInterval: null,
   }),
@@ -98,3 +92,5 @@ export const useAuthStore = defineStore("auth", {
 
   persist: true,
 });
+
+// {"role": "creator","email": "dev@test.com", "kycPassed": true, "onboardingPassed": true,"raw": { "exp": 1730238201 } }
