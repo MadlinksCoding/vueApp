@@ -19,8 +19,8 @@
   {
     "slug": "/dashboard",
     "section": "dashboard-global",
-    "redirectIfLoggedIn": "/dashboard",
-    "requiresAuth": false,
+    "redirectIfLoggedIn": "",
+    "requiresAuth": true,
     "enabled": true,
     "supportedRoles": ["all"],
     "redirectIfNotAuth": "/log-in",
@@ -50,15 +50,14 @@
           }
         }
       }
-    },
-    "redirect": "/dashboard/overview"
+    }
   },
   {
     "slug": "/log-in",
     "section": "auth",
     "requiresAuth": false,
     "enabled": true,
-    "redirectIfLoggedIn": "/dashboard",
+    "redirectIfLoggedIn": "",
     "supportedRoles": [],
     "componentPath": "@/templates/auth/page/role/AuthLogIn.vue",
     "preLoadSections": ["dashboard", "shop"]
@@ -66,7 +65,7 @@
   {
     "slug": "/lost-password",
     "section": "auth",
-    "redirectIfLoggedIn": "/dashboard",
+    "redirectIfLoggedIn": "",
     "requiresAuth": false,
     "supportedRoles": [],
     "componentPath": "@/templates/auth/page/role/AuthLostPassword.vue",
@@ -76,7 +75,7 @@
     "slug": "/reset-password",
     "section": "auth",
     "requiresAuth": false,
-    "redirectIfLoggedIn": "/dashboard",
+    "redirectIfLoggedIn": "",
     "supportedRoles": [],
     "componentPath": "@/templates/auth/page/role/AuthResetPassword.vue",
     "preLoadSections": ["dashboard"]
@@ -86,7 +85,7 @@
     "section": "auth",
     "requiresAuth": false,
     "enabled": true,
-    "redirectIfLoggedIn": "/dashboard",
+    "redirectIfLoggedIn": "",
     "supportedRoles": [],
     "componentPath": "@/templates/auth/page/role/AuthSignUp.vue",
     "preLoadSections": ["dashboard"]
@@ -661,12 +660,6 @@
         "fallbackSlug": "/onboarding"
       }
     }
-  },
-  {
-    "slug": "/",
-    "redirect": "/log-in",
-    "section": "auth",
-    "preLoadSections": []
   },
 
   {
