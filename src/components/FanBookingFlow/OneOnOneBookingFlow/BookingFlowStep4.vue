@@ -15,6 +15,7 @@ import {
   requestFanBookingOpenChat,
   requestFanBookingOpenDetails,
 } from '@/embeds/fanBooking/bridge.js';
+import FileIcon from '@/assets/images/icons/file-06.svg'
 
 const props = defineProps({
   engine: {
@@ -247,15 +248,15 @@ onMounted(() => {
   <!-- overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -->
   <div class="relative w-full h-full md:h-auto md:max-w-[57.563rem] min-h-0 md:rounded-[24px] h-dvh">
 
-      <div class="md:rounded-[24px] flex flex-col h-dvh md:h-auto relative" :style="successBackgroundStyle">
+      <div class="md:rounded-[24px] flex flex-col h-dvh md:max-h-[620px] relative" :style="successBackgroundStyle">
         <div class="absolute inset-0 bg-black/50 md:rounded-[24px] md:hidden"></div>
 
           <div class="w-full md:rounded-[24px] flex-1 bg-[#0C111D]/20 md:bg-[#0C111D]/75 backdrop-blur-[5px] flex justify-center items-stretch">
             <!-- Left part -->
-            <div class="p-3 md:px-6 md:pb-6 md:pt-12 md:rounded-tl-[24px] md:rounded-bl-[24px] flex flex-col gap-10 md:max-w-[25.5rem] flex-1 bg-transparent md:bg-[linear-gradient(0deg,rgba(34,204,238,0.2)_0%,rgba(34,204,238,0.2)_100%)]">
+            <div class="p-3 md:justify-center md:px-6 md:pb-6 md:pt-12 md:rounded-tl-[24px] md:rounded-bl-[24px] flex flex-col gap-10 md:max-w-[25.5rem] flex-1 bg-transparent md:bg-[linear-gradient(0deg,rgba(34,204,238,0.2)_0%,rgba(34,204,238,0.2)_100%)]">
               <div class="flex flex-col justify-center items-center gap-6" data-testid="step4-status">
                 <img class="w-36 h-36" :src="statusIcon" alt="" data-testid="step4-status-icon" />
-                <div class="flex flex-col justify-start items-start gap-2">
+                <div class="flex flex-col justify-start items-center gap-2">
                   <div class="text-center justify-center text-white text-xl md:text-2xl font-semibold" data-testid="step4-status-title">{{ topTitle }}</div>
                   <div class="text-center justify-center text-white text-sm md:text-base font-normal" data-testid="step4-status-message">{{ topMessage }}</div>
                   <div v-if="showOrderDetails" class="text-center justify-center text-white text-sm md:text-base font-normal">In the mean time, you can track progress of your mandatory purchase in order page.</div>
@@ -310,9 +311,7 @@ onMounted(() => {
                   data-testid="step4-calendar-action-desktop"
                   @click="handleViewCalendar"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+                  <img :src="FileIcon" alt="file-icon" class="w-6 h-6"/>
                   <div class="text-center text-gray-900 text-base font-medium leading-6">{{ t("fan_booking_view_events_on_calendar") }}</div>
                 </div>
                 <!-- view order detail -->
